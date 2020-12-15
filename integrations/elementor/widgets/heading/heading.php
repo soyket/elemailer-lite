@@ -9,7 +9,6 @@ use \Elementor\Controls_Manager;
 use \Elementor\Core\Schemes\Color;
 use \Elementor\Utils;
 
-
 /**
  * heading widget class for registering heading widget
  *
@@ -173,7 +172,6 @@ class Elemailer_Widget_Heading extends Widget_Base
 		);
 
 		$this->end_controls_section();
-
 
 		$this->start_controls_section(
 			'advanced_section',

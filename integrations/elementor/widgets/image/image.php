@@ -233,7 +233,7 @@ class Elemailer_Widget_Image extends Widget_Base
 
 ?>
 
-		<div style=" text-align: <?php echo $alignment; ?>; <?php echo esc_attr($advance_style); ?>;" class="void-email-image">
+		<div style=" text-align: <?php echo esc_attr($alignment); ?>; <?php echo esc_attr($advance_style); ?>;" class="void-email-image">
 			<?php if ($image_link_type == 'custom_url') : ?>
 				<a href="<?php echo esc_url($image_link); ?>">
 				<?php endif; ?>

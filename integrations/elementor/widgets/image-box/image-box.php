@@ -71,7 +71,6 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 			]
 		);
 
-
 		$this->add_control(
 			'void_email_title',
 			[
@@ -82,6 +81,7 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				'default' => __('Image Title', 'elemailer-lite'),
 			]
 		);
+
 		$this->add_control(
 			'void_email_description',
 			[
@@ -91,6 +91,7 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				'default' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo tellus vitae cursus.', 'elemailer-lite'),
 			]
 		);
+
 		$this->add_control(
 			'image_position',
 			[
@@ -115,6 +116,7 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				'toggle' => false,
 			]
 		);
+
 		$this->add_control(
 			'text_align',
 			[
@@ -138,8 +140,8 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				'toggle' => true,
 			]
 		);
-		$this->end_controls_section();
 
+		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'image_section',
@@ -148,6 +150,7 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
+
 		$this->add_control(
 			'width',
 			[
@@ -168,6 +171,7 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				],
 			]
 		);
+
 		$this->add_control(
 			'border_radius',
 			[
@@ -188,6 +192,7 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				],
 			]
 		);
+
 		$this->add_control(
 			'image_spacing',
 			[
@@ -208,6 +213,7 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				],
 			]
 		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -250,6 +256,7 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				],
 			]
 		);
+
 		$this->add_control(
 			'title_spacing_top',
 			[
@@ -270,6 +277,7 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				],
 			]
 		);
+
 		$this->add_control(
 			'title_spacing_bottom',
 			[
@@ -290,7 +298,9 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				],
 			]
 		);
+
 		$this->end_controls_section();
+
 		$this->start_controls_section(
 			'description_section',
 			[

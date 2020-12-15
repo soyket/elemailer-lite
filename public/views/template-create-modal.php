@@ -1,15 +1,14 @@
 <?php defined('ABSPATH') || exit; ?>
-<!-- Modal -->
 <div class="elemailer-form-template-add-modal" id="elemailer-modal">
   <div class="modal fade" id="elemailerFormTemplateModal" tabindex="-1" role="dialog" aria-labelledby="elemailerFormTemplateModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header" style="background-image: url(<?php echo ELE_MAILER_LITE_PLUGIN_PUBLIC.'/assets/img/modal-head-bg.png' ?>);">
+        <div class="modal-header" style="background-image: url(<?php echo ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/img/modal-head-bg.png' ?>);">
           <h5 class="modal-title" id="elemailerFormTemplateModalLabel"><?php esc_html_e('Elemailer Form Template Settings', 'elemailer-lite'); ?></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        
+
         </div>
         <p class="alert response-message"></p>
         <div class="modal-body">
@@ -19,45 +18,31 @@
               <input name="title" type="text" class="form-control title" id="templateName" placeholder="Enter Name">
               <small class="form-text text-muted"><?php esc_html_e('This is your template name or title', 'elemailer-lite'); ?></small>
             </div>
-           
+
           </form>
         </div>
-        
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary elemailer-edit">
-            <img src="<?php echo ELE_MAILER_LITE_PLUGIN_PUBLIC.'/assets/img/elementor.png' ?>" alt="">
+            <img src="<?php echo ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/img/elementor.png' ?>" alt="">
             <?php esc_html_e('Edit with elementor', 'elemailer-lite'); ?>
           </button>
           <button type="button" class="btn btn-primary elemailer-save">
-          <img src="<?php echo ELE_MAILER_LITE_PLUGIN_PUBLIC.'/assets/img/save.png' ?>" alt="">
+            <img src="<?php echo ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/img/save.png' ?>" alt="">
             <?php esc_html_e('Save changes', 'elemailer-lite'); ?>
           </button>
         </div>
       </div>
       <div class="modal-preloader">
-          <div class="sk-chase">
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-          </div>
+        <div class="sk-chase">
+          <div class="sk-chase-dot"></div>
+          <div class="sk-chase-dot"></div>
+          <div class="sk-chase-dot"></div>
+          <div class="sk-chase-dot"></div>
+          <div class="sk-chase-dot"></div>
+          <div class="sk-chase-dot"></div>
         </div>
+      </div>
     </div>
   </div>
 </div>
-
-
-
-
-<script>
-    // Email Template Modal JS
-    var modal = document.getElementById('elemailer-modal');
-    
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.classList.remove("show");
-        }
-    }
-</script>

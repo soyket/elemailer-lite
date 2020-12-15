@@ -53,16 +53,15 @@ jQuery(document).ready(function($) {
 
     });
 
-    // // Email Template Modal JS
-    // $(document).mouseup(function (e) { 
-    //     if ($(e.target).closest("#elemailerFormTemplateModal").length 
-    //                 === 0) { 
-    //         if ( $('.elemailer-form-template-add-modal').hasClass('show') ) {
-    //             $('.elemailer-form-template-add-modal').removeClass('show');
-    //         }
-            
-    //     } 
-    // });
+    // remove modal on outside click
+    var modal = $('#elemailer-modal');
+
+    $('body').on('click', function (event){
+        console.log($(event.target).is(modal));
+        if ($(event.target).is(modal)) {
+            modal.removeClass("show");
+        }
+    });
 
     $('.elemailer-form-template-add-modal .modal-content button.close').on('click', function(e){
         $('.elemailer-form-template-add-modal').removeClass('show');

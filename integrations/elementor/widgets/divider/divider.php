@@ -10,7 +10,6 @@ use \Elementor\Utils;
 
 use \Elementor\Core\Schemes\Color;
 
-
 /**
  * divider widget class for registering divider widget
  *

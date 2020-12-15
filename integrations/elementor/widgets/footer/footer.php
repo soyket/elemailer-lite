@@ -9,7 +9,6 @@ use \Elementor\Controls_Manager;
 use \Elementor\Core\Schemes\Color;
 use \Elementor\Utils;
 
-
 /**
  * heading widget class for registering heading widget
  *
@@ -47,7 +46,7 @@ class Elemailer_Widget_Footer extends Widget_Base
 
 	public function get_keywords()
 	{
-		return ['void', 'template', 'heading'];
+		return ['void', 'template', 'footer'];
 	}
 
 	protected function _register_controls()
@@ -68,8 +67,6 @@ class Elemailer_Widget_Footer extends Widget_Base
 				'default' => __('BDBL Bhaban (19th Floor-East), 12, Kazi Nazrul Islam Avenue, Dhaka 1215', 'elemailer-lite'),
 			]
 		);
-
-		
 
 		$this->add_control(
 			'text_align',
@@ -93,10 +90,9 @@ class Elemailer_Widget_Footer extends Widget_Base
 				],
 				'default' => 'center',
 			]
-        );
-        
+		);
 
-        $this->add_control(
+		$this->add_control(
 			'ft_color',
 			[
 				'label' => __('Text Color', 'elemailer-lite'),
@@ -127,21 +123,18 @@ class Elemailer_Widget_Footer extends Widget_Base
 
 				],
 			]
-        );
-        
-        
+		);
 
 		$this->end_controls_section();
 
-        $this->start_controls_section(
+		$this->start_controls_section(
 			'section_subscription',
 			[
 				'label' => __('Subscription', 'elemailer-lite'),
-            ]
-            
-            
+			]
+
 		);
-		
+
 		$this->add_control(
 			'unsbscribe_text',
 			[
@@ -152,8 +145,8 @@ class Elemailer_Widget_Footer extends Widget_Base
 				'default' => __('Unsubscribe', 'elemailer-lite'),
 			]
 		);
-		
-        $this->add_control(
+
+		$this->add_control(
 			'manage_sbscription_text',
 			[
 				'label' => __('Manage Subscription Text', 'elemailer-lite'),
@@ -164,7 +157,7 @@ class Elemailer_Widget_Footer extends Widget_Base
 			]
 		);
 
-        $this->add_control(
+		$this->add_control(
 			'unsubscribe_color',
 			[
 				'label' => __('Unsubscribe Color', 'elemailer-lite'),
@@ -196,7 +189,8 @@ class Elemailer_Widget_Footer extends Widget_Base
 				],
 			]
 		);
-        $this->end_controls_section();
+
+		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'advanced_section',
@@ -268,26 +262,19 @@ class Elemailer_Widget_Footer extends Widget_Base
 	protected function render($instance = [])
 	{
 
-        $settings = $this->get_settings_for_display();
-        
+		$settings = $this->get_settings_for_display();
+
 		$footer_address  = $settings['footer_address'];
 		$unsubscribe_text  = $settings['unsbscribe_text'];
 		$manage_subscription_text  = $settings['manage_sbscription_text'];
-		
-		
-		//$unsubscribe_link = $settings['unsubscribe_link'];
-		
-        $alignment = isset($settings['text_align']) ? $settings['text_align'] : 'center';
-        
-        
- 
-		
+
+		$alignment = isset($settings['text_align']) ? $settings['text_align'] : 'center';
+
 		$ft_text_styles = 'color: ' . (($settings['ft_color'] != '') ? $settings['ft_color'] : '#000') . ';';
-        $ft_text_styles .= 'font-size: ' . ((($settings['ft_font_size']['size'] != '') ? $settings['ft_font_size']['size'] : '12') . (($settings['ft_font_size']['unit'] != '') ? $settings['ft_font_size']['unit'] : 'px')) . ';';
-        
-        $ft_unsbscribe = 'color: ' . (($settings['unsubscribe_color'] != '') ? $settings['unsubscribe_color'] : '#000') . ';';
+		$ft_text_styles .= 'font-size: ' . ((($settings['ft_font_size']['size'] != '') ? $settings['ft_font_size']['size'] : '12') . (($settings['ft_font_size']['unit'] != '') ? $settings['ft_font_size']['unit'] : 'px')) . ';';
+
+		$ft_unsbscribe = 'color: ' . (($settings['unsubscribe_color'] != '') ? $settings['unsubscribe_color'] : '#000') . ';';
 		$ft_unsbscribe .= 'font-size: ' . ((($settings['unsubscribe_font_size']['size'] != '') ? $settings['unsubscribe_font_size']['size'] : '12') . (($settings['unsubscribe_font_size']['unit'] != '') ? $settings['unsubscribe_font_size']['unit'] : 'px')) . ';';
-		 
 
 		$advance_style = 'background: ' . (($settings['advance_background_type'] == 'color') ? (($settings['advance_background_color'] != '') ? $settings['advance_background_color'] . ';' : '#0000;') : 'url("' . esc_url($settings['advance_background_image']['url']) . '") no-repeat fixed center;');
 		$advance_style .= ' margin: ' . (($settings['advance_margin']['top'] != '') ? $settings['advance_margin']['top'] . 'px ' . $settings['advance_margin']['right'] . 'px ' . $settings['advance_margin']['bottom'] . 'px ' . $settings['advance_margin']['left'] . 'px;' : '0px 0px 0px 0px;');
@@ -295,16 +282,14 @@ class Elemailer_Widget_Footer extends Widget_Base
 
 ?>
 
-		
-        
-        <div style="text-align: <?php echo esc_attr($alignment); ?>;<?php echo esc_attr($advance_style); ?>" class="ele-footer-widget">
-            <div class="ele-footer-text">
-                <p style="line-height: initial;<?php echo esc_attr($ft_text_styles); ?>"><?php echo esc_html($footer_address); ?></p>
-            </div>
-            <div class="ele-unsubscribe">
-                <a style="line-height: initial;text-decoration: underline;<?php echo esc_attr($ft_unsbscribe); ?>" href="#[ELEMAILER_UNSUBSCRIBE_LINK]"><?php echo esc_html($unsubscribe_text); ?></a> || <a style="line-height: initial;text-decoration: underline;<?php echo esc_attr($ft_unsbscribe); ?>" href="#[ELEMAILER_MANAGE_SUBSCRIPTION_LINK]"><?php echo esc_html($manage_subscription_text); ?></a>
-            </div>
-        </div>
+		<div style="text-align: <?php echo esc_attr($alignment); ?>;<?php echo esc_attr($advance_style); ?>" class="ele-footer-widget">
+			<div class="ele-footer-text">
+				<p style="line-height: initial;<?php echo esc_attr($ft_text_styles); ?>"><?php echo esc_html($footer_address); ?></p>
+			</div>
+			<div class="ele-unsubscribe">
+				<a style="line-height: initial;text-decoration: underline;<?php echo esc_attr($ft_unsbscribe); ?>" href="#[ELEMAILER_UNSUBSCRIBE_LINK]"><?php echo esc_html($unsubscribe_text); ?></a> || <a style="line-height: initial;text-decoration: underline;<?php echo esc_attr($ft_unsbscribe); ?>" href="#[ELEMAILER_MANAGE_SUBSCRIPTION_LINK]"><?php echo esc_html($manage_subscription_text); ?></a>
+			</div>
+		</div>
 
 <?php
 

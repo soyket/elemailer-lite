@@ -185,7 +185,7 @@ class Elemailer_Widget_Text_Editor extends Widget_Base
 		$advance_style .= ' padding: ' . (($settings['advance_padding']['top'] != '') ? $settings['advance_padding']['top'] . 'px ' . $settings['advance_padding']['right'] . 'px ' . $settings['advance_padding']['bottom'] . 'px ' . $settings['advance_padding']['left'] . 'px;' : '0px 0px 0px 0px;');
 
 ?>
-		<div style="text-align: <?php echo $text_align; ?>; <?php echo esc_attr($advance_style); ?>" class="void-section-text">
+		<div style="text-align: <?php echo esc_html($text_align); ?>; <?php echo esc_attr($advance_style); ?>" class="void-section-text">
 			<?php echo sprintf('%s', $text_editor); ?>
 		</div>
 <?php

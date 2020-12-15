@@ -41,8 +41,6 @@ final class Plugin
      */
     public function define_constant()
     {
-
-        // define('ELE_MAILER_LITE_VERSION', time());
         define('ELE_MAILER_LITE_VERSION', '1.0.0');
         define('ELE_MAILER_LITE_PACKAGE', 'free');
         define('ELE_MAILER_LITE_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
@@ -278,6 +276,12 @@ final class Plugin
 
     }
 
+    /**
+     * Show error notice for free version
+     *
+     * @return void
+     * @since 1.0.0
+     */
     public function show_free_version_limitation()
     {
         $screen = get_current_screen();
@@ -287,12 +291,10 @@ final class Plugin
                     'id'          => 'limitation-elemailer-free-version',
                     'type'        => 'error',
                     'dismissible' => false,
-                    //'btn'          => $btn,
                     'message'     => sprintf(esc_html__('You are able to create only 3 templates with elemailer lite', 'elemailer-lite')),
                 ]
             );
         }
-        //echo "<pre>"; print_r($screen->id); echo "</pre>";
     }
 
     public function action_after_deactivate_plugin()

@@ -24,8 +24,10 @@ class Base
 	public function init()
 	{
 
+		// register category hook for elementor editor
 		add_action('elementor/elements/categories_registered', [$this, 'add_elementor_widget_categories']);
 
+		// register widgets hook for elementor editor
 		add_action('elementor/widgets/widgets_registered', [$this, 'on_widgets_registered']);
 	}
 

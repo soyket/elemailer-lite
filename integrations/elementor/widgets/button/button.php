@@ -11,7 +11,6 @@ use \Elementor\Utils;
 use \Elementor\Core\Schemes\Color;
 use \Elemailer_Lite\Helpers\Util;
 
-
 /**
  * button widget class for registering button widget
  *
@@ -20,7 +19,6 @@ use \Elemailer_Lite\Helpers\Util;
  */
 class Elemailer_Widget_Button extends Widget_Base
 {
-
 	public function get_name()
 	{
 		return 'elemailer-button';
@@ -189,7 +187,6 @@ class Elemailer_Widget_Button extends Widget_Base
 		);
 
 		$this->end_controls_section();
-
 
 		$this->start_controls_section(
 			'advanced_section',

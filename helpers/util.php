@@ -4,8 +4,6 @@ namespace Elemailer_Lite\Helpers;
 
 defined('ABSPATH') || exit;
 
-use \Elemailer_Lite\App\Settings\Action as Settings_Action;
-
 /**
  * Global helper class
  * used to make some verious type method
@@ -258,30 +256,6 @@ class Util
 			}
 			// set readable name and slug
 			$return_types[$post_type->name] = $post_type->labels->singular_name;
-		}
-		return $return_types;
-	}
-
-	/**
-	 * get all post type
-	 * includes wp raw post types and all cpt
-	 * used for selecting post type in post widgets
-	 *
-	 * @return void
-	 * @since 1.0.0
-	 */
-	public static function get_all_subscribers_list()
-	{
-
-		$subscribers_list = [];
-
-		foreach ($subscribers_list  as $list) {
-			//remove unnecessary post types
-			if ($list->name == 'elementor_library' || $list->name == 'attachment') {
-				continue;
-			}
-			// set readable name and slug
-			$return_types[$list->name] = $list->labels->singular_name;
 		}
 		return $return_types;
 	}

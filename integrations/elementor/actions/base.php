@@ -24,10 +24,6 @@ class Base
         // trigger elementor free actions to modify elementor
         Hooks::instance()->trigger_elementor_free_actions();
 
-        // if(class_exists('\ElementorPro\Plugin')){
-        //     Hooks::instance()->trigger_elementor_pro_actions();
-        // }
-
         // is plugin active function load if not exists
         if (!function_exists('is_plugin_active')) {
             require_once(ABSPATH . '/wp-admin/includes/plugin.php');
