@@ -27,7 +27,7 @@ For our other elementor & WP works visit : [VOID CODERS](https://voidcoders.com)
 
 For updates follow us on : [Facebook](https://www.facebook.com/voidcoders).
 
-Follow us on: [Github](https://github.com/soyket/cf7-widget-elementor/).
+Follow us on: [Github](https://github.com/soyket/elemailer-lite).
 
 
 == Installation ==
