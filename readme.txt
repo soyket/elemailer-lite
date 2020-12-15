@@ -3,6 +3,7 @@ Contributors: voidcoders,voidthemes
 Tags: email-template-builder, elementor, email-template, email, template, elementor add on, email-marketing
 Requires at least: 4.4
 Tested up to: 5.6
+Requires PHP: 7.2
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -38,10 +39,18 @@ Follow us on: [Github](https://github.com/soyket/elemailer-lite).
 
 == Frequently Asked Questions ==
 
+= How to use elemailer lite's template =
+
+Our elemailer lite create an option to select our template on form submission. You will find the option under email and email2 section on form widget. 
 
 == Screenshots ==
 
-== Update Instructions ==
+1. /assets/screenshot-1.jpg
+2. /assets/screenshot-2.jpg
+3. /assets/screenshot-3.jpg
+4. /assets/screenshot-4.jpg
+
+== Upgrade Notice ==
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
