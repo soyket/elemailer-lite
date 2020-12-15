@@ -101,6 +101,7 @@ jQuery(document).ready(function($) {
             success: function(response) {
                 console.log(response);
                 if(response.status == 1){
+                    elResponse.removeClass('alert-danger');
                     elResponse.addClass('alert-success').css('display', 'block');
                     elResponse.html(response.data.message);
                     
@@ -108,38 +109,40 @@ jQuery(document).ready(function($) {
                         $('.elemailer-form-template-add-modal').removeClass('show');
                         saveButton.attr("disabled", false);
                     }, 3000);
+
+                    // reload page when new template created
+                    if(id == 0){
+                        location.reload();
+                    }else{
+                        let title = $('#post-'+id).find('.row-title');
+                        if(title.length > 0){
+                            title.html(response.data.updated_data.title);
+                        }
+                        setTimeout(function(){ 
+                            elResponse.css('display', 'none');
+                        }, 8000);
+                    }
+
+                    if(modalEdit == '1'){
+                        $('.elemailer-form-template-add-modal').addClass('activeModalPreloader');
+                        window.location.href = dataEditUrl + "?post=" + response.data.id + "&action=elementor";
+                    }else{
+                        $('.elemailer-form-template-add-modal').removeClass('activeModalPreloader');
+                    }
+
                 }else{
+                    elResponse.removeClass('alert-success');
                     elResponse.addClass('alert-danger').css('display', 'block');
-                    elResponse.html((response.data.error[1]) ? response.data.error[1] : response.data.error[0]);
-                  
+                    elResponse.html((response.error[1]) ? response.error[1] : response.error[0]);
+                    $('.elemailer-form-template-add-modal').removeClass('activeModalPreloader');
                     setTimeout(function(){
                         $('.elemailer-form-template-add-modal').removeClass('show');
                         saveButton.attr("disabled", false);
                     }, 5000);
                 }
                 
-                // reload page when new popup created
-                if(id == 0){
-                    location.reload();
-                }else{
-                    let title = $('#post-'+id).find('.row-title');
-                    if(title.length > 0){
-                        title.html(response.data.updated_data.title);
-                    }
-                    setTimeout(function(){ 
-                        elResponse.css('display', 'none');
-                    }, 8000);
-                }
-                
                 // reset post id value for avoiding old post replaced by new post
                 id = 0;
-                
-                if(modalEdit == '1'){
-                    $('.elemailer-form-template-add-modal').addClass('activeModalPreloader');
-                    window.location.href = dataEditUrl + "?post=" + response.data.id + "&action=elementor";
-                }else{
-                    $('.elemailer-form-template-add-modal').removeClass('activeModalPreloader');
-                }
                 
             }
         });

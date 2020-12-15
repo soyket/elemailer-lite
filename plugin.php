@@ -254,8 +254,8 @@ final class Plugin
     {
         // for main menu of this plugin in admin panel
         add_menu_page(
-            esc_html__('eleMailer'),
-            esc_html__('eleMailer'),
+            esc_html__('Elemailer'),
+            esc_html__('Elemailer'),
             'manage_options',
             'elemailer-menu',
             '',
