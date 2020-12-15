@@ -18,8 +18,9 @@
               <input name="title" type="text" class="form-control title" id="templateName" placeholder="Enter Name">
               <small class="form-text text-muted"><?php esc_html_e('This is your template name or title', 'elemailer-lite'); ?></small>
             </div>
-
           </form>
+          <p><?php esc_html_e('This template will be used only for elementor pro\'s form action\'s email and email2.', 'elemailer-lite'); ?></p>
+          <p><?php esc_html_e('You can use our template on elementor form submission.', 'elemailer-lite'); ?></p>
         </div>
 
         <div class="modal-footer">

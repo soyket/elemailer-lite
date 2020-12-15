@@ -1,5 +1,5 @@
 === Elemailer lite - Elementor email template & campaign builder ===
-Contributors: voidthemes,voidcoders
+Contributors: voidcoders,voidthemes
 Tags: email-template-builder, elementor, email-template, email, template, elementor add on, email-marketing
 Requires at least: 4.4
 Tested up to: 5.6

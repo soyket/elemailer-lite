@@ -68,6 +68,10 @@ final class Plugin
         add_action('wp_enqueue_scripts', [$this, 'enqueue_dequeue_js_css_public'], 999);
         // enqueue css in elementor front end hook
         add_action('elementor/frontend/after_enqueue_styles', [$this, 'load_elementor_css_public']);
+
+        // call notice initialize function
+        Helpers\Notice::init();
+        
         // limitation notice
         add_action('admin_notices', [$this, 'show_free_version_limitation']);
 

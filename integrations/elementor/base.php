@@ -22,6 +22,10 @@ class Base
             add_action('admin_notices', array($this, 'required_elementor'));
             return;
         }
+        // check elementor pro activation
+        if(!did_action( 'elementor_pro/init' )){
+            add_action('admin_notices', [$this, 'required_elementor_pro']);
+        }
         // Check for required Elementor version.
         if (!version_compare(ELEMENTOR_VERSION, '3.0.11', '>=')) {
             add_action('admin_notices', array($this, 'required_elementor_version'));
@@ -70,11 +74,44 @@ class Base
 
         \Elemailer_Lite\Helpers\Notice::push(
             [
-                'id'          => 'unsupported-elementor-version',
+                'id'          => 'elemailer-lite-required-elementor',
                 'type'        => 'error',
-                'dismissible' => true,
-                'btn'          => $btn,
-                'message'     => sprintf(esc_html__('Ele Mailer needs Elementor version %1$s+ for working it, which is not activated.', 'elemailer-lite'), '3.0.11'),
+                'dismissible' => false,
+                'btn'         => $btn,
+                'message'     => sprintf(esc_html__('elemailer lite needs Elementor version %1$s+ for working it, which is not activated.', 'elemailer-lite'), '3.0.11'),
+            ]
+        );
+    }
+
+    /**
+     * elementor missing notice function
+     *
+     * @return void
+     * @since 1.0.0
+     */
+    public function required_elementor_pro()
+    {
+
+        if (isset($_GET['activate'])) {
+            unset($_GET['activate']);
+        }
+
+        if (file_exists(WP_PLUGIN_DIR . '/elementor-pro/elementor-pro.php')) {
+            $btn['label'] = esc_html__('Activate Elementor pro', 'elemailer-lite');
+            $btn['url'] = wp_nonce_url('https://my.elementor.com/');
+        } else {
+            $btn['label'] = esc_html__('Install Elementor pro', 'elemailer-lite');
+            $btn['url'] = wp_nonce_url(self_admin_url('https://elementor.com/pro/'));
+        }
+
+        \Elemailer_Lite\Helpers\Notice::push(
+            [
+                'id'          => 'elemailer-lite-elementor-pro-required',
+                'type'        => 'error',
+                'dismissible' => false,
+                'target'      => '__blank',
+                'btn'         => $btn,
+                'message'     => sprintf(esc_html__('elemailer lite needs Elementor pro version %1$s+ for working it, which is not activated.', 'elemailer-lite'), '3.0.5'),
             ]
         );
     }
@@ -93,11 +130,11 @@ class Base
 
         \Elemailer_Lite\Helpers\Notice::push(
             [
-                'id'          => 'unsupported-elementor-version',
+                'id'          => 'elemailer-lite-unsupported-elementor-version',
                 'type'        => 'error',
-                'dismissible' => true,
-                'btn'          => $btn,
-                'message'     => sprintf(esc_html__('Ele Mailer needs Elementor version %1$s+ for working it, lower version is running. Please update.', 'elemailer-lite'), '3.0.11'),
+                'dismissible' => false,
+                'btn'         => $btn,
+                'message'     => sprintf(esc_html__('elemailer lite needs Elementor version %1$s+ for working it, lower version is running. Please update.', 'elemailer-lite'), '3.0.11'),
             ]
         );
     }

@@ -16,16 +16,15 @@ class Notice
 {
 
     /**
-     * Constructor
+     * initialize notice functionality
      *
+     * @return void
      * @since 1.0.0
      */
-    public function __construct()
-    {
-        add_action('admin_footer', [$this, 'enqueue_scripts'], 9999);
-        add_action('wp_ajax_elemailer-notices', [$this, 'dismiss']);
+    public static function init(){
+        add_action('admin_head', [__CLASS__, 'enqueue_scripts']);
+        add_action('wp_ajax_elemailer-notices', [__CLASS__, 'dismiss']);
     }
-
 
     /**
      * Dismiss Notice.
@@ -33,7 +32,7 @@ class Notice
      * @return void
      * @since 1.0.0
      */
-    public function dismiss()
+    public static function dismiss()
     {
 
         $id = (isset($_POST['id'])) ? sanitize_text_field($_POST['id']) : '';
@@ -61,7 +60,7 @@ class Notice
      * @return void
      * @since 1.0.0
      */
-    public function enqueue_scripts()
+    public static function enqueue_scripts()
     {
         echo "
 			<script>
@@ -161,6 +160,8 @@ class Notice
         } else {
             self::markup($notice);
         }
+
+        // add_action('admin_footer', [(new self), 'enqueue_scripts'], 9999);
     }
 
 
@@ -199,12 +200,12 @@ class Notice
 
                             <?php if ($notice['style'] == 'block') : ?>
 
-                                <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>"><?php echo esc_html($btn['label']) ?></a>
+                                <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo esc_attr(isset($notice['target'])? "target={$notice['target']}":""); ?> ><?php echo esc_html($btn['label']) ?></a>
 
                             <?php else : ?>
 
                                 <p>
-                                    <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>"><?php echo esc_html($btn['label']) ?></a>
+                                    <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo esc_attr(isset($notice['target'])? "target={$notice['target']}":""); ?>><?php echo esc_html($btn['label']) ?></a>
                                 </p>
 
                             <?php endif; ?>
@@ -213,7 +214,7 @@ class Notice
                         <?php else : ?>
 
                             <p>
-                                <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>"><?php echo esc_html($btn['label']) ?></a>
+                                <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo esc_attr(isset($notice['target'])? "target={$notice['target']}":""); ?>><?php echo esc_html($btn['label']) ?></a>
                             </p>
 
                         <?php endif; ?>
@@ -227,7 +228,7 @@ class Notice
 
                 <?php else : ?>
                 <p>
-                    <a href="<?php echo esc_url($notice['btn']['url']); ?>" class="<?php echo esc_html(isset($notice['btn']['style']['class']) ? $notice['btn']['style']['class'] : 'button-primary'); ?>"><?php echo esc_html($notice['btn']['label']); ?></a>
+                    <a href="<?php echo esc_url($notice['btn']['url']); ?>" class="<?php echo esc_html(isset($notice['btn']['style']['class']) ? $notice['btn']['style']['class'] : 'button-primary'); ?>" <?php echo esc_attr(isset($notice['target'])? "target={$notice['target']}":""); ?>><?php echo esc_html($notice['btn']['label']); ?></a>
                 </p>
 
             <?php endif; ?>
