@@ -23,7 +23,13 @@ class Base
             return;
         }
         // check elementor pro activation
-        if(!did_action( 'elementor_pro/init' )){
+        // is plugin active function load if not exists
+        if (!function_exists('is_plugin_active')) {
+            require_once(ABSPATH . '/wp-admin/includes/plugin.php');
+        }
+
+        // elementor pro check and fired elementor pro actions
+        if (!is_plugin_active('elementor-pro/elementor-pro.php')) {
             add_action('admin_notices', [$this, 'required_elementor_pro']);
         }
         // Check for required Elementor version.
