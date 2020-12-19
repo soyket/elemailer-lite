@@ -134,29 +134,62 @@ class Elemailer_Widget_Footer extends Widget_Base
 			]
 
 		);
-
+		$this->add_control(
+			'show_unsubscribe',
+			[
+				'label' => __( 'Show Unsubscribe', 'elemailer-lite' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'elemailer-lite' ),
+				'label_off' => __( 'Hide', 'elemailer-lite' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
 		$this->add_control(
 			'unsbscribe_text',
 			[
-				'label' => __('Unsubscribe Text', 'elemailer-lite'),
+				'label' => __('Text', 'elemailer-lite'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXT,
 				'placeholder' => __('Text Here', 'elemailer-lite'),
 				'default' => __('Unsubscribe', 'elemailer-lite'),
+				'condition' => ['show_unsubscribe' => 'yes'],
+			]
+		); 
+		$this->add_control(
+			'hr_ust',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
 			]
 		);
-
+		$this->add_control(
+			'show_manage_sbscription',
+			[
+				'label' => __( 'Show Manage Sbscription', 'elemailer-lite' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'elemailer-lite' ),
+				'label_off' => __( 'Hide', 'elemailer-lite' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
 		$this->add_control(
 			'manage_sbscription_text',
 			[
-				'label' => __('Manage Subscription Text', 'elemailer-lite'),
+				'label' => __('Text', 'elemailer-lite'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXT,
 				'placeholder' => __('Text Here', 'elemailer-lite'),
 				'default' => __('Manage Subscription', 'elemailer-lite'),
+				'condition' => ['show_manage_sbscription' => 'yes'],
 			]
 		);
-
+		$this->add_control(
+			'hr_mst',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+			]
+		);
 		$this->add_control(
 			'unsubscribe_color',
 			[
@@ -206,6 +239,13 @@ class Elemailer_Widget_Footer extends Widget_Base
 				'label' => __('Margin (px)', 'elemailer-lite'),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px'],
+				'default' => [
+					'top' => '10',
+					'right' => '10',
+					'bottom' => '10',
+					'left' => '10',
+					'isLinked' => true,
+				],
 			]
 		);
 
@@ -268,6 +308,9 @@ class Elemailer_Widget_Footer extends Widget_Base
 		$unsubscribe_text  = $settings['unsbscribe_text'];
 		$manage_subscription_text  = $settings['manage_sbscription_text'];
 
+		$show_unsubscribe  = $settings['show_unsubscribe']; 
+		$show_manage_sbscription  = $settings['show_manage_sbscription'];
+
 		$alignment = isset($settings['text_align']) ? $settings['text_align'] : 'center';
 
 		$ft_text_styles = 'color: ' . (($settings['ft_color'] != '') ? $settings['ft_color'] : '#000') . ';';
@@ -287,7 +330,7 @@ class Elemailer_Widget_Footer extends Widget_Base
 				<p style="line-height: initial;<?php echo esc_attr($ft_text_styles); ?>"><?php echo esc_html($footer_address); ?></p>
 			</div>
 			<div class="ele-unsubscribe">
-				<a style="line-height: initial;text-decoration: underline;<?php echo esc_attr($ft_unsbscribe); ?>" href="#[ELEMAILER_UNSUBSCRIBE_LINK]"><?php echo esc_html($unsubscribe_text); ?></a> || <a style="line-height: initial;text-decoration: underline;<?php echo esc_attr($ft_unsbscribe); ?>" href="#[ELEMAILER_MANAGE_SUBSCRIPTION_LINK]"><?php echo esc_html($manage_subscription_text); ?></a>
+				<a style="line-height: initial;text-decoration: underline;<?php echo esc_attr($ft_unsbscribe); ?>" href="#[ELEMAILER_UNSUBSCRIBE_LINK]"><?php echo esc_html($unsubscribe_text); ?></a> <?php if($show_unsubscribe == 'yes' && $show_manage_sbscription == 'yes') { echo ' || '; } ?><a style="line-height: initial;text-decoration: underline;<?php echo esc_attr($ft_unsbscribe); ?>" href="#[ELEMAILER_MANAGE_SUBSCRIPTION_LINK]"><?php echo esc_html($manage_subscription_text); ?></a>
 			</div>
 		</div>
 

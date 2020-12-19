@@ -252,6 +252,13 @@ class Elemailer_Widget_Shortcode extends Widget_Base
 				'label' => __('Margin (px)', 'elemailer-lite'),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px'],
+				'default' => [
+					'top' => '10',
+					'right' => '10',
+					'bottom' => '10',
+					'left' => '10',
+					'isLinked' => true,
+				],
 			]
 		);
 
