@@ -13,8 +13,7 @@ function elemailer_get_taxonomies()
 {
 	// first check if data is being sent and that it is the data we want   
 	if (isset($_POST['postTypeNonce'])) {
-		$nonce = $_POST['postTypeNonce'];
-		if (!wp_verify_nonce($nonce, 'wp_rest')) {
+		if (! isset( $_POST['postTypeNonce'] ) || !wp_verify_nonce($_POST['postTypeNonce'], 'wp_rest')) {
 			wp_die('You are not allowed!');
 		}
 		$post_type = sanitize_text_field(isset($_POST['post_type'])? $_POST['post_type']: '');
@@ -36,8 +35,7 @@ function elemailer_get_terms()
 {
 	// first check if data is being sent and that it is the data we want
 	if (isset($_POST['postTypeNonce'])) {
-		$nonce = $_POST['postTypeNonce'];
-		if (!wp_verify_nonce($nonce, 'wp_rest')) {
+		if (! isset( $_POST['postTypeNonce'] ) || !wp_verify_nonce($_POST['postTypeNonce'], 'wp_rest')) {
 			wp_die('You are not allowed!');
 		}
 		$taxonomy_type = sanitize_text_field(isset($_POST['taxonomy_type'])? $_POST['taxonomy_type']: '');
@@ -66,8 +64,7 @@ function elemailer_get_posts()
 {
 	// first check if data is being sent and that it is the data we want
 	if (isset($_POST['postTypeNonce'])) {
-		$nonce = $_POST['postTypeNonce'];
-		if (!wp_verify_nonce($nonce, 'wp_rest')) {
+		if (! isset( $_POST['postTypeNonce'] ) || !wp_verify_nonce($_POST['postTypeNonce'], 'wp_rest')) {
 			wp_die('You are not allowed!');
 		}
 		$taxonomy_type = sanitize_text_field(isset($_POST['taxonomy_type']) ? $_POST['taxonomy_type'] : '');
