@@ -19,12 +19,12 @@
             var post_type = $('[data-setting="post_type"]').val() || model.attributes.settings.attributes.post_type || [];
             var data = {
                 action: 'elemailer_get_taxonomies',
-                postTypeNonce: elemailer.wpRestNonce,
+                postTypeNonce: elemailer_lite.wpRestNonce,
                 post_type: post_type
             };
 
             var i = 0;
-            $.post(elemailer.ajaxUrl, data, function(response) {        
+            $.post(elemailer_lite.ajaxUrl, data, function(response) {        
                 var taxonomy_name = JSON.parse(response);          
                 $.each(taxonomy_name,function(){
                     if(this.name == 'post_format'){
@@ -70,13 +70,13 @@
             var post_type = $('[data-setting="post_type"]').val() || model.attributes.settings.attributes.post_type || [];
             var data = {
                 action: 'elemailer_get_posts',
-                postTypeNonce : elemailer.wpRestNonce,
+                postTypeNonce : elemailer_lite.wpRestNonce,
                 taxonomy_type: taxonomy_type,
                 post_type: post_type
             }; 
 
             var j = 0;
-            $.post(elemailer.ajaxUrl, data, function(response) {        
+            $.post(elemailer_lite.ajaxUrl, data, function(response) {        
                 var posts = JSON.parse(response);         
                 $.each( posts,function( idx, value ){
                     // console.log('posts loop: '+(j++));                    
@@ -143,11 +143,11 @@
             var post_type = $('[data-setting="post_type"]').val() || model.attributes.settings.attributes.post_type || [];
             var data = {
                 action: 'elemailer_get_taxonomies',
-                postTypeNonce: elemailer.wpRestNonce,
+                postTypeNonce: elemailer_lite.wpRestNonce,
                 post_type: post_type
             };
 
-            $.post(elemailer.ajaxUrl, data, function(response) {        
+            $.post(elemailer_lite.ajaxUrl, data, function(response) {        
                 var taxonomy_name = JSON.parse(response);          
                 $.each(taxonomy_name,function(){
                     if(this.name == 'post_format'){
@@ -191,12 +191,12 @@
             var post_type = $('[data-setting="post_type"]').val() || model.attributes.settings.attributes.post_type || [];
             var data = {
                 action: 'elemailer_get_terms',
-                postTypeNonce : elemailer.wpRestNonce,
+                postTypeNonce : elemailer_lite.wpRestNonce,
                 taxonomy_type: taxonomy_type,
                 post_type: post_type
-            }; 
+            };
 
-            $.post(elemailer.ajaxUrl, data, function(response) {        
+            $.post(elemailer_lite.ajaxUrl, data, function(response) {        
                 var terms = JSON.parse(response);         
                 $.each( terms,function( idx, value ){
                     elPostSelect.append('<option value="'+value.id+'">'+value.name+'</option>');

@@ -17,7 +17,7 @@ function elemailer_get_taxonomies()
 		if (!wp_verify_nonce($nonce, 'wp_rest')) {
 			wp_die('You are not allowed!');
 		}
-		$post_type = $_POST['post_type'];
+		$post_type = sanitize_text_field(isset($_POST['post_type'])? $_POST['post_type']: '');
 		$taxonomoies = get_object_taxonomies($post_type, 'names');
 		$taxonomy_name = array();
 		foreach ($taxonomoies as $taxonomy) {
@@ -40,7 +40,7 @@ function elemailer_get_terms()
 		if (!wp_verify_nonce($nonce, 'wp_rest')) {
 			wp_die('You are not allowed!');
 		}
-		$taxonomy_type = $_POST['taxonomy_type'];
+		$taxonomy_type = sanitize_text_field(isset($_POST['taxonomy_type'])? $_POST['taxonomy_type']: '');
 		$term_slug = array();
 		$terms =  get_terms(array('taxonomy' => $taxonomy_type));
 		foreach ($terms as $term) {
@@ -70,8 +70,8 @@ function elemailer_get_posts()
 		if (!wp_verify_nonce($nonce, 'wp_rest')) {
 			wp_die('You are not allowed!');
 		}
-		$taxonomy_type = isset($_POST['taxonomy_type']) ? $_POST['taxonomy_type'] : '';
-		$post_type = isset($_POST['post_type']) ? $_POST['post_type'] : '';
+		$taxonomy_type = sanitize_text_field(isset($_POST['taxonomy_type']) ? $_POST['taxonomy_type'] : '');
+		$post_type = sanitize_text_field(isset($_POST['post_type']) ? $_POST['post_type'] : '');
 
 		$posts = array();
 		$obj_terms =  get_terms(array('taxonomy' => $taxonomy_type));

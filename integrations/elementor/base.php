@@ -190,7 +190,7 @@ class Base
             wp_enqueue_script('elemailer-elementor-editor', ELE_MAILER_LITE_PLUGIN_URL . 'integrations/elementor/assets/js/editor.js', array('jquery'), ELE_MAILER_LITE_VERSION, true);
             wp_localize_script(
                 'elemailer-elementor-editor',
-                'elemailer-lite',
+                'elemailer_lite',
                 [
                     'ajaxUrl' => admin_url('admin-ajax.php'),
                     'url' => get_admin_url(),
