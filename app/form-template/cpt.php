@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * Custom post type register class
  * register post type for email template
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Cpt extends \Elemailer_Lite\Core\Cpt

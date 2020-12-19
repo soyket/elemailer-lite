@@ -11,7 +11,7 @@ use \Elementor\Utils;
 /**
  * image widget class for registering image widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Elemailer_Widget_Image extends Widget_Base

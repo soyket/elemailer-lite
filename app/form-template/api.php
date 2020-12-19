@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * rest api initialization class
  * is this class every method will a rest api
  * 
- * @author voidCoders
+ * @author elEmailer
  * @since 1.0.0
  */
 class Api extends \Elemailer_Lite\Core\Api

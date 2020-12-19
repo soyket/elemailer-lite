@@ -13,7 +13,7 @@ use \Elementor\Core\Schemes\Color;
 /**
  * divider widget class for registering divider widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Elemailer_Widget_Divider extends Widget_Base

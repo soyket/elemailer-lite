@@ -7,7 +7,7 @@ defined('ABSPATH') || exit;
 /**
  * Base class for all elementor related actions
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Base

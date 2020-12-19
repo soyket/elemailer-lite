@@ -12,7 +12,7 @@ use \Elementor\Utils;
 /**
  * video widget class for registering video widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Elemailer_Widget_Video extends Widget_Base

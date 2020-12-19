@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * core rest api init class
  * used for creting rest api by extending it
  *
- * @author sayedulsayem 
+ * @author elEmailer
  * @since 1.0.0
  */
 abstract class Api

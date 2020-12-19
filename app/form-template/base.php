@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * template related base class for initialization
  * used for creating cpt, api
  * 
- * @author voidCoders
+ * @author elEmailer
  * @since 1.0.0
  */
 class Base

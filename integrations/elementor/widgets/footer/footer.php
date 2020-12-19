@@ -12,7 +12,7 @@ use \Elementor\Utils;
 /**
  * heading widget class for registering heading widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Elemailer_Widget_Footer extends Widget_Base

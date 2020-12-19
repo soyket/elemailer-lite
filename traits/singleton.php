@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * singleton purpose trait
  *
  *
- * @author sayedulsayem 
+ * @author elEmailer
  * @since 1.0.0
  */
 trait Singleton

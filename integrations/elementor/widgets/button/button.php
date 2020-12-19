@@ -14,7 +14,7 @@ use \Elemailer_Lite\Helpers\Util;
 /**
  * button widget class for registering button widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Elemailer_Widget_Button extends Widget_Base

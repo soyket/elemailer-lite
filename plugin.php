@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * main plugin loaded final class
  * handle everything for initial plugin load
  *
- * @author sayedulsayem 
+ * @author elEmailer
  * @since 1.0.0
  */
 final class Plugin
@@ -256,8 +256,8 @@ final class Plugin
     {
         // for main menu of this plugin in admin panel
         add_menu_page(
-            esc_html__('Elemailer'),
-            esc_html__('Elemailer'),
+            esc_html__('elEmailer'),
+            esc_html__('elEmailer'),
             'manage_options',
             'elemailer-menu',
             '',

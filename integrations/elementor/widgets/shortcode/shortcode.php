@@ -13,7 +13,7 @@ use \Elementor\Core\Schemes\Color;
 /**
  * shortcode widget class for registering shortcode widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Elemailer_Widget_Shortcode extends Widget_Base

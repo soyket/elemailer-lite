@@ -11,7 +11,7 @@ use \Elementor\Utils;
 /**
  * all hook related class for activating some extra functionality based on elementor
  *
- * @author voidCoders
+ * @author elEmailer
  * @since 1.0.0
  */
 class Hooks
@@ -57,7 +57,7 @@ class Hooks
     }
 
     /**
-     * option for selecting void email template function in form widget
+     * option for selecting elemailer lite template function in form widget
      *
      * @param object $element
      * @param array $args
@@ -69,7 +69,7 @@ class Hooks
         $element->add_control(
             'show_elemailer_email_template_selector',
             [
-                'label' => esc_html__('Use void email template', 'elemailer-lite'),
+                'label' => esc_html__('Use elemailer lite', 'elemailer-lite'),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => esc_html__('Yes', 'elemailer-lite'),
                 'label_off' => esc_html__('No', 'elemailer-lite'),
@@ -81,7 +81,7 @@ class Hooks
         $element->add_control(
             'select_elemailer_email_template',
             [
-                'label' => esc_html__('Select void email template', 'elemailer-lite'),
+                'label' => esc_html__('Select elemailer lite', 'elemailer-lite'),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
                 'options' => \Elemailer_Lite\App\Form_Template\Action::instance()->get_all_template(),
@@ -93,7 +93,7 @@ class Hooks
     }
 
     /**
-     * option for selecting void email template function in form widget
+     * option for selecting elemailer lite template function in form widget
      *
      * @param object $element
      * @param array $args
@@ -105,7 +105,7 @@ class Hooks
         $element->add_control(
             'show_elemailer_email_template_selector_2',
             [
-                'label' => esc_html__('Use void email template', 'elemailer-lite'),
+                'label' => esc_html__('Use elemailer lite template', 'elemailer-lite'),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => esc_html__('Yes', 'elemailer-lite'),
                 'label_off' => esc_html__('No', 'elemailer-lite'),
@@ -117,7 +117,7 @@ class Hooks
         $element->add_control(
             'select_elemailer_email_template_2',
             [
-                'label' => esc_html__('Select void email template', 'elemailer-lite'),
+                'label' => esc_html__('Select elemailer lite template', 'elemailer-lite'),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
                 'options' => \Elemailer_Lite\App\Form_Template\Action::instance()->get_all_template(),

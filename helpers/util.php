@@ -15,7 +15,7 @@ class Util
 {
 
 	/**
-	 * Get void template builder older version if has any.
+	 * Get elemailer lite older version if has any.
 	 *
 	 * @since 1.0.0
 	 * @access public

@@ -12,7 +12,7 @@ use \Elementor\Utils;
 /**
  * text editor widget class for registering text editor widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Elemailer_Widget_Text_Editor extends Widget_Base

@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * base class for widgets class
  * used to load all widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Base

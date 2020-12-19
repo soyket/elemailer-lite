@@ -2,12 +2,12 @@
 defined('ABSPATH') || exit;
 
 /**
- * Plugin Name: Elemailer Lite
- * Plugin URI:  https://voidcoders.com/
+ * Plugin Name: elEmailer Lite
+ * Plugin URI:  https://elemailer.com/
  * Description: Elementor email template & campaign builder
  * Version: 1.0.0
- * Author: voidcoders
- * Author URI:  https://voidcoders.com/
+ * Author: elemailer
+ * Author URI:  https://elemailer.com/
  * Text Domain: elemailer-lite
  * License:  GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt

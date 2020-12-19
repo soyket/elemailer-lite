@@ -12,7 +12,7 @@ use \Elementor\Utils;
 /**
  * spacer widget class for registering spacer widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Elemailer_Widget_Spacer extends Widget_Base

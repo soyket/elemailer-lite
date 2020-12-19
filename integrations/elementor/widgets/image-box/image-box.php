@@ -14,7 +14,7 @@ use \Elementor\Core\Schemes\Color;
 /**
  * image box widget class for registering image box widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Elemailer_Widget_Image_Box extends Widget_Base

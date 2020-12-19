@@ -1,5 +1,5 @@
 === Elemailer Lite - Elementor email template & campaign builder ===
-Contributors: voidcoders,voidthemes
+Contributors: elemailer
 Tags: email-template-builder, elementor, email-template, email, template, elementor add on, email-marketing
 Requires at least: 4.4
 Tested up to: 5.6
@@ -23,10 +23,6 @@ This plugin gives you the facility of override elementor default form email temp
 
 
 For more details :[Elemailer](https://elemailer.com/).
-
-For our other elementor & WP works visit : [VOID CODERS](https://voidcoders.com).
-
-For updates follow us on : [Facebook](https://www.facebook.com/voidcoders).
 
 Follow us on: [Github](https://github.com/soyket/elemailer-lite).
 

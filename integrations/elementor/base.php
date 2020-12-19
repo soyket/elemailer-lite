@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * Elementor integration base class.
  * This class load everything related to elementor
  *
- * @author sayedulsayem 
+ * @author elEmailer
  * @since 1.0.0
  */
 class Base
@@ -84,7 +84,7 @@ class Base
                 'type'        => 'error',
                 'dismissible' => false,
                 'btn'         => $btn,
-                'message'     => sprintf(esc_html__('elemailer lite needs Elementor version %1$s+ for working it, which is not activated.', 'elemailer-lite'), '3.0.11'),
+                'message'     => sprintf(esc_html__('elEmailer lite needs Elementor version %1$s+ for working it, which is not activated.', 'elemailer-lite'), '3.0.11'),
             ]
         );
     }
@@ -104,7 +104,7 @@ class Base
 
         if (file_exists(WP_PLUGIN_DIR . '/elementor-pro/elementor-pro.php')) {
             $btn['label'] = esc_html__('Activate Elementor pro', 'elemailer-lite');
-            $btn['url'] = wp_nonce_url('https://my.elementor.com/');
+            $btn['url'] = wp_nonce_url('https://elementor.com/widgets/form-widget/');
         } else {
             $btn['label'] = esc_html__('Install Elementor pro', 'elemailer-lite');
             $btn['url'] = wp_nonce_url(self_admin_url('https://elementor.com/pro/'));
@@ -117,7 +117,7 @@ class Base
                 'dismissible' => false,
                 'target'      => '__blank',
                 'btn'         => $btn,
-                'message'     => sprintf(esc_html__('elemailer lite needs Elementor pro version %1$s+ for working it, which is not activated.', 'elemailer-lite'), '3.0.5'),
+                'message'     => sprintf(esc_html__('elEmailer lite needs elementor pro version %1$s+ must be activated to use the form widget.', 'elemailer-lite'), '3.0.5'),
             ]
         );
     }
@@ -140,7 +140,7 @@ class Base
                 'type'        => 'error',
                 'dismissible' => false,
                 'btn'         => $btn,
-                'message'     => sprintf(esc_html__('elemailer lite needs Elementor version %1$s+ for working it, lower version is running. Please update.', 'elemailer-lite'), '3.0.11'),
+                'message'     => sprintf(esc_html__('elEmailer lite needs Elementor version %1$s+ for working it, lower version is running. Please update.', 'elemailer-lite'), '3.0.11'),
             ]
         );
     }

@@ -11,7 +11,7 @@ use \Elementor\Utils;
 /**
  * social widget class for registering social widget
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Elemailer_Widget_Social extends Widget_Base

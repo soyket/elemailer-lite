@@ -14,7 +14,7 @@ use \ElementorPro\Modules\Forms\Actions\Email;
  * this class will override elementor default email class
  * fired on sending form when used our templete
  *
- * @author voidCoders 
+ * @author elEmailer 
  * @since 1.0.0
  */
 class Void_Email extends Email
@@ -36,7 +36,7 @@ class Void_Email extends Email
 	public function run($record, $ajax_handler)
 	{
 		// declare empty email template body
-		$void_email_template_body = '';
+		$elemailer_lite_template_body = '';
 		$settings = $record->get('form_settings');
 		$send_html = 'plain' !== $settings[$this->get_control_id('email_content_type')];
 
@@ -47,7 +47,7 @@ class Void_Email extends Email
 		// assign dynamic email template body to empty declared email template body
 		if ($template_active == 'yes' && $template_id != '') {
 			// get void email template
-			$void_email_template_body = \Elemailer_Lite\Helpers\Util::get_template_content($template_id);
+			$elemailer_lite_template_body = \Elemailer_Lite\Helpers\Util::get_template_content($template_id);
 			// send always content type html during use our templete
 			$send_html = true;
 		}
@@ -66,7 +66,7 @@ class Void_Email extends Email
 		foreach ($fields as $key => $default) {
 			$setting = trim($settings[$this->get_control_id($key)]);
 			// assign void email template content as body of template
-			$setting = ((($key == 'email_content') && ($template_active == 'yes' && $void_email_template_body != '')) ? $void_email_template_body : $setting);
+			$setting = ((($key == 'email_content') && ($template_active == 'yes' && $elemailer_lite_template_body != '')) ? $elemailer_lite_template_body : $setting);
 			$setting = $record->replace_setting_shortcodes($setting);
 			if (!empty($setting)) {
 				$fields[$key] = $setting;
