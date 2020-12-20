@@ -9,6 +9,8 @@ defined('ABSPATH') || exit;
  * Author: elemailer
  * Author URI:  https://elemailer.com/
  * Text Domain: elemailer-lite
+ * Elementor tested up to: 3.0.14
+ * Elementor Pro tested up to: 3.0.8
  * License:  GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
