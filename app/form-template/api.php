@@ -27,7 +27,7 @@ class Api extends \Elemailer_Lite\Core\Api
     }
 
     /**
-     * create/update template/settings function
+     * create/update template rest api callback function
      * make a rest api with method
      *
      * @return array
@@ -42,7 +42,7 @@ class Api extends \Elemailer_Lite\Core\Api
     }
 
     /**
-     * get template settings function
+     * get template settings rest api callback function
      * make a rest api with method
      *
      * @return array

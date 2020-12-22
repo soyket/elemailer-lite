@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * custom post type register core class
  * used to creating cpt by extending it.
  * 
- * @author sayedulsayem
+ * @author elEmailer
  * @since 1.0.0
  */
 abstract class Cpt

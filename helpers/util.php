@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * Global helper class
  * used to make some verious type method
  * 
- * @author sayedulsayem
+ * @author elEmailer
  * @since 1.0.0
  */
 class Util
@@ -361,7 +361,7 @@ class Util
 	{
 		$email_content = str_replace(['<section', '</section>'], ['<div', '</div>'], $email_content);
 		ob_start();
-		?>
+?>
 
 		<!doctype html>
 		<html>
@@ -379,7 +379,7 @@ class Util
 
 		</html>
 
-		<?php
+<?php
 		$data_html = ob_get_contents();
 		ob_end_clean();
 

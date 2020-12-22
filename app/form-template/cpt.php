@@ -13,8 +13,6 @@ defined('ABSPATH') || exit;
  */
 class Cpt extends \Elemailer_Lite\Core\Cpt
 {
-
-
     /**
      * get post name function
      *

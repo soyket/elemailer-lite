@@ -5,10 +5,10 @@ namespace Elemailer_Lite\Helpers;
 if (!defined('ABSPATH')) die('Forbidden');
 
 /**
- * Ele Mailer template builder notice class.
+ * elEmailer lite template builder notice class.
  * Handles dynamically notices for lazy developers.
  *
- * @author sayedulsayem
+ * @author elEmailer
  * @since 1.0.0
  */
 
@@ -21,7 +21,8 @@ class Notice
      * @return void
      * @since 1.0.0
      */
-    public static function init(){
+    public static function init()
+    {
         add_action('admin_head', [__CLASS__, 'enqueue_scripts']);
         add_action('wp_ajax_elemailer-notices', [__CLASS__, 'dismiss']);
     }
@@ -184,7 +185,7 @@ class Notice
 
     public static function markup($notice = [])
     {
-        ?>
+?>
         <div id="<?php echo esc_attr($notice['id']); ?>" class="<?php echo esc_attr($notice['classes']); ?>" <?php echo $notice['data']; ?>>
             <p>
                 <?php echo $notice['message']; ?>
@@ -200,12 +201,12 @@ class Notice
 
                             <?php if ($notice['style'] == 'block') : ?>
 
-                                <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo esc_attr(isset($notice['target'])? "target={$notice['target']}":""); ?> ><?php echo esc_html($btn['label']) ?></a>
+                                <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo esc_attr(isset($notice['target']) ? "target={$notice['target']}" : ""); ?>><?php echo esc_html($btn['label']) ?></a>
 
                             <?php else : ?>
 
                                 <p>
-                                    <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo esc_attr(isset($notice['target'])? "target={$notice['target']}":""); ?>><?php echo esc_html($btn['label']) ?></a>
+                                    <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo esc_attr(isset($notice['target']) ? "target={$notice['target']}" : ""); ?>><?php echo esc_html($btn['label']) ?></a>
                                 </p>
 
                             <?php endif; ?>
@@ -214,7 +215,7 @@ class Notice
                         <?php else : ?>
 
                             <p>
-                                <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo esc_attr(isset($notice['target'])? "target={$notice['target']}":""); ?>><?php echo esc_html($btn['label']) ?></a>
+                                <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo esc_attr(isset($notice['target']) ? "target={$notice['target']}" : ""); ?>><?php echo esc_html($btn['label']) ?></a>
                             </p>
 
                         <?php endif; ?>
@@ -222,18 +223,18 @@ class Notice
 
                     <?php endforeach; ?>
 
-                </div>
-
-
-
-                <?php else : ?>
-                <p>
-                    <a href="<?php echo esc_url($notice['btn']['url']); ?>" class="<?php echo esc_html(isset($notice['btn']['style']['class']) ? $notice['btn']['style']['class'] : 'button-primary'); ?>" <?php echo esc_attr(isset($notice['target'])? "target={$notice['target']}":""); ?>><?php echo esc_html($notice['btn']['label']); ?></a>
-                </p>
-
-            <?php endif; ?>
-        <?php endif; ?>
         </div>
-        <?php
+
+
+
+    <?php else : ?>
+        <p>
+            <a href="<?php echo esc_url($notice['btn']['url']); ?>" class="<?php echo esc_html(isset($notice['btn']['style']['class']) ? $notice['btn']['style']['class'] : 'button-primary'); ?>" <?php echo esc_attr(isset($notice['target']) ? "target={$notice['target']}" : ""); ?>><?php echo esc_html($notice['btn']['label']); ?></a>
+        </p>
+
+    <?php endif; ?>
+<?php endif; ?>
+</div>
+<?php
     }
 }

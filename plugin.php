@@ -71,7 +71,7 @@ final class Plugin
 
         // call notice initialize function
         Helpers\Notice::init();
-        
+
         // limitation notice
         add_action('admin_notices', [$this, 'show_free_version_limitation']);
 
@@ -83,7 +83,6 @@ final class Plugin
 
         // minify elementor default css and assign it to a new file for sending it to the mail clients. 
         Helpers\Util::minify_css(ELE_MAILER_LITE_PLUGIN_DIR . 'public/assets/css/elemailer-mail.css', ELE_MAILER_LITE_PLUGIN_DIR . 'app/form-template/view/default-elementor-style.php');
-
     }
 
     public function after_wp_loaded_hooks()
@@ -264,7 +263,6 @@ final class Plugin
             esc_url(ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/img/elemailer-icon.png'),
             25
         );
-
     }
 
     /**
@@ -277,7 +275,6 @@ final class Plugin
     {
         $template_cpt = new App\Form_Template\Cpt();
         $template_cpt->flush_rewrites();
-
     }
 
     /**
@@ -289,7 +286,7 @@ final class Plugin
     public function show_free_version_limitation()
     {
         $screen = get_current_screen();
-        if($screen->id == 'edit-em-form-template'){
+        if ($screen->id == 'edit-em-form-template') {
             \Elemailer_Lite\Helpers\Notice::push(
                 [
                     'id'          => 'limitation-elemailer-free-version',

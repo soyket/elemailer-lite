@@ -35,6 +35,12 @@ class Hooks
         add_action('elementor/element/section/section_background/before_section_end', [$this, 'section_background'], 10, 2);
     }
 
+    /**
+     * function for activate elementor pro functionality
+     *
+     * @return void
+     * @since 1.0.0
+     */
     public function trigger_elementor_pro_actions()
     {
         // elementor form submission catch hook

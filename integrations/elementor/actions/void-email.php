@@ -20,11 +20,13 @@ use \ElementorPro\Modules\Forms\Actions\Email;
 class Void_Email extends Email
 {
 
+	// template selector status check key
 	public $key_template_select_status;
 	public $key_selected_template;
 
 	public function __construct()
 	{
+		// assign for email
 		$this->key_template_select_status = 'show_elemailer_email_template_selector';
 		$this->key_selected_template = 'select_elemailer_email_template';
 	}

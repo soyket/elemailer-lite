@@ -37,7 +37,7 @@ register_deactivation_hook(__FILE__, [Elemailer_Lite\Plugin::instance(), 'action
  */
 add_action('plugins_loaded', function () {
     // load when elemailer is not present
-    if(!did_action('elemailer/after_load')){
+    if (!did_action('elemailer/after_load')) {
         // active hook before plugin load
         do_action('elemailer_lite/before_load');
         // run global function file
@@ -54,7 +54,7 @@ add_action('plugins_loaded', function () {
  */
 add_action('wp_loaded', function () {
     // load when elemailer is not present
-    if(!did_action('elemailer/after_load')){
+    if (!did_action('elemailer/after_load')) {
         // call some functionality after wp fully loaded
         Elemailer_Lite\Plugin::instance()->after_wp_loaded_hooks();
     }

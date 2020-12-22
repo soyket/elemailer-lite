@@ -1,3 +1,3 @@
 (function($) {
-    console.log('front end js is loaded.');
+    // keep this for future use
 })(jQuery);

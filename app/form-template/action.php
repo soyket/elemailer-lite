@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * template create/ update setting related class
  * also used for getting templete settings
  * 
- * @author sayedulsayem
+ * @author elEmailer
  * @since 1.0.0
  */
 class Action
@@ -44,6 +44,7 @@ class Action
         $this->key_template_setting = 'elemailer__template_setting';
 
         $this->post_type = Base::instance()->template->post_type();
+        // get settings name for sanitize input
         $this->template_setting_fields = Base::instance()->template->get_template_settings_fields();
     }
 
@@ -65,6 +66,7 @@ class Action
         $this->template_id = $template_id;
         $this->sanitize($submitted_data);
 
+        // id 0 for new creation sent from frontend
         if ($this->template_id == '0') {
             $this->insert();
         } else {
@@ -87,17 +89,17 @@ class Action
         }
 
         // limitation to create template
-        if($this->count_form_templates() < 3){
+        if ($this->count_form_templates() < 3) {
             $defaults = array(
                 'post_title' => ($this->submitted_data['title']) ? $this->submitted_data['title'] : 'Form template # ' . time(),
                 'post_status' => 'publish',
                 'post_type' => $this->post_type,
             );
             $this->template_id = wp_insert_post($defaults);
-    
+
             update_post_meta($this->template_id, $this->key_template_setting, $this->submitted_data);
             update_post_meta($this->template_id, '_wp_page_template', 'elementor_canvas');
-    
+
             $this->response['status'] = 1;
             $this->response['data'] = [
                 'id' => $this->template_id,
@@ -105,11 +107,10 @@ class Action
                 'stored_data' => $this->submitted_data,
                 'template_id' => $this->template_id,
             ];
-        }else{
+        } else {
             $this->response['status'] = 0;
             $this->response['error'][] = esc_html__('You can\'t create more than 3 templates with elemailer lite.', 'elemailer');
         }
-
     }
 
     /**
@@ -183,7 +184,7 @@ class Action
         $this->template_id = $template_id;
 
         $post = get_post($this->template_id);
-        
+
         if (!is_object($post)) {
             return null;
         }
@@ -235,7 +236,7 @@ class Action
      */
     public function count_form_templates()
     {
-        $count_all = (array) wp_count_posts( $this->post_type );
+        $count_all = (array) wp_count_posts($this->post_type);
         return array_sum($count_all);
     }
 }

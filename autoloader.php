@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * Ele Mailer autoloader.
  * Handles dynamically loading classes only when needed.
  *
- * @author sayedulsayem
+ * @author elEmailer
  * @since 1.0.0
  */
 class Autoloader

@@ -5,10 +5,10 @@ namespace Elemailer_Lite\Core;
 defined('ABSPATH') || exit;
 
 /**
- * custom post type register core class
- * used to creating cpt by extending it.
+ * custom taxonomy for a post type register core class
+ * used to creating taxonomy by extending it.
  * 
- * @author sayedulsayem
+ * @author elEmailer
  * @since 1.0.0
  */
 abstract class Taxonomy
@@ -16,7 +16,7 @@ abstract class Taxonomy
 
     /**
      * constructor function
-     * help register cpt
+     * help register taxonomy
      *
      * @return constructor function
      * @since 1.0.0
@@ -34,8 +34,8 @@ abstract class Taxonomy
     }
 
     /**
-     * cpt args ready function
-     *implement from child class
+     * taxonomy args ready function
+     * implement from child class
      * @return void
      * @since 1.0.0
      */

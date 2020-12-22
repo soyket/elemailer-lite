@@ -40,7 +40,7 @@ class Base
 
         // register widgets
         Widgets\Base::instance()->init();
-        
+
         // fire elementor actions
         Actions\Base::instance()->init();
 

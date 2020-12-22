@@ -20,7 +20,7 @@ class Base
     public $api;
 
     /**
-     * initialization function
+     * initialization function for all of the form template related functionality
      *
      * @return void
      * @since 1.0.0
