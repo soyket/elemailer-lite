@@ -24,8 +24,6 @@ This plugin gives you the facility of override elementor default form email temp
 
 For more details :[Elemailer](https://elemailer.com/).
 
-Follow us on: [Github](https://github.com/soyket/elemailer-lite).
-
 
 == Installation ==
 

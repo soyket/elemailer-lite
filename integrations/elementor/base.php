@@ -72,7 +72,7 @@ class Base
 
         if (file_exists(WP_PLUGIN_DIR . '/elementor/elementor.php')) {
             $btn['label'] = esc_html__('Activate Elementor', 'elemailer-lite');
-            $btn['url'] = wp_nonce_url('plugins.php?action=activate&plugin=elementor/elementor.php&plugin_status=all&paged=1', 'activate-plugin_elementor/elementor.php');
+            $btn['url'] = wp_nonce_url(self_admin_url('plugins.php?action=activate&plugin=elementor/elementor.php&plugin_status=all&paged=1'), 'activate-plugin_elementor/elementor.php');
         } else {
             $btn['label'] = esc_html__('Install Elementor', 'elemailer-lite');
             $btn['url'] = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=elementor'), 'install-plugin_elementor');
@@ -85,39 +85,6 @@ class Base
                 'dismissible' => false,
                 'btn'         => $btn,
                 'message'     => sprintf(esc_html__('elEmailer lite needs Elementor version %1$s+ for working it, which is not activated.', 'elemailer-lite'), '3.0.11'),
-            ]
-        );
-    }
-
-    /**
-     * elementor missing notice function
-     *
-     * @return void
-     * @since 1.0.0
-     */
-    public function required_elementor_pro()
-    {
-
-        if (isset($_GET['activate'])) {
-            unset($_GET['activate']);
-        }
-
-        if (file_exists(WP_PLUGIN_DIR . '/elementor-pro/elementor-pro.php')) {
-            $btn['label'] = esc_html__('Activate Elementor pro', 'elemailer-lite');
-            $btn['url'] = wp_nonce_url('https://elementor.com/widgets/form-widget/');
-        } else {
-            $btn['label'] = esc_html__('Install Elementor pro', 'elemailer-lite');
-            $btn['url'] = wp_nonce_url(self_admin_url('https://elementor.com/pro/'));
-        }
-
-        \Elemailer_Lite\Helpers\Notice::push(
-            [
-                'id'          => 'elemailer-lite-elementor-pro-required',
-                'type'        => 'error',
-                'dismissible' => false,
-                'target'      => '__blank',
-                'btn'         => $btn,
-                'message'     => sprintf(esc_html__('elEmailer lite needs elementor pro version %1$s+ must be activated to use the form widget.', 'elemailer-lite'), '3.0.5'),
             ]
         );
     }
@@ -141,6 +108,41 @@ class Base
                 'dismissible' => false,
                 'btn'         => $btn,
                 'message'     => sprintf(esc_html__('elEmailer lite needs Elementor version %1$s+ for working it, lower version is running. Please update.', 'elemailer-lite'), '3.0.11'),
+            ]
+        );
+    }
+    
+    /**
+     * elementor missing notice function
+     *
+     * @return void
+     * @since 1.0.0
+     */
+    public function required_elementor_pro()
+    {
+
+        if (isset($_GET['activate'])) {
+            unset($_GET['activate']);
+        }
+
+        if (file_exists(WP_PLUGIN_DIR . '/elementor-pro/elementor-pro.php')) {
+            $btn['label'] = esc_html__('Activate Elementor pro', 'elemailer-lite');
+            $btn['url'] = wp_nonce_url(self_admin_url('plugins.php?action=activate&plugin=elementor-pro/elementor-pro.php&plugin_status=all&paged=1'), 'activate-plugin_elementor-pro/elementor-pro.php');
+            $target = false;
+        } else {
+            $btn['label'] = esc_html__('Install Elementor pro', 'elemailer-lite');
+            $btn['url'] = esc_url('https://elementor.com/pro/');
+            $target = true;
+        }
+
+        \Elemailer_Lite\Helpers\Notice::push(
+            [
+                'id'          => 'elemailer-lite-elementor-pro-required',
+                'type'        => 'error',
+                'dismissible' => false,
+                'target'      => ($target)? '_blank': '',
+                'btn'         => $btn,
+                'message'     => sprintf(esc_html__('elEmailer lite needs elementor pro version %1$s+ must be activated to use the form widget.', 'elemailer-lite'), '3.0.5'),
             ]
         );
     }
