@@ -168,6 +168,12 @@ class Hooks
                 'selectors' => [
                     '{{WRAPPER}} > .elementor-container' => 'background: {{VALUE}};',
                 ],
+                'dynamic' => [
+					'active' => false,
+				],
+				'global' => [
+					'active' => false,
+				],
             ]
         );
 
