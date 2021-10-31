@@ -379,7 +379,7 @@ class Util
 
 			<?php $info=get_option('elemailer_lite_info');  // run footer branding only for new users after v-1.0.0
 			
-			if(!$info['old_user']) : ?>
+			if( isset($info['old_user']) && !$info['old_user'] ) : ?>
 
 		 	<!-- START Branding FOOTER -->
       <div class="elementor-section-wrap" style="text-align: center;padding-top: 40px;">
