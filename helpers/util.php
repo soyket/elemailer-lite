@@ -375,6 +375,30 @@ class Util
 
 		<body>
 			<?php echo $email_content; ?>
+
+
+			<?php $info=get_option('elemailer_lite_info');  // run footer branding only for new users after v-1.0.0
+			
+			if(!$info['old_user']) : ?>
+
+		 	<!-- START Branding FOOTER -->
+      <div class="elementor-section-wrap" style="text-align: center;padding-top: 40px;">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: auto;font-size: 14px;">
+          <tr>
+            <td class="content-block">
+              Email built with Elementor using <a target="_blank" href="//elemailer.com?source=inemail">Elemailer</a>              
+              <a target="_blank" href="//elemailer.com?source=inemail">
+              	<img src="https://elemailer.com/wp-content/uploads/2020/11/logo.png" style=" display: block; width: 120px; margin: auto; padding: 15px 0px 0px 0px; ">
+              </a>
+              <br> Drag & Drop email template & campaign builder for WordPress
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!-- END Branding FOOTER -->
+
+    	<?php endif; ?>
+
 		</body>
 
 		</html>

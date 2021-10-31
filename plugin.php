@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
  * main plugin loaded final class
  * handle everything for initial plugin load
  *
- * @author elEmailer
+ * @author Elemailer
  * @since 1.0.0
  */
 final class Plugin
@@ -41,7 +41,7 @@ final class Plugin
      */
     public function define_constant()
     {
-        define('ELE_MAILER_LITE_VERSION', '1.0.0');
+        define('ELE_MAILER_LITE_VERSION', '1.0.2');
         define('ELE_MAILER_LITE_PACKAGE', 'free');
         define('ELE_MAILER_LITE_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
         define('ELE_MAILER_LITE_PLUGIN_DIR', trailingslashit(plugin_dir_path(__FILE__)));
@@ -109,11 +109,21 @@ final class Plugin
      * @since 1.0.0
      */
     public function plugin_active_info()
-    {
+    {   
+        //needed this to add some option to new users only after 1.0.0 // Since @ version 1.0.2
+        $old_user=0;
+        $info=get_option('elemailer_lite_info');
+        if(!empty($info)){
+            if( $info['activation_version'] == "1.0.0" || !empty($info['old_user']) ){
+            $old_user=1;
+        }
+        }
+      
 
         $info = [
             'activation_version' => ELE_MAILER_LITE_VERSION,
             'activation_time' => date('d-m-Y H:i:s'),
+            'old_user'=> $old_user // if 1 is saved this was a user of v1.0.0 so we will not show the footer branding @since version
         ];
 
         update_option('elemailer_lite_info', $info);
@@ -255,8 +265,8 @@ final class Plugin
     {
         // for main menu of this plugin in admin panel
         add_menu_page(
-            esc_html__('elEmailer'),
-            esc_html__('elEmailer'),
+            esc_html__('Elemailer'),
+            esc_html__('Elemailer'),
             'manage_options',
             'elemailer-menu',
             '',

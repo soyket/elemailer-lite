@@ -2,9 +2,9 @@
 Contributors: elemailer
 Tags: elementor email template, email template builder, elementor addons, elementor, email design, template, elementor widgets, email marketing, elementor form
 Requires at least: 4.4
-Tested up to: 5.7.1
+Tested up to: 5.8.1
 Requires PHP: 7.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,14 +17,17 @@ You must have [Elementor Pro](https://elementor.com/pro/) installed and forms cr
 == Description ==
 
 Elemailer Lite is an email template & campaign builder based on Elementor page builder. 
+
 This plugin gives you the facility of override [Elementor Pro's](https://elementor.com/pro/) default form email template. No more HTML code writing inside your Elementor Pro's form widget to send designed emails to you or your clients! 
 
 * You can create email templates with easy to use, drag and drop elementor editor.
 * Facility to use it as form submission template for Elementor Pro's Form Widget. 
 * Marketers can use it easily for sending our beautiful emails to the clients.
 * Supported in both Email & Email2 options of the Form widget. 
+* Supports 3 template creation at max in the lite version. 
 
-More features to come :[Elemailer](https://elemailer.com/).
+
+Check out pro version with more features:[Elemailer](https://elemailer.com/).
 
 [youtube https://youtu.be/7_8P3rM0KTM]
 
@@ -40,6 +43,14 @@ More features to come :[Elemailer](https://elemailer.com/).
 
 Our elemailer lite create an option to select our template on form submission. You will find the option under email and email2 section on form widget. 
 
+= Can I create more than 3 templates with the lite version? =
+
+With Elemailer Lite you can only create 3 email template for your forms. 
+
+= Can I remove footer Branding and add my own? =
+
+In the lite version you can add your own Branding if you want but you can't remove our footer branding. But you can get Elemailer ( The pro version from our site ) and remove the branding. This is a practice done in any platform/plugin. 
+
 == Screenshots ==
 
 1. /assets/screenshot-1.jpg
@@ -51,5 +62,11 @@ Our elemailer lite create an option to select our template on form submission. Y
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 1.0.2 =
+* Update: Updated compatibility tags with Elementor
+* Fix: Compatibility issue with Elementor
+* New: Branding for users
+= 1.0.1 =
+* Update: Updated compatibility tags with Elementor
 = 1.0.0 =
-Add: Initial release.
+* Add: Initial release.
