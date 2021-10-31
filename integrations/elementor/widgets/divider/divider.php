@@ -85,12 +85,6 @@ class Elemailer_Widget_Divider extends Widget_Base
 					'value' => Color::COLOR_1,
 				],
 				'default' => '#000',
-				'dynamic' => [
-					'active' => false,
-				],
-				'global' => [
-					'active' => false,
-				],
 
 			]
 		);
@@ -188,12 +182,6 @@ class Elemailer_Widget_Divider extends Widget_Base
 				'type' => Controls_Manager::COLOR,
 				'condition' => [
 					'advance_background_type' => 'color',
-				],
-				'dynamic' => [
-					'active' => false,
-				],
-				'global' => [
-					'active' => false,
 				],
 			]
 		);

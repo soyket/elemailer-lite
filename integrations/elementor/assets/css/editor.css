@@ -35,13 +35,3 @@
     min-width: 100% !important;
     width: 100% !important;
 }
-
- 
-/* global color selection remove from color control */
-#elementor-panel-content-wrapper #elementor-panel-page-editor #elementor-controls .e-global__popover-toggle.elementor-control-unit-1 {
-    display: none;
-}
-/* global color add button remove from color control */
-.pcr-app.visible .e-color-picker__tools button.e-control-tool{
-    display: none;
-}

@@ -130,12 +130,6 @@ class Elemailer_Widget_Spacer extends Widget_Base
 				'condition' => [
 					'advance_background_type' => 'color',
 				],
-				'dynamic' => [
-					'active' => false,
-				],
-				'global' => [
-					'active' => false,
-				],
 			]
 		);
 

@@ -1,14 +1,14 @@
 === Elemailer Lite - Elementor email template & campaign builder ===
 Contributors: elemailer
-Tags: email-template-builder, elementor, email-template, email, template, elementor add on, email-marketing
+Tags: elementor email template, email template builder, elementor addons, elementor, email design, template, elementor widgets, email marketing, elementor form
 Requires at least: 4.4
-Tested up to: 5.6
+Tested up to: 5.7.1
 Requires PHP: 7.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This WordPress plugin gives you the most flexible design environment to design email templates. Currently, You can design the elementor's form response by using it. 
+An Elementor addon to create Email templates. This WordPress plugin gives you the most flexible design environment to design email templates through drag and drop builder- Elementor. Currently, You can design the elementor's form response by using it.
 
 You must have [Elementor Page Builder](https://wordpress.org/plugins/elementor/) installed. To design your email template.
 You must have [Elementor Pro](https://elementor.com/pro/) installed and forms created. Then You will get the option for using our templates.
@@ -16,14 +16,17 @@ You must have [Elementor Pro](https://elementor.com/pro/) installed and forms cr
 
 == Description ==
 
-This plugin gives you the facility of override elementor default form email template. You can create a template by using it and use it to send as a form submission email.
+Elemailer Lite is an email template & campaign builder based on Elementor page builder. 
+This plugin gives you the facility of override [Elementor Pro's](https://elementor.com/pro/) default form email template. No more HTML code writing inside your Elementor Pro's form widget to send designed emails to you or your clients! 
 
-* You can create a template here with the elementor editor.
-* Facility to use it as form submission template.
+* You can create email templates with easy to use, drag and drop elementor editor.
+* Facility to use it as form submission template for Elementor Pro's Form Widget. 
+* Marketers can use it easily for sending our beautiful emails to the clients.
+* Supported in both Email & Email2 options of the Form widget. 
 
+More features to come :[Elemailer](https://elemailer.com/).
 
-For more details :[Elemailer](https://elemailer.com/).
-
+[youtube https://youtu.be/7_8P3rM0KTM]
 
 == Installation ==
 

@@ -160,12 +160,6 @@ class Elemailer_Widget_Text_Editor extends Widget_Base
 				'condition' => [
 					'advance_background_type' => 'color',
 				],
-				'dynamic' => [
-					'active' => false,
-				],
-				'global' => [
-					'active' => false,
-				],
 			]
 		);
 
