@@ -4,14 +4,14 @@ Tags: elementor email template, email template builder, elementor addons, elemen
 Requires at least: 4.4
 Tested up to: 5.8.1
 Requires PHP: 7.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 An Elementor addon to create Email templates. This WordPress plugin gives you the most flexible design environment to design email templates through drag and drop builder- Elementor. Currently, You can design the elementor's form response by using it.
 
 You must have [Elementor Page Builder](https://wordpress.org/plugins/elementor/) installed. To design your email template.
-You must have [Elementor Pro](https://elementor.com/pro/) installed and forms created. Then You will get the option for using our templates.
+You should have [Elementor Pro](https://elementor.com/pro/) installed if you want to use elemailer tempalte in your Elementor Pro's forms.
 
 
 == Description ==
@@ -27,9 +27,15 @@ This plugin gives you the facility of override [Elementor Pro's](https://element
 * Supports 3 template creation at max in the lite version. 
 
 
-Check out pro version with more features:[Elemailer](https://elemailer.com/).
+Check out our site for more features: [Elemailer](https://elemailer.com/).
+
+How to use Elemailer by Dante: 
 
 [youtube https://youtu.be/7_8P3rM0KTM]
+
+Elemailer overviw/Review by Paul:
+
+[youtube https://youtu.be/TaJkgK4bVgA]
 
 == Installation ==
 
@@ -62,6 +68,9 @@ In the lite version you can add your own Branding if you want but you can't remo
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 1.0.3 =
+* Fix: Compatibility with Elementor pro 3.5
+* Fix: Support for older Elementor pro 3.4.x
 = 1.0.2 =
 * Update: Updated compatibility tags with Elementor
 * Fix: Compatibility issue with Elementor

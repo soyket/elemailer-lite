@@ -44,12 +44,39 @@ class Hooks
     public function trigger_elementor_pro_actions()
     {
         // elementor form submission catch hook
-        add_action('elementor_pro/forms/form_submitted', [$this, 'trigger_elementor_form_submission']);
-    }
 
+        //@since v1.0.3 after it introduced Form_Actions_Registrar class to add control
+        // Fallback for older releases before 3.5 pro ie: 3.4.2
+
+
+        if(class_exists('\ElementorPro\Modules\Forms\Registrars\Form_Actions_Registrar')){
+
+            add_action('elementor_pro/forms/actions/register', [$this, 'trigger_elementor_form_submission_new']);
+
+        }else{
+
+            add_action('elementor_pro/forms/form_submitted', [$this, 'trigger_elementor_form_submission']);
+
+        }
+    }
+    
     /**
-     * catch elementor pro form submission function
+     * catch elementor pro form submission function - 3.5 pro new version support
      *
+     * @param object $module
+     * @since 1.0.3
+     */
+    public function trigger_elementor_form_submission_new($module)
+    {
+        // override email class of elementor pro
+        $module->register(new Void_Email());
+
+        // override email2 class of elementor pro
+        $module->register(new Void_Email2());
+    }
+    /**
+     * catch elementor pro form submission function for older version ie:3.4.2
+     * has to be removed going forward
      * @param object $module
      * @since 1.0.0
      */
@@ -60,7 +87,9 @@ class Hooks
 
         // override email2 class of elementor pro
         $module->add_form_action('email2', new Void_Email2());
-    }
+    } 
+
+     
 
     /**
      * option for selecting elemailer lite template function in form widget
