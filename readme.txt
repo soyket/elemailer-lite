@@ -4,7 +4,7 @@ Tags: elementor email template, email template builder, elementor addons, elemen
 Requires at least: 4.4
 Tested up to: 5.8.1
 Requires PHP: 7.2
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,6 +68,8 @@ In the lite version you can add your own Branding if you want but you can't remo
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 1.0.4 =
+* Fix: Compatibility with ACF frontend plugin
 = 1.0.3 =
 * Fix: Compatibility with Elementor pro 3.5
 * Fix: Support for older Elementor pro 3.4.x
