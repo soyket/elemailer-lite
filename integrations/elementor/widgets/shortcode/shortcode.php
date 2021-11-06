@@ -6,10 +6,8 @@ defined('ABSPATH') || exit;
 
 use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
-use \Elementor\Utils;
-
 use \Elementor\Core\Schemes\Color;
-
+use \Elementor\Utils;
 /**
  * shortcode widget class for registering shortcode widget
  *
@@ -50,7 +48,7 @@ class Elemailer_Widget_Shortcode extends Widget_Base
 		return ['void', 'template', 'shortcode', 'form', 'field', 'input'];
 	}
 
-	protected function _register_controls()
+	protected function register_controls()
 	{
 
 		$this->start_controls_section(
@@ -89,17 +87,26 @@ class Elemailer_Widget_Shortcode extends Widget_Base
 			]
 		);
 
+		$shortcode_desc='Use multiple shortcodes here. <a target="_blank" href="https://elemailer.com/documentation/shortcodes">Learn more</a><br><br>';
+		if(function_exists('elementor_pro_load_plugin')){
+			$shortcode_desc .='You can use Elementor pro form shortcode like [field id="name"], [field id="email"]<br><br>';
+		}
+		if(class_exists('WPCF7_ContactForm')){
+			$shortcode_desc .='Add Contact form 7 Shortcodes such as [your-name] [_site_admin_email]<br>';
+		}
+		
+
 		$this->add_control(
 			'shortcode',
 			[
 				'label' => __('Shortcode', 'elemailer-lite'),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 5,
-				'placeholder' => __('Enter your shortcode here', 'elemailer-lite'),
+				'placeholder' => __('Enter supported Shortcode here', 'elemailer-lite'),
 				'dynamic' => [
 					'active' => true,
 				],
-				'description' => __('You can use shortcode like <br> [field id="name"] <br> [field id="email"] <br> [field id="message"]', 'elemailer-lite'),
+				'description' => $shortcode_desc,
 			]
 		);
 
@@ -111,15 +118,15 @@ class Elemailer_Widget_Shortcode extends Widget_Base
 				'options' => [
 					'left' => [
 						'title' => __('Left', 'elemailer-lite'),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __('Center', 'elemailer-lite'),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __('Right', 'elemailer-lite'),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'default' => 'left',

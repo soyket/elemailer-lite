@@ -78,6 +78,9 @@ final class Plugin
         // call everything for email template. this init will register cpt and everything related on template
         App\Form_Template\Base::instance()->init();
 
+        // integrate differnet plugin before email sending shortcode supports in mail body @since 1.0.3
+        Integrations\Shortcode\Base::instance()->init();
+        
         // integrate elementor with this plugin
         Integrations\Elementor\Base::instance()->init();
 

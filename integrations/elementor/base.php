@@ -29,7 +29,7 @@ class Base
         }
 
         // elementor pro check and fired elementor pro actions
-        if (!is_plugin_active('elementor-pro/elementor-pro.php')) {
+        if (file_exists(WP_PLUGIN_DIR . '/elementor-pro/elementor-pro.php') && !is_plugin_active('elementor-pro/elementor-pro.php')) {
             add_action('admin_notices', [$this, 'required_elementor_pro']);
         }
         // Check for required Elementor version.
@@ -84,7 +84,7 @@ class Base
                 'type'        => 'error',
                 'dismissible' => false,
                 'btn'         => $btn,
-                'message'     => sprintf(esc_html__('elEmailer lite needs Elementor version %1$s+ for working it, which is not activated.', 'elemailer-lite'), '3.0.11'),
+                'message'     => sprintf(esc_html__('Elemailer Lite needs Elementor version %1$s+ for working it, which is not activated.', 'elemailer-lite'), '3.4'),
             ]
         );
     }
@@ -107,7 +107,7 @@ class Base
                 'type'        => 'error',
                 'dismissible' => false,
                 'btn'         => $btn,
-                'message'     => sprintf(esc_html__('elEmailer lite needs Elementor version %1$s+ for working it, lower version is running. Please update.', 'elemailer-lite'), '3.0.11'),
+                'message'     => sprintf(esc_html__('Elemailer Lite needs Elementor version %1$s+ for working it, lower version is running. Please update.', 'elemailer-lite'), '3.4'),
             ]
         );
     }
@@ -142,7 +142,7 @@ class Base
                 'dismissible' => false,
                 'target'      => ($target)? '_blank': '',
                 'btn'         => $btn,
-                'message'     => sprintf(esc_html__('elEmailer lite needs elementor pro version %1$s+ must be activated to use the form widget.', 'elemailer-lite'), '3.0.5'),
+                'message'     => sprintf(esc_html__('To use Elemailer Lite with Elementor pro Forms to send email elementor pro %1$s+ should be installed & activated. Ignore if you plan to use Elemailer with other Form plugin(s).', 'elemailer-lite'), '3.4'),
             ]
         );
     }

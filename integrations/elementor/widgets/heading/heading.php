@@ -49,7 +49,7 @@ class Elemailer_Widget_Heading extends Widget_Base
 		return ['void', 'template', 'heading'];
 	}
 
-	protected function _register_controls()
+	protected function register_controls()
 	{
 		$this->start_controls_section(
 			'section_title',
@@ -251,9 +251,10 @@ class Elemailer_Widget_Heading extends Widget_Base
 	{
 
 		$settings = $this->get_settings_for_display();
-
+		$target = $settings['link']['is_external'] ? ' target="_blank"' : '';
+		$nofollow = $settings['link']['nofollow'] ? ' rel="nofollow"' : '';
+		
 		$title = $settings['title'];
-		$heading_link = $settings['link'];
 
 		$heading_styles = 'display: block;margin: 0 auto;font-family: Arial,Helvetica,sans-serif;';
 		$heading_styles .= 'line-height: ' . (($settings['heading_line_height']['size'] ? $settings['heading_line_height']['size'] : '44') . ($settings['heading_line_height']['unit'] ? $settings['heading_line_height']['unit'] : 'px')) . ';';
@@ -270,10 +271,11 @@ class Elemailer_Widget_Heading extends Widget_Base
 		<div style="<?php echo esc_attr($advance_style); ?>" class="heading-wrapper">
 			<?php
 			if (!empty($settings['link']['url'])) { ?>
-				<a href="<?php echo esc_attr($heading_link); ?>">
+				<a href="<?php echo esc_attr($settings['link']['url']); ?>" <?php  echo $target . $nofollow ?> >
 				<?php } ?>
-				<h2 style="<?php echo esc_attr($heading_styles); ?>"><?php echo esc_html($title); ?></h2>
 
+				<h2 style="<?php echo esc_attr($heading_styles); ?>"><?php echo esc_html($title); ?></h2>
+				
 				<?php
 				if (!empty($settings['link']['url'])) { ?>
 				</a>

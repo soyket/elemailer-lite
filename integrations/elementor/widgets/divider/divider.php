@@ -50,7 +50,7 @@ class Elemailer_Widget_Divider extends Widget_Base
 		return ['void', 'template', 'divider'];
 	}
 
-	protected function _register_controls()
+	protected function register_controls()
 	{
 		$this->start_controls_section(
 			'content_section',

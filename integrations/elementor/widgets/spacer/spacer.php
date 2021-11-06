@@ -49,7 +49,7 @@ class Elemailer_Widget_Spacer extends Widget_Base
 		return ['void', 'template', 'spacer'];
 	}
 
-	protected function _register_controls()
+	protected function register_controls()
 	{
 		$this->start_controls_section(
 			'content_section',

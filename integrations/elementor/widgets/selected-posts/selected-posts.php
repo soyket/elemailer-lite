@@ -46,7 +46,7 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 		return ['void', 'template', 'posts', 'post', 'selected posts'];
 	}
 
-	protected function _register_controls()
+	protected function register_controls()
 	{
 
 		$this->start_controls_section(
@@ -299,15 +299,15 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 				'options' => [
 					'left' => [
 						'title' => __('Left', 'elemailer-lite'),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __('Center', 'elemailer-lite'),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __('Right', 'elemailer-lite'),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'default' => 'left',

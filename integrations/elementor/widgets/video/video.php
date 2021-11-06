@@ -49,7 +49,7 @@ class Elemailer_Widget_Video extends Widget_Base
 		return ['void', 'template', 'video'];
 	}
 
-	protected function _register_controls()
+	protected function register_controls()
 	{
 
 		$this->start_controls_section(

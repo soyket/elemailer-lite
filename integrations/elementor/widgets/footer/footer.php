@@ -49,7 +49,7 @@ class Elemailer_Widget_Footer extends Widget_Base
 		return ['void', 'template', 'footer'];
 	}
 
-	protected function _register_controls()
+	protected function register_controls()
 	{
 		$this->start_controls_section(
 			'section_title',
@@ -64,7 +64,7 @@ class Elemailer_Widget_Footer extends Widget_Base
 				'label' => __('Address', 'elemailer-lite'),
 				'type' => Controls_Manager::TEXTAREA,
 				'placeholder' => __('Enter your addrress', 'elemailer-lite'),
-				'default' => __('BDBL Bhaban (19th Floor-East), 12, Kazi Nazrul Islam Avenue, Dhaka 1215', 'elemailer-lite'),
+				'default' => __('45 Rockefeller Plaza, New York, NY 10111, United States', 'elemailer-lite'),
 			]
 		);
 
