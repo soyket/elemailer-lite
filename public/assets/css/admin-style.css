@@ -65,7 +65,7 @@
   .elemailer-form-template-add-modal::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
-.elemailer-form-template-add-modal .modal {
+.elemailer-form-template-add-modal .elemailer-modal {
     position: relative;
     max-width: 480px;
     margin: 75px auto;
@@ -76,18 +76,18 @@
     text-align: left;
 }
 
-.elemailer-form-template-add-modal .modal-header {
+.elemailer-form-template-add-modal .elemailer-modal-header {
     position: relative;
 }
 
-.elemailer-form-template-add-modal .modal-header h5 {
+.elemailer-form-template-add-modal .elemailer-modal-header h5 {
     font-size: 18px;
     line-height: 26px;
     margin: 0px auto;
     color: #fff;
 }
 
-.elemailer-form-template-add-modal .modal-header button.close {
+.elemailer-form-template-add-modal .elemailer-modal-header button.close {
     position: absolute;
     z-index: 9;
     right: 20px;
@@ -108,7 +108,7 @@
     overflow: hidden;
 }
 
-.elemailer-form-template-add-modal .modal-header button.close span {
+.elemailer-form-template-add-modal .elemailer-modal-header button.close span {
     display: block;
     line-height: 0px;
     margin-top: -3px;
@@ -116,18 +116,18 @@
     box-shadow: none !important;
 }
 
-.elemailer-form-template-add-modal .modal-content .modal-body {
+.elemailer-form-template-add-modal .elemailer-modal-content .elemailer-modal-body {
     position: relative;
     max-width: 480px;
     padding: 40px;
 }
 
-.elemailer-form-template-add-modal .modal-content .modal-body .form-group {
+.elemailer-form-template-add-modal .elemailer-modal-content .elemailer-modal-body .form-group {
     position: relative;
     display: block; 
 }
 
-.elemailer-form-template-add-modal .modal-content .modal-body .form-group label {
+.elemailer-form-template-add-modal .elemailer-modal-content .elemailer-modal-body .form-group label {
     display: block;
     font-size: 16px;
     line-height: 22px;
@@ -135,7 +135,7 @@
     color: #686868;
 }
 
-.elemailer-form-template-add-modal .modal-content .modal-body .form-group input {
+.elemailer-form-template-add-modal .elemailer-modal-content .elemailer-modal-body .form-group input {
     display: block;
     width: 100%;
     font-size: 14px;
@@ -145,26 +145,26 @@
     border-radius: 3px;
 }
 
-.elemailer-form-template-add-modal .modal-content .modal-body .form-group small.form-text.text-muted {
+.elemailer-form-template-add-modal .elemailer-modal-content .elemailer-modal-body .form-group small.form-text.text-muted {
     font-size: 12px;
     color: #ababab;
     margin: 5px auto 3px;
 }
 
-.elemailer-form-template-add-modal .modal-content .modal-footer {
+.elemailer-form-template-add-modal .elemailer-modal-content .elemailer-modal-footer {
     position: relative;
     max-width: 480px;
     padding: 0px 40px 50px;
 }
 
-.elemailer-form-template-add-modal .modal-content .modal-footer button.elemailer-edit {
+.elemailer-form-template-add-modal .elemailer-modal-content .elemailer-modal-footer button.elemailer-edit {
     background-color: #0073aa;
     border: 1px solid #0073aa;
     margin-bottom: 25px;
      
 }
 
-.elemailer-form-template-add-modal .modal-content .modal-footer button {
+.elemailer-form-template-add-modal .elemailer-modal-content .elemailer-modal-footer button {
     padding: 12px 18px;
     color: #fff;
     font-size: 14px;
@@ -172,9 +172,9 @@
     cursor: pointer;
 }
 
-.elemailer-form-template-add-modal .modal-content button.elemailer-save {border: 1px solid #008000;background-color: #008000;}
+.elemailer-form-template-add-modal .elemailer-modal-content button.elemailer-save {border: 1px solid #008000;background-color: #008000;}
 
-.elemailer-form-template-add-modal .modal-content .modal-footer button:hover {
+.elemailer-form-template-add-modal .elemailer-modal-content .elemailer-modal-footer button:hover {
     -webkit-box-shadow: 0px 0px 6px -2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 6px -2px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 6px -2px rgba(0,0,0,0.75);
@@ -195,12 +195,12 @@
 }
 
 
-.elemailer-form-template-add-modal .modal {
+.elemailer-form-template-add-modal .elemailer-modal {
     padding: 0px;
     border-radius: 5px;
     overflow: hidden;
 }
-.elemailer-form-template-add-modal .modal .modal-header {
+.elemailer-form-template-add-modal .elemailer-modal .elemailer-modal-header {
     background-size: 100% 100%;
     padding: 45px 25px;
     text-align: center;
@@ -209,7 +209,7 @@
 
 /* CSS Preloader For Modal */
 
-.modal-preloader {
+.elemailer-modal-preloader {
     position: absolute;
     top: calc(50% - 20px);
     left: calc(50% - 20px);
@@ -218,16 +218,16 @@
     z-index: -1;
     opacity: 0;
 }
-.activeModalPreloader .modal-preloader {
+.activeModalPreloader .elemailer-modal-preloader {
     z-index: 1;
     opacity: 1;
 }
 
-.activeModalPreloader .modal .modal-dialog {
+.activeModalPreloader .elemailer-modal .elemailer-modal-dialog {
     position: relative;
 }
 
-.activeModalPreloader .modal .modal-dialog:after {
+.activeModalPreloader .elemailer-modal .elemailer-modal-dialog:after {
     position: absolute;
     content: '';
     height: 100%;
@@ -238,7 +238,7 @@
     opacity: .5;
 }
 
-.elemailer-form-template-add-modal .modal p.alert {
+.elemailer-form-template-add-modal .elemailer-modal p.alert {
     max-width: 400px;
     margin: 15px auto 0px;
     border-radius: 0;
@@ -246,7 +246,7 @@
     text-align: center;
 }
 
-.modal-preloader .sk-chase {
+.elemailer-modal-preloader .sk-chase {
     margin: 0 auto;
 }
   .sk-chase {

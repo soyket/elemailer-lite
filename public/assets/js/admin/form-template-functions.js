@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    $('.elemailer-form-template-add-modal .modal-content button.close').on('click', function (e) {
+    $('.elemailer-form-template-add-modal .elemailer-modal-content button.close').on('click', function (e) {
         $('.elemailer-form-template-add-modal').removeClass('show');
     })
 
