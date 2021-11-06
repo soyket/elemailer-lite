@@ -83,7 +83,7 @@ Update the plugin either via wp dashboard or via FTP. After the update makes sur
 == Changelog ==
 = 1.0.4 =
 * Fix: Compatibility with ACF frontend plugin
-* Fix: Removed depircated function use of elementor
+* Fix: Removed deprecated function use of elementor
 * Fix: Icons missing for alignment controls
 * New: Contact Form 7 Support with Shortcode system
 = 1.0.3 =
