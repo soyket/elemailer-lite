@@ -92,7 +92,7 @@ class Library{
      * @return array $templates
      */
     public function get_default_page_builder() {
-        $api_url       = 'https://lib.elemailer.com/wp-json/wp/v2/elemailerlib';
+        $api_url       = 'https://lib.elemailer.com/wp-json/wp/v2/elemailerlib/';
         $response      = wp_remote_get( $api_url );
         $response_body = wp_remote_retrieve_body( $response );
         $response_data = json_decode( $response_body, true );
@@ -107,7 +107,7 @@ class Library{
                 'title'                  => $page_data['title']['rendered'],
                 'featured-image-url'     => 'http://www.elizabethlawchambers.com/wp-content/uploads/2019/02/Placeholder-500x500-300x300.jpg',
                 'thumbnail-image-url'    => 'http://www.elizabethlawchambers.com/wp-content/uploads/2019/02/Placeholder-500x500-300x300.jpg',
-                'elemailer-page-api-url' => $page_data['link'],
+                'elemailer-page-api-url' => $api_url . $page_data['id'],
                 'dynamic-page'           => 'no',
                 'elemailer-page-tag'     => [
                     '423' => 'home'
