@@ -29,6 +29,7 @@ class Library{
         add_action( 'elementor/preview/enqueue_styles', [ $this, 'register_widget_styles' ] );
         add_action( 'wp_ajax_elemailer-lite-remote-request', [ $this, 'remote_request' ] );
         add_action( 'wp_ajax_elemailer-lite-elementor-batch-process', [ $this, 'elementor_batch_process' ] );
+        add_action( 'wp_ajax_elemailer-sync-page-builder', [ $this, 'get_sync_page_builder' ] );
     }
 
     /**
@@ -76,6 +77,7 @@ class Library{
                 'isPro'                => false,
                 'license_msg'          => $license_msg,
                 'getProText'           => __( 'Get Access!', 'elemailer-lite' ),
+                'syncCompleteMessage'  => __( 'Template library refreshed!', 'elemailer-lite' ),
                 'getProURL'            => esc_url( 'https://elemailer.com/pricing/?utm_source=demo-import-panel&utm_campaign=elemailer-lite&utm_medium=wp-dashboard' ),
 
             )
@@ -105,8 +107,8 @@ class Library{
         foreach ( $response_data as $page_data ) {
             $templates['id-' . $page_data['id']] = [
                 'title'                  => $page_data['title']['rendered'],
-                'featured-image-url'     => 'http://www.elizabethlawchambers.com/wp-content/uploads/2019/02/Placeholder-500x500-300x300.jpg',
-                'thumbnail-image-url'    => 'http://www.elizabethlawchambers.com/wp-content/uploads/2019/02/Placeholder-500x500-300x300.jpg',
+                'featured-image-url'     => $page_data['featured_image_src']['featured_media_full'],
+                'thumbnail-image-url'    => $page_data['featured_image_src']['featured_media_thumbnail'],
                 'elemailer-page-api-url' => $api_url . $page_data['id'],
                 'dynamic-page'           => 'no',
                 'elemailer-page-tag'     => [
@@ -129,6 +131,21 @@ class Library{
         }
 
         return $templates;
+    }
+
+    /**
+     * Elementor Templates sync
+     *
+     * @since 1.0.5
+     */
+    public function get_sync_page_builder() {
+        check_ajax_referer( 'elemailer-lite-check', '_ajax_nonce' );
+
+        if ( ! current_user_can( 'edit_posts' ) ) {
+            wp_send_json_error( __( 'You are not allowed to perform this action', 'elemailer-lite' ) );
+        }
+
+        wp_send_json_success( $this->get_default_page_builder() );
     }
 
     /**

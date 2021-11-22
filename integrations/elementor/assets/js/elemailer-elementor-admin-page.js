@@ -241,16 +241,44 @@
             event.preventDefault();
             var button = $(this).find('.elemailer-lite-sync-library-button');
 
-            if (button.hasClass('updating-message')) {
+            if ( button.hasClass( 'updating-message') ) {
                 return;
             }
 
             button.addClass('updating-message');
             $elementorscope.find('#elemailer-lite-floating-notice-wrap-id').show().removeClass('error');
-            $elementorscope.find('#elemailer-lite-floating-notice-wrap-id .elemailer-lite-floating-notice').html('<span class="message">Syncing template library in the background. The process can take anywhere between 2 to 3 minutes. We will notify you once done.<span><button type="button" class="notice-dismiss"><span class="screen-reader-text">' + elemailerElementorData.dismiss_text + '</span></button>');
+            $elementorscope.find('#elemailer-lite-floating-notice-wrap-id .elemailer-lite-floating-notice').html('<span class="message">Syncing template library in the background. The process can take some times. We will notify you once done.<span><button type="button" class="notice-dismiss"><span class="screen-reader-text">' + elemailerElementorData.dismiss_text + '</span></button>');
             $elementorscope.find('#elemailer-lite-floating-notice-wrap-id').addClass('slide-in').removeClass('refreshed-notice');
 
-            $(document).trigger('elemailer-lite__elementor-goback-step-1');
+            $.ajax({
+                url: elemailerElementorData.ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'elemailer-sync-page-builder',
+                    _ajax_nonce: elemailerElementorData._ajax_nonce,
+                },
+                beforeSend: function () {
+                    console.groupCollapsed('Get Template Details.');
+                },
+            })
+                .fail(function (jqXHR) {
+                    console.log(jqXHR);
+                    console.groupEnd();
+                })
+                .done(function (response) {
+                    console.groupEnd();
+
+                    if( response.success ) {
+                        console.log( 'get Data' );
+                        elemailerElementorData.default_page_builder = response.data;
+                        $(document).trigger('elemailer-lite__elementor-goback-step-1');
+
+                        $elementorscope.find('#elemailer-lite-floating-notice-wrap-id').addClass('refreshed-notice').find('.elemailer-lite-floating-notice').html('<span class="message">' + elemailerElementorData.syncCompleteMessage + '</span><button type="button" class="notice-dismiss"><span class="screen-reader-text">' + elemailerElementorData.dismiss_text + '</span></button>');
+                        button.removeClass('updating-message');
+                    } else {
+                        console.log( 'not get Data' );
+                    }
+                });
         },
 
         _home: function () {
