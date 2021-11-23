@@ -23,7 +23,7 @@ class Autoloader
      */
     public static function run()
     {
-        spl_autoload_register([__CLASS__, 'autoload']);
+        spl_autoload_register( [ __CLASS__, 'autoload' ] );
     }
 
     /**
@@ -34,12 +34,11 @@ class Autoloader
      * @access private
      * @param string $class Class name.
      */
-    private static function autoload($class_name)
+    private static function autoload( $class_name )
     {
-
         // If the class being requested does not start with our prefix
         // we know it's not one in our project.
-        if (0 !== strpos($class_name, __NAMESPACE__)) {
+        if ( 0 !== strpos( $class_name, __NAMESPACE__ ) ) {
             return;
         }
 
@@ -55,9 +54,9 @@ class Autoloader
         $file = plugin_dir_path(__FILE__) . $file_name . '.php';
 
         // If a file is found.
-        if (file_exists($file)) {
+        if ( file_exists( $file ) ) {
             // Then load it up!
-            require_once($file);
+            require_once( $file );
         }
     }
 }

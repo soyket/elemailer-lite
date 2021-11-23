@@ -22,7 +22,7 @@ final class Plugin
     private static $instance;
 
     /**
-     * construct function of this class
+     * Construct function of this class
      *
      * @return void
      * @since 1.0.0
@@ -34,24 +34,24 @@ final class Plugin
     }
 
     /**
-     * defining constant function
+     * Defining constant function
      *
      * @return void
      * @since 1.0.0
      */
     public function define_constant()
     {
-        define('ELE_MAILER_LITE_VERSION', '1.0.4');
-        define('ELE_MAILER_LITE_PACKAGE', 'free');
-        define('ELE_MAILER_LITE_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
-        define('ELE_MAILER_LITE_PLUGIN_DIR', trailingslashit(plugin_dir_path(__FILE__)));
+        define( 'ELE_MAILER_LITE_VERSION', '1.0.4' );
+        define( 'ELE_MAILER_LITE_PACKAGE', 'free' );
+        define( 'ELE_MAILER_LITE_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__ ) ) );
+        define( 'ELE_MAILER_LITE_PLUGIN_DIR', trailingslashit(plugin_dir_path(__FILE__ ) ) );
 
-        define('ELE_MAILER_LITE_PLUGIN_PUBLIC', ELE_MAILER_LITE_PLUGIN_URL . 'public');
-        define('ELE_MAILER_LITE_PLUGIN_PUBLIC_DIR', ELE_MAILER_LITE_PLUGIN_DIR . 'public');
+        define( 'ELE_MAILER_LITE_PLUGIN_PUBLIC', ELE_MAILER_LITE_PLUGIN_URL . 'public' );
+        define( 'ELE_MAILER_LITE_PLUGIN_PUBLIC_DIR', ELE_MAILER_LITE_PLUGIN_DIR . 'public' );
     }
 
     /**
-     * plugin initialization function
+     * Plugin initialization function
      * calls on plugins_loaded action
      *
      * @return void
@@ -59,21 +59,21 @@ final class Plugin
      */
     public function init()
     {
-        if (current_user_can('manage_options')) {
-            add_action('admin_menu', [$this, 'add_admin_menu']);
+        if ( current_user_can('manage_options' ) ) {
+            add_action('admin_menu', [ $this, 'add_admin_menu' ] );
         }
         // enqueue js and css on admin dashboard hook
-        add_action('admin_enqueue_scripts', [$this, 'load_js_css_admin']);
+        add_action( 'admin_enqueue_scripts', [ $this, 'load_js_css_admin' ] );
         // remove third party js css in our template hook
-        add_action('wp_enqueue_scripts', [$this, 'enqueue_dequeue_js_css_public'], 999);
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_dequeue_js_css_public' ], 999 );
         // enqueue css in elementor front end hook
-        add_action('elementor/frontend/after_enqueue_styles', [$this, 'load_elementor_css_public']);
+        add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'load_elementor_css_public' ] );
 
         // call notice initialize function
         Helpers\Notice::init();
 
         // limitation notice
-        add_action('admin_notices', [$this, 'show_free_version_limitation']);
+        add_action( 'admin_notices', [ $this, 'show_free_version_limitation' ] );
 
         // call everything for email template. this init will register cpt and everything related on template
         App\Form_Template\Base::instance()->init();
@@ -83,6 +83,9 @@ final class Plugin
         
         // integrate elementor with this plugin
         Integrations\Elementor\Base::instance()->init();
+
+        // integrate elementor with this plugin
+        Integrations\Elementor\Library::instance()->init();
 
         // minify elementor default css and assign it to a new file for sending it to the mail clients. 
         Helpers\Util::minify_css(ELE_MAILER_LITE_PLUGIN_DIR . 'public/assets/css/elemailer-mail.css', ELE_MAILER_LITE_PLUGIN_DIR . 'app/form-template/view/default-elementor-style.php');
@@ -114,19 +117,18 @@ final class Plugin
     public function plugin_active_info()
     {   
         //needed this to add some option to new users only after 1.0.0 // Since @ version 1.0.2
-        $old_user=0;
-        $info=get_option('elemailer_lite_info');
-        if(!empty($info)){
-            if( $info['activation_version'] == "1.0.0" || !empty($info['old_user']) ){
-            $old_user=1;
-        }
+        $old_user = 0;
+        $info     = get_option('elemailer_lite_info');
+
+        if ( ! empty( $info ) && ( "1.0.0" === $info['activation_version'] || ! empty( $info['old_user'] ) ) ) {
+            $old_user = 1;
         }
       
 
         $info = [
             'activation_version' => ELE_MAILER_LITE_VERSION,
-            'activation_time' => date('d-m-Y H:i:s'),
-            'old_user'=> $old_user // if 1 is saved this was a user of v1.0.0 so we will not show the footer branding @since version
+            'activation_time'    => date('d-m-Y H:i:s'),
+            'old_user'           => $old_user // if 1 is saved this was a user of v1.0.0 so we will not show the footer branding @since version
         ];
 
         update_option('elemailer_lite_info', $info);
@@ -222,7 +224,7 @@ final class Plugin
     }
 
     /**
-     * elementor enqueue style function
+     * Elementor enqueue style function
      *
      * @return void
      * @since 1.0.0
@@ -231,35 +233,30 @@ final class Plugin
     {
         $post_type = get_post_type();
 
-        if (in_array($post_type, ['em-form-template'])) {
-
-            wp_enqueue_style('elemailer-lite', ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/css/style.css', false, ELE_MAILER_LITE_VERSION);
+        if ( in_array( $post_type, ['em-form-template'] ) ) {
+            wp_enqueue_style( 'elemailer-lite', ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/css/style.css', false, ELE_MAILER_LITE_VERSION);
         }
     }
 
     /**
-     * admin assets load function
+     * Admin assets load function
      *
      * @return void
      * @since 1.0.0
      */
     public function load_js_css_admin()
     {
-
         $screen = get_current_screen();
 
-        if (in_array($screen->id, ['edit-em-form-template'])) {
-
-            wp_enqueue_style('elemailer-ui', ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/css/admin-style.css', false, ELE_MAILER_LITE_VERSION);
-
-            wp_enqueue_script('elemailer-form-template', ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/js/admin/form-template-functions.js', array(), ELE_MAILER_LITE_VERSION, true);
-            wp_localize_script('elemailer-form-template', 'elemailer_lite', ['restUrl' => rest_url('elemailer_lite/v1/'), 'nonce' => wp_create_nonce('wp_rest')]);
+        if ( in_array( $screen->id, [ 'edit-em-form-template' ] ) ) {
+            wp_enqueue_style( 'elemailer-ui', ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/css/admin-style.css', false, ELE_MAILER_LITE_VERSION);
+            wp_enqueue_script( 'elemailer-form-template', ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/js/admin/form-template-functions.js', array(), ELE_MAILER_LITE_VERSION, true);
+            wp_localize_script( 'elemailer-form-template', 'elemailer_lite', ['restUrl' => rest_url('elemailer_lite/v1/'), 'nonce' => wp_create_nonce('wp_rest')]);
         }
     }
 
-
     /**
-     * plugin menu add function
+     * Plugin menu add function
      *
      * @return void
      * @since 1.0.0
@@ -268,8 +265,8 @@ final class Plugin
     {
         // for main menu of this plugin in admin panel
         add_menu_page(
-            esc_html__('Elemailer'),
-            esc_html__('Elemailer'),
+            esc_html__( 'Elemailer' ),
+            esc_html__( 'Elemailer' ),
             'manage_options',
             'elemailer-menu',
             '',
@@ -279,7 +276,7 @@ final class Plugin
     }
 
     /**
-     * update permalink after register cpt function
+     * Update permalink after register cpt function
      *
      * @return void
      * @since 1.0.0
@@ -299,7 +296,8 @@ final class Plugin
     public function show_free_version_limitation()
     {
         $screen = get_current_screen();
-        if ($screen->id == 'edit-em-form-template') {
+
+        if ( 'edit-em-form-template' === $screen->id ) {
             \Elemailer_Lite\Helpers\Notice::push(
                 [
                     'id'          => 'limitation-elemailer-free-version',
@@ -317,16 +315,17 @@ final class Plugin
     }
 
     /**
-     * singleton instance create function
+     * Singleton instance create function
      *
      * @return object
      * @since 1.0.0
      */
     public static function instance()
     {
-        if (!self::$instance) {
+        if ( ! self::$instance ) {
             self::$instance = new self();
         }
+
         return self::$instance;
     }
 }

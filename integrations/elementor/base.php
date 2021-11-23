@@ -158,7 +158,8 @@ class Base
         $post_type = get_post_type();
 
         if ((in_array($post_type, ['em-form-template', 'em-emails-template']))) :
-            wp_enqueue_style('elemailer-elementor-editor', ELE_MAILER_LITE_PLUGIN_URL . 'integrations/elementor/assets/css/editor.css', false, ELE_MAILER_LITE_VERSION);
+            $version = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? time() : ELE_MAILER_LITE_VERSION;
+            wp_enqueue_style('elemailer-elementor-editor', ELE_MAILER_LITE_PLUGIN_URL . 'integrations/elementor/assets/css/editor.css', false, $version );
         endif;
     }
 
