@@ -30,6 +30,38 @@ class Library{
         add_action( 'wp_ajax_elemailer-lite-remote-request', [ $this, 'remote_request' ] );
         add_action( 'wp_ajax_elemailer-lite-elementor-batch-process', [ $this, 'elementor_batch_process' ] );
         add_action( 'wp_ajax_elemailer-sync-page-builder', [ $this, 'get_sync_page_builder' ] );
+        add_action( 'wp_ajax_elemailer-saved-my-templates', [ $this, 'get_sync_saved_templates' ] );
+        add_action( 'save_post', [ $this, 'on_save_post' ], 10, 2 );
+    }
+
+    /**
+     * On template save.
+     *
+     * Run this method when template is being saved.
+     *
+     * Fired by `save_post` action.
+     *
+     * @since 1.0.5
+     * @access public
+     *
+     * @param int      $post_id Post ID.
+     * @param \WP_Post $post    The current post object.
+     */
+    public function on_save_post( $post_id, \WP_Post $post ) {
+        if ( 'elementor_library' !== $post->post_type ) {
+            return;
+        }
+
+        if ( ! in_array( get_post_type(), ['em-form-template'] ) ) {
+            return;
+        }
+
+        // Don't save type on import, the importer will do it.
+        if ( did_action( 'import_start' ) ) {
+            return;
+        }
+
+        update_post_meta( $post_id, '_is_elemailer_template_type', 'yes' );
     }
 
     /**
@@ -69,6 +101,7 @@ class Library{
                 'ajaxurl'              => esc_url( admin_url( 'admin-ajax.php' ) ),
                 '_ajax_nonce'          => wp_create_nonce( 'elemailer-lite-check' ),
                 'default_page_builder' => $this->get_default_page_builder(),
+                'saved_my_templates'   => $this->get_saved_my_templates(),
                 'template'             => esc_html__( 'Template', 'elemailer-lite' ),
                 'block'                => esc_html__( 'Block', 'elemailer-lite' ),
                 'dismiss_text'         => esc_html__( 'Dismiss', 'elemailer-lite' ),
@@ -134,6 +167,52 @@ class Library{
     }
 
     /**
+     * Get default page builder list
+     *
+     * @since 1.0.5
+     *
+     * @return array $templates
+     */
+    public function get_saved_my_templates( $args = [] ) {
+        $templates = [];
+
+        $defaults = [
+            'post_type' => 'elementor_library',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'orderby' => 'title',
+            'order' => 'ASC',
+            'meta_query' => [
+                [
+                    'key' => '_elementor_template_type',
+                    'value' => 'page',
+                ],
+                [
+                    'key' => '_is_elemailer_template_type',
+                    'value' => 'yes',
+                ],
+            ],
+        ];
+
+        $query_args      = wp_parse_args( $args, $defaults );
+        $templates_query = new \WP_Query( $query_args );
+
+        if ( $templates_query->have_posts() ) {
+            foreach ( $templates_query->get_posts() as $result ) {
+                $templates[ $result->ID ] = [
+                    'id'    => $result->ID,
+                    'title' => $result->post_title,
+                    'author' => get_the_author_meta( 'display_name', $result->post_author ),
+                    'preview_url' => site_url( '/?elementor_library=' . $result->post_name ),
+                    'date' => get_the_date( 'F j, Y', $result->ID ),
+                ];
+            }
+        }
+
+        return $templates;
+    }
+
+    /**
      * Elementor Templates sync
      *
      * @since 1.0.5
@@ -146,6 +225,21 @@ class Library{
         }
 
         wp_send_json_success( $this->get_default_page_builder() );
+    }
+
+    /**
+     * Elementor saved templates sync
+     *
+     * @since 1.0.5
+     */
+    public function get_sync_saved_templates() {
+        check_ajax_referer( 'elemailer-lite-check', '_ajax_nonce' );
+
+        if ( ! current_user_can( 'edit_posts' ) ) {
+            wp_send_json_error( __( 'You are not allowed to perform this action', 'elemailer-lite' ) );
+        }
+
+        wp_send_json_success( $this->get_saved_my_templates() );
     }
 
     /**

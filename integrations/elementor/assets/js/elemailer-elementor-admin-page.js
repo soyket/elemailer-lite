@@ -2,20 +2,6 @@
 
     $elementorscope = {};
 
-    $.fn.isInElemailerViewport = function () {
-        // If not have the element then return false!
-        if (!$(this).length) {
-            return false;
-        }
-
-        var elementTop = $(this).offset().top;
-        var elementBottom = elementTop + $(this).outerHeight();
-        var viewportTop = $(window).scrollTop();
-        var viewportBottom = viewportTop + $(window).height();
-
-        return elementBottom > viewportTop && elementTop < viewportBottom;
-    };
-
     ElemailerElementorAdmin = {
 
         visited_pages: [],
@@ -223,8 +209,8 @@
             $elementorscope.find('.dialog-lightbox-content').hide();
             $elementorscope.find('.theme-preview').hide();
             $elementorscope.find('.theme-preview').html('');
-            $elementorscope.find('.theme-preview-block').hide();
-            $elementorscope.find('.theme-preview-block').html('');
+            $elementorscope.find('.theme-preview-my-templates').hide();
+            $elementorscope.find('.theme-preview-my-templates').html('');
             $elementorscope.find('.elemailer-lite-template-library-toolbar').show();
 
             $elementorscope.find('.dialog-lightbox-content').hide();
@@ -279,6 +265,36 @@
                         console.log( 'not get Data' );
                     }
                 });
+
+            $.ajax({
+                url: elemailerElementorData.ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'elemailer-saved-my-templates',
+                    _ajax_nonce: elemailerElementorData._ajax_nonce,
+                },
+                beforeSend: function () {
+                    console.groupCollapsed('Get Template Details.');
+                },
+            })
+                .fail(function (jqXHR) {
+                    console.log(jqXHR);
+                    console.groupEnd();
+                })
+                .done(function (response) {
+                    console.groupEnd();
+
+                    if( response.success ) {
+                        console.log( 'get Data' );
+                        elemailerElementorData.saved_my_templates = response.data;
+                        ElemailerElementorAdmin._initMyTemplates();
+
+                        $elementorscope.find('#elemailer-lite-floating-notice-wrap-id').addClass('refreshed-notice').find('.elemailer-lite-floating-notice').html('<span class="message">' + elemailerElementorData.syncCompleteMessage + '</span><button type="button" class="notice-dismiss"><span class="screen-reader-text">' + elemailerElementorData.dismiss_text + '</span></button>');
+                        button.removeClass('updating-message');
+                    } else {
+                        console.log( 'not get Data' );
+                    }
+                });
         },
 
         _home: function () {
@@ -325,6 +341,11 @@
         _changeType: function () {
             ElemailerElementorAdmin.siteType = $(this).val();
             $elementorscope.find('#wp-filter-search-input').trigger('keyup');
+        },
+
+        _initMyTemplates: function (e) {
+            ElemailerElementorAdmin._appendMyTemplates( elemailerElementorData.saved_my_templates );
+            ElemailerElementorAdmin._goBack();
         },
 
         _initSites: function (e) {
@@ -403,6 +424,14 @@
                 ElemailerElementorAdmin._initSites();
                 $elementorscope.find('.dialog-lightbox-content').show();
                 $elementorscope.find('.elementor-template-library-order').show();
+                $elementorscope.find('.elemailer-lite-template-library-filter-text-wrapper').show();
+            } else {
+                ElemailerElementorAdmin._initMyTemplates();
+                $elementorscope.find('.dialog-lightbox-content-block').show();
+                $elementorscope.find('.elemailer-lite-my-templates-category-inner-wrap').show();
+                $elementorscope.find('.elemailer-lite-my-templates-filter-inner-wrap').show();
+                $elementorscope.find('.elementor-template-library-order').hide();
+                $elementorscope.find('.elemailer-lite-template-library-filter-text-wrapper').hide();
             }
 
             $elementorscope.find('.elemailer-lite-content-wrap').trigger('scroll');
@@ -411,10 +440,20 @@
         _appendSites: function (data) {
             let single_template = wp.template('elemailer-lite-list');
             pages_list = single_template(data);
-            $elementorscope.find('.dialog-lightbox-message-block').hide();
+            $elementorscope.find('.elemailer-lite-template-library-toolbar').show();
+            $elementorscope.find('.dialog-lightbox-message-my-templates').hide();
             $elementorscope.find('.dialog-lightbox-message').show();
             $elementorscope.find('.dialog-lightbox-content').html(pages_list);
             ElemailerElementorAdmin._loadLargeImages();
+        },
+
+        _appendMyTemplates: function (data) {
+            let single_template = wp.template('elemailer-template-library-template-local');
+            pages_list = single_template( data);
+            $elementorscope.find('.elemailer-lite-template-library-toolbar').hide();
+            $elementorscope.find('.dialog-lightbox-message').hide();
+            $elementorscope.find('.dialog-lightbox-message-my-templates').show();
+            $elementorscope.find('.dialog-lightbox-content-my-templates').html(pages_list);
         },
 
         _loadLargeImages: function () {
@@ -424,20 +463,18 @@
         },
 
         _loadLargeImage: function (el) {
-            if (el.hasClass('loaded')) {
+            if ( el.hasClass('loaded') ) {
                 return;
             }
 
-            if (el.parents('.elemailer-lite-theme').isInElemailerViewport()) {
-                var large_img_url = el.data('src') || '';
-                var imgLarge      = new Image();
-                imgLarge.src      = large_img_url;
-                imgLarge.onload   = function () {
-                    el.removeClass('loading');
-                    el.addClass('loaded');
-                    el.css('background-image', 'url(\'' + imgLarge.src + '\'');
-                };
-            }
+            var large_img_url = el.data('src') || '';
+            var imgLarge      = new Image();
+            imgLarge.src      = large_img_url;
+            imgLarge.onload   = function () {
+                el.removeClass('loading');
+                el.addClass('loaded');
+                el.css('background-image', 'url(\'' + imgLarge.src + '\'');
+            };
         },
 
         _step2: function (e) {

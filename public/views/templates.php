@@ -30,6 +30,10 @@ $suggestion_link = 'https://elemailer.com/';
                     <div class="dialog-content dialog-lightbox-content theme-browser"></div>
                     <div class="theme-preview"></div>
                 </div>
+                <div class="dialog-message dialog-lightbox-message-my-templates" data-type="my_templates">
+                    <div class="dialog-content dialog-lightbox-content-my-templates" data-my-templates-page="1"></div>
+                    <div class="theme-preview-my-templates"></div>
+                </div>
                 <div class="dialog-message dialog-lightbox-message-block" data-type="blocks">
                     <div class="dialog-content dialog-lightbox-content-block theme-browser" data-block-page="1"></div>
                     <div class="theme-preview-block"></div>
@@ -54,6 +58,7 @@ $suggestion_link = 'https://elemailer.com/';
             <div class="elementor-templates-modal__header__menu-area elemailer-lite-step-1-wrap elemailer-lite-modal__options">
                 <div class="elementor-template-library-header-menu">
                     <div class="elementor-template-library-menu-item elementor-active" data-template-source="remote" data-template-type="pages"><span class="elemailer-lite-icon-file"></span><?php esc_html_e( 'Template', 'elemailer-lite' ); ?></div>
+                    <div class="elementor-template-library-menu-item" data-template-source="local" data-template-type="my_templates"><span class="elemailer-lite-icon-file"></span><?php esc_html_e( 'MY Template', 'elemailer-lite' ); ?></div>
                 </div>
             </div>
             <div class="elementor-templates-modal__header__items-area">
@@ -75,25 +80,25 @@ $suggestion_link = 'https://elemailer.com/';
     <#
     var count = 0;
     for ( key in data ) {
-        var type_class = ' site-type-' + data[ key ]['site-pages-type'];
-        var site_title = data[ key ]['title'].slice( 0, 25 );
-        var site_type  = data[ key ]['site-pages-type'];
+    var type_class = ' site-type-' + data[ key ]['site-pages-type'];
+    var site_title = data[ key ]['title'].slice( 0, 25 );
+    var site_type  = data[ key ]['site-pages-type'];
 
 
-        if ( '' !== ElemailerElementorAdmin.siteType ) {
-            if ( 'free' == ElemailerElementorAdmin.siteType && site_type != 'free' ) {
-                continue;
-            }
+    if ( '' !== ElemailerElementorAdmin.siteType ) {
+    if ( 'free' == ElemailerElementorAdmin.siteType && site_type != 'free' ) {
+    continue;
+    }
 
-            if ( 'free' != ElemailerElementorAdmin.siteType && site_type == 'free' ) {
-                continue;
-            }
-        }
+    if ( 'free' != ElemailerElementorAdmin.siteType && site_type == 'free' ) {
+    continue;
+    }
+    }
 
-        if ( data[ key ]['title'].length > 25 ) {
-            site_title += '...';
-        }
-        count++;
+    if ( data[ key ]['title'].length > 25 ) {
+    site_title += '...';
+    }
+    count++;
     #>
     <div class="theme elemailer-lite-theme site-single publish page-builder-elementor {{type_class}}" data-template-id="{{key}}">
         <div class="inner">
@@ -102,20 +107,103 @@ $suggestion_link = 'https://elemailer.com/';
 					<div class="elementor-template-library-template-preview">
 					   <i class="eicon-zoom-in" aria-hidden="true"></i>
 					</div>
-                </div>
-            </span>
-            <div class="theme-id-container">
-                <h3 class="theme-name">{{{site_title}}}</h3>
+        </div>
+        </span>
+        <div class="theme-id-container">
+            <h3 class="theme-name">{{{site_title}}}</h3>
+        </div>
+        <# if ( site_type && 'free' !== site_type ) { #>
+        <?php /* translators: %s are white label strings. */ ?>
+        <div class="agency-ribbons" title="<?php printf( esc_attr__( 'This premium template is accessible with %1$s "Premium" Package.', 'elemailer-lite' ), __( 'Elemailer Pro', 'elemailer-lite' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><img class="premium-crown-icon" src="<?php echo esc_url( ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/images/premium-crown.svg' ); ?>" alt="premium-crown"><?php esc_html_e( 'Premium', 'elemailer-lite' ); ?></div>
+        <# } #>
+    </div>
+    </div>
+    <#
+    }
+    #>
+</script>
+
+
+<script type="text/template" id="tmpl-elemailer-template-library-template-local">
+    <#
+    if ( data ) {
+    #>
+    <div id="elementor-template-library-templates" data-template-id="">
+        <div id="elementor-template-library-order-toolbar-local">
+            <div class="elementor-template-library-local-column-1">
+                <input type="radio" id="elementor-template-library-order-local-title" class="elementor-template-library-order-input" name="elementor-template-library-order-local" value="title" data-default-ordering-direction="asc">
+                <label for="elementor-template-library-order-local-title" class="elementor-template-library-order-label"><?php echo esc_html__( 'Name', 'elemailer-lite' ); ?></label>
             </div>
-            <# if ( site_type && 'free' !== site_type ) { #>
-            <?php /* translators: %s are white label strings. */ ?>
-                <div class="agency-ribbons" title="<?php printf( esc_attr__( 'This premium template is accessible with %1$s "Premium" Package.', 'elemailer-lite' ), __( 'Elemailer Pro', 'elemailer-lite' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><img class="premium-crown-icon" src="<?php echo esc_url( ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/images/premium-crown.svg' ); ?>" alt="premium-crown"><?php esc_html_e( 'Premium', 'elemailer-lite' ); ?></div>
-            <# } #>
+            <div class="elementor-template-library-local-column-2">
+                <input type="radio" id="elementor-template-library-order-local-type" class="elementor-template-library-order-input" name="elementor-template-library-order-local" value="type" data-default-ordering-direction="asc">
+                <label for="elementor-template-library-order-local-type" class="elementor-template-library-order-label"><?php echo esc_html__( 'Type', 'elemailer-lite' ); ?></label>
+            </div>
+            <div class="elementor-template-library-local-column-3">
+                <input type="radio" id="elementor-template-library-order-local-author" class="elementor-template-library-order-input" name="elementor-template-library-order-local" value="author" data-default-ordering-direction="asc">
+                <label for="elementor-template-library-order-local-author" class="elementor-template-library-order-label"><?php echo esc_html__( 'Created By', 'elemailer-lite' ); ?></label>
+            </div>
+            <div class="elementor-template-library-local-column-4">
+                <input type="radio" id="elementor-template-library-order-local-date" class="elementor-template-library-order-input" name="elementor-template-library-order-local" value="date">
+                <label for="elementor-template-library-order-local-date" class="elementor-template-library-order-label"><?php echo esc_html__( 'Creation Date', 'elemailer-lite' ); ?></label>
+            </div>
+            <div class="elementor-template-library-local-column-5">
+                <div class="elementor-template-library-order-label"><?php echo esc_html__( 'Actions', 'elemailer-lite' ); ?></div>
+            </div>
         </div>
     </div>
     <#
     }
     #>
+    <div id="elemailer-template-library-templates-container">
+        <#
+        var count = 0;
+        for ( key in data ) {
+        var id          = data[ key ]['id'];
+        var title       = data[ key ]['title'];
+        var author      = data[ key ]['author'];
+        var preview_url = data[ key ]['preview_url'];
+        var date        = data[ key ]['date'];
+
+        count++;
+        #>
+        <div class="elementor-template-library-template elementor-template-library-template-local">
+            <div class="elementor-template-library-template-name elementor-template-library-local-column-1">{{ title }}</div>
+            <div class="elementor-template-library-template-meta elementor-template-library-template-type elementor-template-library-local-column-2"><?php echo esc_html__( 'Elemailer', 'elemailer-lite' ); ?></div>
+            <div class="elementor-template-library-template-meta elementor-template-library-template-author elementor-template-library-local-column-3">{{{ author }}}</div>
+            <div class="elementor-template-library-template-meta elementor-template-library-template-date elementor-template-library-local-column-4">{{{ date }}}</div>
+            <div class="elementor-template-library-template-controls elementor-template-library-local-column-5">
+                <div class="elementor-template-library-template-preview">
+                    <a href="{{ preview_url }}" target="_blank">
+                        <i class="eicon-preview-medium" aria-hidden="true"></i>
+                        <span class="elementor-template-library-template-control-title"><?php echo esc_html__( 'Preview', 'elemailer-lite' ); ?></span>
+                    </a>
+                </div>
+                <button class="elementor-template-library-template-action elemailer-template-library-template-insert elementor-button elementor-button-success" data-saved-template-id="{{id}}">
+                    <i class="eicon-file-download" aria-hidden="true"></i>
+                    <span class="elementor-button-title"><?php echo esc_html__( 'Insert', 'elemailer-lite' ); ?></span>
+                </button>
+                <div class="elementor-template-library-template-more-toggle">
+                    <i class="eicon-ellipsis-h" aria-hidden="true"></i>
+                    <span class="elementor-screen-only"><?php echo esc_html__( 'More actions', 'elemailer-lite' ); ?></span>
+                </div>
+                <div class="elementor-template-library-template-more">
+                    <div class="elementor-template-library-template-delete" data-saved-template-id="{{id}}">
+                        <i class="eicon-trash-o" aria-hidden="true"></i>
+                        <span class="elementor-template-library-template-control-title"><?php echo esc_html__( 'Delete', 'elemailer-lite' ); ?></span>
+                    </div>
+                    <div class="elementor-template-library-template-export">
+                        <a href="{{ preview_url }}">
+                            <i class="eicon-sign-out" aria-hidden="true"></i>
+                            <span class="elementor-template-library-template-control-title"><?php echo esc_html__( 'Export', 'elemailer-lite' ); ?></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <#
+        }
+        #>
+    </div>
 </script>
 
 <script type="text/template" id="tmpl-elemailer-lite-list-search">
@@ -186,33 +274,33 @@ $suggestion_link = 'https://elemailer.com/';
     var site_type = data[ ind ]['site-pages-type'];
 
     if ( 'site' == data[ind]['type'] ) {
-        site_type = data[ ind ]['site-pages-type'];
+    site_type = data[ ind ]['site-pages-type'];
     }
 
     if ( undefined == site_type ) {
-        continue;
+    continue;
     }
 
     var parent_name = '';
     if ( undefined != data[ind]['parent-site-name'] ) {
-        var parent_name = $( "<textarea/>") .html( data[ind]['parent-site-name'] ).text();
+    var parent_name = $( "<textarea/>") .html( data[ind]['parent-site-name'] ).text();
     }
 
     var complete_title = parent_name + ' - ' + data[ ind ]['title'];
     var site_title = complete_title.slice( 0, 25 );
     if ( complete_title.length > 25 ) {
-        site_title += '...';
+    site_title += '...';
     }
 
     var tmp = site_title.split(' - ');
     var title1 = site_title;
     var title2 = '';
     if ( undefined !== tmp && undefined !== tmp[1] ) {
-        title1 = tmp[0];
-        title2 = ' - ' + tmp[1];
+    title1 = tmp[0];
+    title2 = ' - ' + tmp[1];
     } else {
-        title1 = tmp[0];
-        title2 = '';
+    title1 = tmp[0];
+    title2 = '';
     }
 
     var type_class = ' site-type-' + site_type;
@@ -316,14 +404,14 @@ $suggestion_link = 'https://elemailer.com/';
                         <#
                         var is_free = true;
                         if ( 'pages' == ElemailerElementorAdmin.type ) {
-                            if( 'free' !== data['site-pages-type'] && ! elemailerElementorData.license_status ) {
-                                is_free = false;
-                            }
+                        if( 'free' !== data['site-pages-type'] && ! elemailerElementorData.license_status ) {
+                        is_free = false;
+                        }
                         }
                         if( ! is_free ) { #>
-                            <a class="button button-hero button-primary" href="{{elemailerElementorData.getProURL}}" target="_blank">{{elemailerElementorData.getProText}}<i class="dashicons dashicons-external"></i></a>
+                        <a class="button button-hero button-primary" href="{{elemailerElementorData.getProURL}}" target="_blank">{{elemailerElementorData.getProText}}<i class="dashicons dashicons-external"></i></a>
                         <# } else { #>
-                            <div type="button" class="button button-hero button-primary elemailer-lite-library-template-insert disabled"><?php esc_html_e( 'Import Template', 'elemailer-lite' ); ?></div>
+                        <div type="button" class="button button-hero button-primary elemailer-lite-library-template-insert disabled"><?php esc_html_e( 'Import Template', 'elemailer-lite' ); ?></div>
                         <# } #>
                     </div>
                 </div>

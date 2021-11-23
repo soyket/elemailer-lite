@@ -1298,6 +1298,12 @@
     margin-right: auto;
 }
 
+#elemailer-template-library-templates-container {
+    box-shadow: rgb(0 0 0 / 3%) 1px 1px 20px 0px;
+    margin-top: 10px;
+    margin-bottom: 45px;
+}
+
 #elementor-template-block-color-filter select,
 #elementor-template-block-color-filter option {
     text-transform: capitalize;
