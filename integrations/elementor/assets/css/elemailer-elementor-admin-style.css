@@ -815,7 +815,9 @@
 }
 
 #elemailer-lite-modal .elemailer-lite-library-template-insert.installing:before,
-#elemailer-lite-modal .elemailer-lite-import-elementor-template.installing:before {
+#elemailer-lite-modal .elemailer-lite-import-elementor-template.installing:before,
+#elemailer-lite-modal .elemailer-lite-my-template-insert-installing:before,
+#elemailer-lite-modal .elemailer-lite-my-template-insert-installing:before {
     content: "\f463";
     display: inline-block;
     margin-right: 10px;

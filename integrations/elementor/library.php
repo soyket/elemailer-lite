@@ -28,7 +28,9 @@ class Library{
         add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'register_widget_styles' ] );
         add_action( 'elementor/preview/enqueue_styles', [ $this, 'register_widget_styles' ] );
         add_action( 'wp_ajax_elemailer-lite-remote-request', [ $this, 'remote_request' ] );
+        add_action( 'wp_ajax_elemailer-lite-my-template-remote-request', [ $this, 'my_template_remote_request' ] );
         add_action( 'wp_ajax_elemailer-lite-elementor-batch-process', [ $this, 'elementor_batch_process' ] );
+        add_action( 'wp_ajax_elemailer-lite-elementor-batch-my-template-process', [ $this, 'my_template_elementor_batch_process' ] );
         add_action( 'wp_ajax_elemailer-sync-page-builder', [ $this, 'get_sync_page_builder' ] );
         add_action( 'wp_ajax_elemailer-saved-my-templates', [ $this, 'get_sync_saved_templates' ] );
         add_action( 'save_post', [ $this, 'on_save_post' ], 10, 2 );
@@ -275,6 +277,34 @@ class Library{
     }
 
     /**
+     * Elementor My Templates Request
+     *
+     * @since 1.0.5
+     */
+    public function my_template_remote_request() {
+        check_ajax_referer( 'elemailer-lite-check', '_ajax_nonce' );
+
+        if ( ! current_user_can( 'edit_posts' ) ) {
+            wp_send_json_error( __( 'You are not allowed to perform this action', 'elemailer-lite' ) );
+        }
+
+        $template_id = isset( $_POST['template_id'] ) ? sanitize_text_field( $_POST['template_id'] ) : '';
+        $template    = get_post( $template_id );
+
+        if ( is_wp_error( $template ) ) {
+            wp_send_json_error( wp_remote_retrieve_body( 'No data found' ) );
+        }
+
+        $templates = [
+            'id'             => $template->ID,
+            'title'          => $template->post_title,
+            'elementor_data' => get_post_meta( $template->ID, '_elementor_data', true ),
+        ];
+
+        wp_send_json_success( $templates );
+    }
+
+    /**
      * Elementor Templates Request
      *
      * @since 1.0.5
@@ -298,6 +328,52 @@ class Library{
         $data = json_decode( $body, true );
 
         wp_send_json_success( $data );
+    }
+
+    /**
+     * Elementor Batch Process via AJAX for my template
+     *
+     * @since 1.0.5
+     */
+    public function my_template_elementor_batch_process() {
+        // Verify Nonce.
+        check_ajax_referer( 'elemailer-lite-check', '_ajax_nonce' );
+
+        if ( ! current_user_can( 'edit_posts' ) ) {
+            wp_send_json_error( __( 'You are not allowed to perform this action', 'elemailer-lite' ) );
+        }
+
+        $template_id = isset( $_POST['template_id'] ) ? absint( $_POST['template_id'] ) : '';
+
+        if ( empty( $template_id ) ) {
+            wp_send_json_error( __( 'Invalid data.', 'elemailer-lite' ) );
+        }
+
+        $template = get_post( $template_id );
+
+        if ( empty( $template ) ) {
+            wp_send_json_error( __( 'Invalid data.', 'elemailer-lite' ) );
+        }
+
+        $elementor_data = get_post_meta( $template->ID, '_elementor_data', true );
+
+        if ( empty( $elementor_data ) ) {
+            wp_send_json_error( __( 'Invalid Post Meta', 'elemailer-lite' ) );
+        }
+
+        $meta    = json_decode( $elementor_data, true );
+        $post_id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : '';
+
+        if ( empty( $post_id ) || empty( $meta ) ) {
+            wp_send_json_error( __( 'Invalid Post ID or Elementor Meta', 'elemailer-lite' ) );
+        }
+
+        require_once ELE_MAILER_LITE_PLUGIN_PUBLIC_DIR . '/Elemailer_Elementor_Pages_Import.php';
+
+        $import      = new \Elemailer_Elementor_Pages_Import();
+        $import_data = $import->import( $post_id, $meta );
+
+        wp_send_json_success( $import_data );
     }
 
     /**

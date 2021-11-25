@@ -70,6 +70,7 @@
                         $('body').on("click", "#elemailer-lite-modal .back-to-layout", ElemailerElementorAdmin._goBack);
 
                         $(document).on("click", "#elemailer-lite-modal .elemailer-lite-library-template-insert", ElemailerElementorAdmin._insert);
+                        $(document).on("click", "#elemailer-lite-modal .elemailer-lite-library-my-template-insert", ElemailerElementorAdmin._myTemplateInsert);
                         $('body').on("click", "#elemailer-lite-modal .elementor-tooltip-icon", ElemailerElementorAdmin._toggleTooltip);
                         $(document).on("click", ".elementor-template-library-menu-item", ElemailerElementorAdmin._toggle);
                         $(document).on('click', '#elemailer-lite-modal .elemailer-lite__sync-wrap', ElemailerElementorAdmin._sync);
@@ -176,6 +177,107 @@
             }
 
             $elementorscope.find('.elemailer-lite-content-wrap').trigger('scroll');
+        },
+
+        _myTemplateInsert: function (e) {
+            ElemailerElementorAdmin.canInsert = false;
+            var str = elemailerElementorData.template;
+
+            $('.elemailer_elementor_button_title_label').addClass('elemailer-lite-my-template-insert-installing');
+            $('.elemailer_elementor_button_title_label').text('Importing ...');
+
+            ElemailerElementorAdmin._enableMyTemplateImport( $(this).data('saved-template-id') );
+        },
+
+        _enableMyTemplateImport: function ( template_id ) {
+            console.groupEnd();
+
+            $.ajax({
+                url: elemailerElementorData.ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'elemailer-lite-my-template-remote-request',
+                    template_id: template_id,
+                    _ajax_nonce: elemailerElementorData._ajax_nonce,
+                },
+                beforeSend: function () {
+                    console.groupCollapsed('Get Template Details.');
+                },
+            })
+                .fail(function (jqXHR) {
+                    console.log(jqXHR);
+                    console.groupEnd();
+                })
+                .done(function (response) {
+                    console.log( response );
+                    console.groupEnd();
+
+                    if( response.success ) {
+                        console.log( 'get Data' );
+                        ElemailerElementorAdmin._insertMyTemplateDemo(response.data);
+                    } else {
+                        console.log( 'not get Data' );
+                    }
+                });
+        },
+
+        _insertMyTemplateDemo: function (data) {
+            if (undefined !== data && undefined !== data['elementor_data']) {
+                let templateModel = new Backbone.Model({
+                    getTitle() {
+                        return data['title']
+                    },
+                });
+                let page_content  = JSON.parse(data['elementor_data']);
+
+                $.ajax({
+                    url: elemailerElementorData.ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'elemailer-lite-elementor-batch-my-template-process',
+                        id: elementor.config.document.id,
+                        template_id: data['id'],
+                        _ajax_nonce: elemailerElementorData._ajax_nonce,
+                    },
+                    beforeSend: function () {
+                        console.groupCollapsed('Inserting Demo.');
+                    },
+                })
+                    .fail(function (jqXHR) {
+                        console.log(jqXHR);
+                        console.groupEnd();
+                    })
+                    .done(function (response) {
+
+                        ElemailerElementorAdmin.processing = false;
+                        $elementorscope.find('.elemailer-lite-content-wrap').removeClass('processing');
+
+                        page_content = response.data;
+
+                        page_content = page_content.map(function (item) {
+                            item.id = Math.random().toString(36).substr(2, 7);
+                            return item;
+                        });
+
+                        console.log(page_content);
+                        console.groupEnd();
+                        if (undefined !== page_content && '' !== page_content) {
+                            if (undefined != $e && 'undefined' != typeof $e.internal) {
+                                elementor.channels.data.trigger('document/import', templateModel);
+                                elementor.getPreviewView().addChildModel(page_content, { at: ElemailerElementorAdmin.index } || {});
+                                elementor.channels.data.trigger('template:after:insert', {});
+                                $e.internal('document/save/set-is-modified', { status: true })
+                            } else {
+                                elementor.channels.data.trigger('document/import', templateModel);
+                                elementor.getPreviewView().addChildModel(page_content, { at: ElemailerElementorAdmin.index } || {});
+                                elementor.channels.data.trigger('template:after:insert', {});
+                                elementor.saver.setFlagEditorChange(true);
+                            }
+                        }
+                        ElemailerElementorAdmin.insertActionFlag = true;
+                        ElemailerElementorAdmin._close();
+                    });
+            }
         },
 
         _insert: function (e) {

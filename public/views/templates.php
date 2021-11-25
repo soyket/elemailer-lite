@@ -178,9 +178,9 @@ $suggestion_link = 'https://elemailer.com/';
                         <span class="elementor-template-library-template-control-title"><?php echo esc_html__( 'Preview', 'elemailer-lite' ); ?></span>
                     </a>
                 </div>
-                <button class="elementor-template-library-template-action elemailer-template-library-template-insert elementor-button elementor-button-success" data-saved-template-id="{{id}}">
+                <button class="elementor-template-library-template-action elemailer-template-library-template-insert elementor-button elementor-button-success elemailer-lite-library-my-template-insert" data-saved-template-id="{{id}}">
                     <i class="eicon-file-download" aria-hidden="true"></i>
-                    <span class="elementor-button-title"><?php echo esc_html__( 'Insert', 'elemailer-lite' ); ?></span>
+                    <span class="elementor-button-title elemailer_elementor_button_title_label"><?php echo esc_html__( 'Insert', 'elemailer-lite' ); ?></span>
                 </button>
                 <div class="elementor-template-library-template-more-toggle">
                     <i class="eicon-ellipsis-h" aria-hidden="true"></i>
