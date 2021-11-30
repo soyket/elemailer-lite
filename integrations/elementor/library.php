@@ -29,11 +29,12 @@ class Library{
         add_action( 'elementor/preview/enqueue_styles', [ $this, 'register_widget_styles' ] );
         add_action( 'wp_ajax_elemailer-lite-remote-request', [ $this, 'remote_request' ] );
         add_action( 'wp_ajax_elemailer-lite-my-template-remote-request', [ $this, 'my_template_remote_request' ] );
+        add_action( 'wp_ajax_elemailer-lite-my-template-delete-request', [ $this, 'my_template_delete_request' ] );
         add_action( 'wp_ajax_elemailer-lite-elementor-batch-process', [ $this, 'elementor_batch_process' ] );
         add_action( 'wp_ajax_elemailer-lite-elementor-batch-my-template-process', [ $this, 'my_template_elementor_batch_process' ] );
         add_action( 'wp_ajax_elemailer-sync-page-builder', [ $this, 'get_sync_page_builder' ] );
         add_action( 'wp_ajax_elemailer-saved-my-templates', [ $this, 'get_sync_saved_templates' ] );
-        add_action( 'save_post', [ $this, 'on_save_post' ], 10, 2 );
+        add_action( 'elementor/document/after_save', [ $this, 'document_after_save' ], 25, 1 );
     }
 
     /**
@@ -46,11 +47,10 @@ class Library{
      * @since 1.0.5
      * @access public
      *
-     * @param int      $post_id Post ID.
-     * @param \WP_Post $post    The current post object.
+     * @param obj $post Post.
      */
-    public function on_save_post( $post_id, \WP_Post $post ) {
-        if ( 'elementor_library' !== $post->post_type ) {
+    public function document_after_save( $post ) {
+        if ( 'elementor_library' !== $post->get_post()->post_type ) {
             return;
         }
 
@@ -63,7 +63,8 @@ class Library{
             return;
         }
 
-        update_post_meta( $post_id, '_is_elemailer_template_type', 'yes' );
+        update_post_meta( $post->get_post()->ID, '_elementor_template_type', 'elemailer_library' );
+        wp_set_object_terms( $post->get_post()->ID, 'elemailer_library', 'elementor_library_type' );
     }
 
     /**
@@ -113,6 +114,7 @@ class Library{
                 'license_msg'          => $license_msg,
                 'getProText'           => __( 'Get Access!', 'elemailer-lite' ),
                 'syncCompleteMessage'  => __( 'Template library refreshed!', 'elemailer-lite' ),
+                'confirmDeleteMessage' => __( 'Are you sure you want to delete?', 'elemailer-lite' ),
                 'getProURL'            => esc_url( 'https://elemailer.com/pricing/?utm_source=demo-import-panel&utm_campaign=elemailer-lite&utm_medium=wp-dashboard' ),
 
             )
@@ -187,11 +189,7 @@ class Library{
             'meta_query' => [
                 [
                     'key' => '_elementor_template_type',
-                    'value' => 'page',
-                ],
-                [
-                    'key' => '_is_elemailer_template_type',
-                    'value' => 'yes',
+                    'value' => 'elemailer_library',
                 ],
             ],
         ];
@@ -274,6 +272,25 @@ class Library{
                 'template_status' => '',
             )
         );
+    }
+
+    /**
+     * Elementor My Delete Templates Request
+     *
+     * @since 1.0.5
+     */
+    public function my_template_delete_request() {
+        check_ajax_referer( 'elemailer-lite-check', '_ajax_nonce' );
+
+        if ( ! current_user_can( 'edit_posts' ) ) {
+            wp_send_json_error( __( 'You are not allowed to perform this action', 'elemailer-lite' ) );
+        }
+
+        $template_id = isset( $_POST['template_id'] ) ? sanitize_text_field( $_POST['template_id'] ) : '';
+
+        wp_delete_post( $template_id, ture );
+
+        wp_send_json_success( 1 );
     }
 
     /**
