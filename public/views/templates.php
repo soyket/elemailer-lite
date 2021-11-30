@@ -102,11 +102,11 @@ $suggestion_link = 'https://elemailer.com/';
     #>
     <div class="theme elemailer-lite-theme site-single publish page-builder-elementor {{type_class}}" data-template-id="{{key}}">
         <div class="inner">
-			<span class="site-preview" data-href="" data-title={{site_title}}>
-				<div class="theme-screenshot one loading" data-step="1" data-src={{data[ key ]['thumbnail-image-url']}} data-featured-src={{data[ key ]['featured-image-url']}}>
-					<div class="elementor-template-library-template-preview">
-					   <i class="eicon-zoom-in" aria-hidden="true"></i>
-					</div>
+            <span class="site-preview" data-href="" data-title={{site_title}}>
+                <div class="theme-screenshot one loading" data-step="1" data-src={{data[ key ]['thumbnail-image-url']}} data-featured-src={{data[ key ]['featured-image-url']}}>
+                    <div class="elementor-template-library-template-preview">
+                       <i class="eicon-zoom-in" aria-hidden="true"></i>
+                    </div>
         </div>
         </span>
         <div class="theme-id-container">
@@ -126,7 +126,17 @@ $suggestion_link = 'https://elemailer.com/';
 
 <script type="text/template" id="tmpl-elemailer-template-library-template-local">
     <#
-    if ( data ) {
+    var count = 0;
+    for ( key in data ) {
+    count++;
+    #>
+
+    <#
+    }
+    #>
+
+    <#
+    if ( count != 0 ) {
     #>
     <div id="elementor-template-library-templates" data-template-id="">
         <div id="elementor-template-library-order-toolbar-local">
@@ -154,6 +164,19 @@ $suggestion_link = 'https://elemailer.com/';
     <#
     }
     #>
+
+    <#
+    if ( count == 0 ) {
+    #>
+    <div class="elemailer-lite-no-sites">
+        <div class="inner">
+            <h3><?php esc_html_e( 'No Templates Found.', 'elemailer-lite' ); ?></h3>
+        </div>
+    </div>
+    <#
+    }
+    #>
+
     <div id="elemailer-template-library-templates-container">
         <#
         var count = 0;
@@ -182,21 +205,9 @@ $suggestion_link = 'https://elemailer.com/';
                     <i class="eicon-file-download" aria-hidden="true"></i>
                     <span class="elementor-button-title elemailer_elementor_button_title_label"><?php echo esc_html__( 'Insert', 'elemailer-lite' ); ?></span>
                 </button>
-                <div class="elementor-template-library-template-more-toggle">
-                    <i class="eicon-ellipsis-h" aria-hidden="true"></i>
-                    <span class="elementor-screen-only"><?php echo esc_html__( 'More actions', 'elemailer-lite' ); ?></span>
-                </div>
-                <div class="elementor-template-library-template-more">
-                    <div class="elementor-template-library-template-delete" data-saved-template-id="{{id}}">
-                        <i class="eicon-trash-o" aria-hidden="true"></i>
-                        <span class="elementor-template-library-template-control-title"><?php echo esc_html__( 'Delete', 'elemailer-lite' ); ?></span>
-                    </div>
-                    <div class="elementor-template-library-template-export">
-                        <a href="{{ preview_url }}">
-                            <i class="eicon-sign-out" aria-hidden="true"></i>
-                            <span class="elementor-template-library-template-control-title"><?php echo esc_html__( 'Export', 'elemailer-lite' ); ?></span>
-                        </a>
-                    </div>
+                <div class="elementor-template-library-template-delete" data-saved-template-id="{{id}}">
+                    <i class="eicon-trash-o" aria-hidden="true"></i>
+                    <span class="elementor-template-library-template-control-title"><?php echo esc_html__( 'Delete', 'elemailer-lite' ); ?></span>
                 </div>
             </div>
         </div>
@@ -220,11 +231,11 @@ $suggestion_link = 'https://elemailer.com/';
     #>
     <div class="theme elemailer-lite-theme site-single publish page-builder-elementor {{type_class}}" data-template-id="{{key}}">
         <div class="inner">
-			<span class="site-preview" data-href="" data-title="Test Template">
-				<div class="theme-screenshot one loading" data-step="1" data-src={{data[ key ]['thumbnail-image-url']}} data-featured-src={{data[ key ]['featured-image-url']}}>
-					<div class="elementor-template-library-template-preview">
-					   <i class="eicon-zoom-in" aria-hidden="true"></i>
-					</div>
+            <span class="site-preview" data-href="" data-title="Test Template">
+                <div class="theme-screenshot one loading" data-step="1" data-src={{data[ key ]['thumbnail-image-url']}} data-featured-src={{data[ key ]['featured-image-url']}}>
+                    <div class="elementor-template-library-template-preview">
+                       <i class="eicon-zoom-in" aria-hidden="true"></i>
+                    </div>
         </div>
         </span>
         <div class="theme-id-container">
@@ -308,8 +319,8 @@ $suggestion_link = 'https://elemailer.com/';
     #>
     <div class="theme elemailer-lite-theme site-single publish page-builder-elementor {{type_class}}" data-template-id={{ind}}>
         <div class="inner">
-				<span class="site-preview" data-href="" data-title={{title2}}>
-					<div class="theme-screenshot one loading" data-type={{data[ind]['type']}} data-step={{data[ind]['step']}} data-show="search" data-src={{data[ ind ]['thumbnail-image-url']}} data-featured-src={{data[ ind ]['featured-image-url']}}></div>
+                <span class="site-preview" data-href="" data-title={{title2}}>
+                    <div class="theme-screenshot one loading" data-type={{data[ind]['type']}} data-step={{data[ind]['step']}} data-show="search" data-src={{data[ ind ]['thumbnail-image-url']}} data-featured-src={{data[ ind ]['featured-image-url']}}></div>
         </span>
         <div class="theme-id-container">
             <h3 class="theme-name"><strong>{{title1}}</strong>{{title2}}</h3>

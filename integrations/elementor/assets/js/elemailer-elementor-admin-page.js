@@ -71,6 +71,7 @@
 
                         $(document).on("click", "#elemailer-lite-modal .elemailer-lite-library-template-insert", ElemailerElementorAdmin._insert);
                         $(document).on("click", "#elemailer-lite-modal .elemailer-lite-library-my-template-insert", ElemailerElementorAdmin._myTemplateInsert);
+                        $(document).on("click", "#elemailer-lite-modal .elementor-template-library-template-delete", ElemailerElementorAdmin._myTemplateDelete);
                         $('body').on("click", "#elemailer-lite-modal .elementor-tooltip-icon", ElemailerElementorAdmin._toggleTooltip);
                         $(document).on("click", ".elementor-template-library-menu-item", ElemailerElementorAdmin._toggle);
                         $(document).on('click', '#elemailer-lite-modal .elemailer-lite__sync-wrap', ElemailerElementorAdmin._sync);
@@ -129,6 +130,41 @@
                 $('body').removeClass('elemailer-lite__elementor-open');
             }, 300);
             $(document).trigger('elemailer-lite__elementor-close-after');
+        },
+
+        _myTemplateDelete: function (e) {
+            console.groupEnd();
+
+            if ( ! confirm( elemailerElementorData.confirmDeleteMessage ) ) {
+                return;
+            }
+
+            $.ajax({
+                url: elemailerElementorData.ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'elemailer-lite-my-template-delete-request',
+                    template_id: $(this).data('saved-template-id'),
+                    _ajax_nonce: elemailerElementorData._ajax_nonce,
+                },
+                beforeSend: function () {
+                    console.groupCollapsed('Get Template Details.');
+                },
+            })
+                .fail(function (jqXHR) {
+                    console.log(jqXHR);
+                    console.groupEnd();
+                })
+                .done(function (response) {
+                    console.log( response );
+                    console.groupEnd();
+
+                    if( response.success ) {
+                        $('#elemailer-lite-modal .elemailer-lite__sync-wrap').trigger('click');
+                    } else {
+                        console.log( 'not get Data' );
+                    }
+                });
         },
 
         _preview: function (e) {
