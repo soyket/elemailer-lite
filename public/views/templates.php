@@ -58,7 +58,6 @@ $suggestion_link = 'https://elemailer.com/';
             <div class="elementor-templates-modal__header__menu-area elemailer-lite-step-1-wrap elemailer-lite-modal__options">
                 <div class="elementor-template-library-header-menu">
                     <div class="elementor-template-library-menu-item elementor-active" data-template-source="remote" data-template-type="pages"><span class="elemailer-lite-icon-file"></span><?php esc_html_e( 'Template', 'elemailer-lite' ); ?></div>
-                    <div class="elementor-template-library-menu-item" data-template-source="local" data-template-type="my_templates"><span class="elemailer-lite-icon-file"></span><?php esc_html_e( 'MY Template', 'elemailer-lite' ); ?></div>
                 </div>
             </div>
             <div class="elementor-templates-modal__header__items-area">
@@ -121,100 +120,6 @@ $suggestion_link = 'https://elemailer.com/';
     <#
     }
     #>
-</script>
-
-
-<script type="text/template" id="tmpl-elemailer-template-library-template-local">
-    <#
-    var count = 0;
-    for ( key in data ) {
-    count++;
-    #>
-
-    <#
-    }
-    #>
-
-    <#
-    if ( count != 0 ) {
-    #>
-    <div id="elementor-template-library-templates" data-template-id="">
-        <div id="elementor-template-library-order-toolbar-local">
-            <div class="elementor-template-library-local-column-1">
-                <input type="radio" id="elementor-template-library-order-local-title" class="elementor-template-library-order-input" name="elementor-template-library-order-local" value="title" data-default-ordering-direction="asc">
-                <label for="elementor-template-library-order-local-title" class="elementor-template-library-order-label"><?php echo esc_html__( 'Name', 'elemailer-lite' ); ?></label>
-            </div>
-            <div class="elementor-template-library-local-column-2">
-                <input type="radio" id="elementor-template-library-order-local-type" class="elementor-template-library-order-input" name="elementor-template-library-order-local" value="type" data-default-ordering-direction="asc">
-                <label for="elementor-template-library-order-local-type" class="elementor-template-library-order-label"><?php echo esc_html__( 'Type', 'elemailer-lite' ); ?></label>
-            </div>
-            <div class="elementor-template-library-local-column-3">
-                <input type="radio" id="elementor-template-library-order-local-author" class="elementor-template-library-order-input" name="elementor-template-library-order-local" value="author" data-default-ordering-direction="asc">
-                <label for="elementor-template-library-order-local-author" class="elementor-template-library-order-label"><?php echo esc_html__( 'Created By', 'elemailer-lite' ); ?></label>
-            </div>
-            <div class="elementor-template-library-local-column-4">
-                <input type="radio" id="elementor-template-library-order-local-date" class="elementor-template-library-order-input" name="elementor-template-library-order-local" value="date">
-                <label for="elementor-template-library-order-local-date" class="elementor-template-library-order-label"><?php echo esc_html__( 'Creation Date', 'elemailer-lite' ); ?></label>
-            </div>
-            <div class="elementor-template-library-local-column-5">
-                <div class="elementor-template-library-order-label"><?php echo esc_html__( 'Actions', 'elemailer-lite' ); ?></div>
-            </div>
-        </div>
-    </div>
-    <#
-    }
-    #>
-
-    <#
-    if ( count == 0 ) {
-    #>
-    <div class="elemailer-lite-no-sites">
-        <div class="inner">
-            <h3><?php esc_html_e( 'No Templates Found.', 'elemailer-lite' ); ?></h3>
-        </div>
-    </div>
-    <#
-    }
-    #>
-
-    <div id="elemailer-template-library-templates-container">
-        <#
-        var count = 0;
-        for ( key in data ) {
-        var id          = data[ key ]['id'];
-        var title       = data[ key ]['title'];
-        var author      = data[ key ]['author'];
-        var preview_url = data[ key ]['preview_url'];
-        var date        = data[ key ]['date'];
-
-        count++;
-        #>
-        <div class="elementor-template-library-template elementor-template-library-template-local">
-            <div class="elementor-template-library-template-name elementor-template-library-local-column-1">{{ title }}</div>
-            <div class="elementor-template-library-template-meta elementor-template-library-template-type elementor-template-library-local-column-2"><?php echo esc_html__( 'Elemailer', 'elemailer-lite' ); ?></div>
-            <div class="elementor-template-library-template-meta elementor-template-library-template-author elementor-template-library-local-column-3">{{{ author }}}</div>
-            <div class="elementor-template-library-template-meta elementor-template-library-template-date elementor-template-library-local-column-4">{{{ date }}}</div>
-            <div class="elementor-template-library-template-controls elementor-template-library-local-column-5">
-                <div class="elementor-template-library-template-preview">
-                    <a href="{{ preview_url }}" target="_blank">
-                        <i class="eicon-preview-medium" aria-hidden="true"></i>
-                        <span class="elementor-template-library-template-control-title"><?php echo esc_html__( 'Preview', 'elemailer-lite' ); ?></span>
-                    </a>
-                </div>
-                <button class="elementor-template-library-template-action elemailer-template-library-template-insert elementor-button elementor-button-success elemailer-lite-library-my-template-insert" data-saved-template-id="{{id}}">
-                    <i class="eicon-file-download" aria-hidden="true"></i>
-                    <span class="elementor-button-title elemailer_elementor_button_title_label"><?php echo esc_html__( 'Insert', 'elemailer-lite' ); ?></span>
-                </button>
-                <div class="elementor-template-library-template-delete" data-saved-template-id="{{id}}">
-                    <i class="eicon-trash-o" aria-hidden="true"></i>
-                    <span class="elementor-template-library-template-control-title"><?php echo esc_html__( 'Delete', 'elemailer-lite' ); ?></span>
-                </div>
-            </div>
-        </div>
-        <#
-        }
-        #>
-    </div>
 </script>
 
 <script type="text/template" id="tmpl-elemailer-lite-list-search">

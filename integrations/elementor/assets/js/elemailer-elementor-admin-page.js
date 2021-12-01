@@ -41,6 +41,8 @@
 
             if (elementorCommon) {
 
+                $('body').on("click", "#elementor-panel-footer-sub-menu-item-save-template", ElemailerElementorAdmin._restrictSaveTemplate);
+
                 let add_section_tmpl = $("#tmpl-elementor-add-section");
 
                 if (add_section_tmpl.length > 0) {
@@ -70,8 +72,6 @@
                         $('body').on("click", "#elemailer-lite-modal .back-to-layout", ElemailerElementorAdmin._goBack);
 
                         $(document).on("click", "#elemailer-lite-modal .elemailer-lite-library-template-insert", ElemailerElementorAdmin._insert);
-                        $(document).on("click", "#elemailer-lite-modal .elemailer-lite-library-my-template-insert", ElemailerElementorAdmin._myTemplateInsert);
-                        $(document).on("click", "#elemailer-lite-modal .elementor-template-library-template-delete", ElemailerElementorAdmin._myTemplateDelete);
                         $('body').on("click", "#elemailer-lite-modal .elementor-tooltip-icon", ElemailerElementorAdmin._toggleTooltip);
                         $(document).on("click", ".elementor-template-library-menu-item", ElemailerElementorAdmin._toggle);
                         $(document).on('click', '#elemailer-lite-modal .elemailer-lite__sync-wrap', ElemailerElementorAdmin._sync);
@@ -92,6 +92,17 @@
                     });
                 }
             }
+        },
+
+        _restrictSaveTemplate: function (e) {
+            console.log( 'Clicked' );
+            $("#elementor-template-library-save-template-form").hide();
+            $("#elementor-template-library-header-menu").hide();
+            $(".elementor-templates-modal__header__logo-area").hide();
+            $("#elementor-template-library-header-actions").hide();
+
+            $(".elementor-template-library-blank-title").html( elemailerElementorData.getProText );
+            $(".elementor-template-library-blank-message").html( elemailerElementorData.license_msg_save );
         },
 
         _open: function (e) {
@@ -215,107 +226,6 @@
             $elementorscope.find('.elemailer-lite-content-wrap').trigger('scroll');
         },
 
-        _myTemplateInsert: function (e) {
-            ElemailerElementorAdmin.canInsert = false;
-            var str = elemailerElementorData.template;
-
-            $('.elemailer_elementor_button_title_label').addClass('elemailer-lite-my-template-insert-installing');
-            $('.elemailer_elementor_button_title_label').text('Importing ...');
-
-            ElemailerElementorAdmin._enableMyTemplateImport( $(this).data('saved-template-id') );
-        },
-
-        _enableMyTemplateImport: function ( template_id ) {
-            console.groupEnd();
-
-            $.ajax({
-                url: elemailerElementorData.ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'elemailer-lite-my-template-remote-request',
-                    template_id: template_id,
-                    _ajax_nonce: elemailerElementorData._ajax_nonce,
-                },
-                beforeSend: function () {
-                    console.groupCollapsed('Get Template Details.');
-                },
-            })
-                .fail(function (jqXHR) {
-                    console.log(jqXHR);
-                    console.groupEnd();
-                })
-                .done(function (response) {
-                    console.log( response );
-                    console.groupEnd();
-
-                    if( response.success ) {
-                        console.log( 'get Data' );
-                        ElemailerElementorAdmin._insertMyTemplateDemo(response.data);
-                    } else {
-                        console.log( 'not get Data' );
-                    }
-                });
-        },
-
-        _insertMyTemplateDemo: function (data) {
-            if (undefined !== data && undefined !== data['elementor_data']) {
-                let templateModel = new Backbone.Model({
-                    getTitle() {
-                        return data['title']
-                    },
-                });
-                let page_content  = JSON.parse(data['elementor_data']);
-
-                $.ajax({
-                    url: elemailerElementorData.ajaxurl,
-                    type: 'POST',
-                    data: {
-                        action: 'elemailer-lite-elementor-batch-my-template-process',
-                        id: elementor.config.document.id,
-                        template_id: data['id'],
-                        _ajax_nonce: elemailerElementorData._ajax_nonce,
-                    },
-                    beforeSend: function () {
-                        console.groupCollapsed('Inserting Demo.');
-                    },
-                })
-                    .fail(function (jqXHR) {
-                        console.log(jqXHR);
-                        console.groupEnd();
-                    })
-                    .done(function (response) {
-
-                        ElemailerElementorAdmin.processing = false;
-                        $elementorscope.find('.elemailer-lite-content-wrap').removeClass('processing');
-
-                        page_content = response.data;
-
-                        page_content = page_content.map(function (item) {
-                            item.id = Math.random().toString(36).substr(2, 7);
-                            return item;
-                        });
-
-                        console.log(page_content);
-                        console.groupEnd();
-                        if (undefined !== page_content && '' !== page_content) {
-                            if (undefined != $e && 'undefined' != typeof $e.internal) {
-                                elementor.channels.data.trigger('document/import', templateModel);
-                                elementor.getPreviewView().addChildModel(page_content, { at: ElemailerElementorAdmin.index } || {});
-                                elementor.channels.data.trigger('template:after:insert', {});
-                                $e.internal('document/save/set-is-modified', { status: true })
-                            } else {
-                                elementor.channels.data.trigger('document/import', templateModel);
-                                elementor.getPreviewView().addChildModel(page_content, { at: ElemailerElementorAdmin.index } || {});
-                                elementor.channels.data.trigger('template:after:insert', {});
-                                elementor.saver.setFlagEditorChange(true);
-                            }
-                        }
-                        ElemailerElementorAdmin.insertActionFlag = true;
-                        ElemailerElementorAdmin._close();
-                    });
-            }
-        },
-
         _insert: function (e) {
             if ( ! ElemailerElementorAdmin.canInsert ) {
                 return;
@@ -425,7 +335,6 @@
                     if( response.success ) {
                         console.log( 'get Data' );
                         elemailerElementorData.saved_my_templates = response.data;
-                        ElemailerElementorAdmin._initMyTemplates();
 
                         $elementorscope.find('#elemailer-lite-floating-notice-wrap-id').addClass('refreshed-notice').find('.elemailer-lite-floating-notice').html('<span class="message">' + elemailerElementorData.syncCompleteMessage + '</span><button type="button" class="notice-dismiss"><span class="screen-reader-text">' + elemailerElementorData.dismiss_text + '</span></button>');
                         button.removeClass('updating-message');
@@ -479,11 +388,6 @@
         _changeType: function () {
             ElemailerElementorAdmin.siteType = $(this).val();
             $elementorscope.find('#wp-filter-search-input').trigger('keyup');
-        },
-
-        _initMyTemplates: function (e) {
-            ElemailerElementorAdmin._appendMyTemplates( elemailerElementorData.saved_my_templates );
-            ElemailerElementorAdmin._goBack();
         },
 
         _initSites: function (e) {
@@ -563,13 +467,6 @@
                 $elementorscope.find('.dialog-lightbox-content').show();
                 $elementorscope.find('.elementor-template-library-order').show();
                 $elementorscope.find('.elemailer-lite-template-library-filter-text-wrapper').show();
-            } else {
-                ElemailerElementorAdmin._initMyTemplates();
-                $elementorscope.find('.dialog-lightbox-content-block').show();
-                $elementorscope.find('.elemailer-lite-my-templates-category-inner-wrap').show();
-                $elementorscope.find('.elemailer-lite-my-templates-filter-inner-wrap').show();
-                $elementorscope.find('.elementor-template-library-order').hide();
-                $elementorscope.find('.elemailer-lite-template-library-filter-text-wrapper').hide();
             }
 
             $elementorscope.find('.elemailer-lite-content-wrap').trigger('scroll');
@@ -583,15 +480,6 @@
             $elementorscope.find('.dialog-lightbox-message').show();
             $elementorscope.find('.dialog-lightbox-content').html(pages_list);
             ElemailerElementorAdmin._loadLargeImages();
-        },
-
-        _appendMyTemplates: function (data) {
-            let single_template = wp.template('elemailer-template-library-template-local');
-            pages_list = single_template( data);
-            $elementorscope.find('.elemailer-lite-template-library-toolbar').hide();
-            $elementorscope.find('.dialog-lightbox-message').hide();
-            $elementorscope.find('.dialog-lightbox-message-my-templates').show();
-            $elementorscope.find('.dialog-lightbox-content-my-templates').html(pages_list);
         },
 
         _loadLargeImages: function () {

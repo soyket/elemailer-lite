@@ -93,9 +93,11 @@ class Library{
         $version = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? time() : ELE_MAILER_LITE_VERSION;
         wp_enqueue_script( 'elemailer-elementor-admin-page', ELE_MAILER_LITE_PLUGIN_URL . '/integrations/elementor/assets/js/elemailer-elementor-admin-page.js', array( 'jquery', 'wp-util', 'updates', 'masonry', 'imagesloaded' ), $version, true);
 
-        $license_status = false;
+        $license_status   = false;
         /* translators: %s are link. */
-        $license_msg = sprintf( __( 'This is a premium template. you can purchase it from <a href="%s" target="_blank">here</a>.', 'elemailer-lite' ), 'https://elemailer.com/pricing/' );
+        $license_msg      = sprintf( __( 'This is a premium template. you can purchase it from <a href="%s" target="_blank">here</a>.', 'elemailer-lite' ), 'https://elemailer.com/pricing/' );
+        /* translators: %s are link. */
+        $license_msg_save = sprintf( __( 'This is a premium option. you need to purchase elemailer pro from <a href="%s" target="_blank">here</a>.', 'elemailer-lite' ), 'https://elemailer.com/pricing/' );
 
         $data = apply_filters(
             'elemailer_render_localize_vars',
@@ -112,6 +114,7 @@ class Library{
                 'license_status'       => $license_status,
                 'isPro'                => false,
                 'license_msg'          => $license_msg,
+                'license_msg_save'     => $license_msg_save,
                 'getProText'           => __( 'Get Access!', 'elemailer-lite' ),
                 'syncCompleteMessage'  => __( 'Template library refreshed!', 'elemailer-lite' ),
                 'confirmDeleteMessage' => __( 'Are you sure you want to delete?', 'elemailer-lite' ),
@@ -151,7 +154,7 @@ class Library{
                 'elemailer-page-tag'     => [
                     '423' => 'home'
                 ],
-                'site-pages-type'         => 'free',
+                'site-pages-type'         => $page_data['template_type'],
                 'site-pages-page-builder' => 'elementor',
                 'site-pages-category'     => [
                     '60' => 'business',
@@ -385,9 +388,7 @@ class Library{
             wp_send_json_error( __( 'Invalid Post ID or Elementor Meta', 'elemailer-lite' ) );
         }
 
-        require_once ELE_MAILER_LITE_PLUGIN_PUBLIC_DIR . '/Elemailer_Elementor_Pages_Import.php';
-
-        $import      = new \Elemailer_Elementor_Pages_Import();
+        $import      = new \Elemailer_Lite\Integrations\Elementor\Import();
         $import_data = $import->import( $post_id, $meta );
 
         wp_send_json_success( $import_data );
@@ -421,20 +422,18 @@ class Library{
         $body = wp_remote_retrieve_body( $response );
         $data = json_decode( $body, true );
 
-        if ( ! isset( $data['elementor_data'] ) ) {
+        if ( ! isset( $data['_elementor_data'] ) ) {
             wp_send_json_error( __( 'Invalid Post Meta', 'elemailer-lite' ) );
         }
 
-        $meta    = json_decode( $data['elementor_data'], true );
+        $meta    = json_decode( $data['_elementor_data'], true );
         $post_id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : '';
 
         if ( empty( $post_id ) || empty( $meta ) ) {
             wp_send_json_error( __( 'Invalid Post ID or Elementor Meta', 'elemailer-lite' ) );
         }
 
-        require_once ELE_MAILER_LITE_PLUGIN_PUBLIC_DIR . '/Elemailer_Elementor_Pages_Import.php';
-
-        $import      = new \Elemailer_Elementor_Pages_Import();
+        $import      = new \Elemailer_Lite\Integrations\Elementor\Import();
         $import_data = $import->import( $post_id, $meta );
 
         wp_send_json_success( $import_data );
