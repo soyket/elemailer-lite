@@ -22,6 +22,8 @@ use Elementor\TemplateLibrary\Source_Local;
  */
 class Import extends Source_Local {
 
+    use \Elemailer_Lite\Traits\Singleton;
+
     /**
      * Import and update post meta.
      *

@@ -654,13 +654,13 @@
         },
 
         _insertDemo: function (data) {
-            if (undefined !== data && undefined !== data['elementor_data']) {
+            if (undefined !== data && undefined !== data['_elementor_data']) {
                 let templateModel = new Backbone.Model({
                     getTitle() {
                         return data['title']
                     },
                 });
-                let page_content  = JSON.parse(data['elementor_data']);
+                let page_content  = JSON.parse(data['_elementor_data']);
                 let page_settings = '';
                 let api_url       = '';
                 api_url           = ElemailerElementorAdmin.templateData['elemailer-page-api-url'] + '/';

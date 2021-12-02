@@ -316,9 +316,9 @@ class Library{
         }
 
         $templates = [
-            'id'             => $template->ID,
-            'title'          => $template->post_title,
-            'elementor_data' => get_post_meta( $template->ID, '_elementor_data', true ),
+            'id'              => $template->ID,
+            'title'           => $template->post_title,
+            '_elementor_data' => get_post_meta( $template->ID, '_elementor_data', true ),
         ];
 
         wp_send_json_success( $templates );
