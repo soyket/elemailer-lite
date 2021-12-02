@@ -97,7 +97,7 @@ class Library{
         /* translators: %s are link. */
         $license_msg      = sprintf( __( 'This is a premium template. you can purchase it from <a href="%s" target="_blank">here</a>.', 'elemailer-lite' ), 'https://elemailer.com/pricing/' );
         /* translators: %s are link. */
-        $license_msg_save = sprintf( __( 'This is a premium option. you need to purchase elemailer pro from <a href="%s" target="_blank">here</a>.', 'elemailer-lite' ), 'https://elemailer.com/pricing/' );
+        $license_msg_save = sprintf( __( 'Save template feature is available only in <a href="%s" target="_blank">Elemailer</a>.', 'elemailer-lite' ), 'https://elemailer.com/pricing/' );
 
         $data = apply_filters(
             'elemailer_render_localize_vars',

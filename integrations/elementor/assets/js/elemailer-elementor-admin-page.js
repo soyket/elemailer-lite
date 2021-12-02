@@ -100,6 +100,7 @@
             $("#elementor-template-library-header-menu").hide();
             $(".elementor-templates-modal__header__logo-area").hide();
             $("#elementor-template-library-header-actions").hide();
+            $(".elementor-template-library-blank-footer").hide();
 
             $(".elementor-template-library-blank-title").html( elemailerElementorData.getProText );
             $(".elementor-template-library-blank-message").html( elemailerElementorData.license_msg_save );
@@ -305,6 +306,13 @@
                     if( response.success ) {
                         console.log( 'get Data' );
                         elemailerElementorData.default_page_builder = response.data;
+
+                        $elementorscope.find('#elemailer-lite-floating-notice-wrap-id.error').hide();
+                        $elementorscope.find('.elemailer-lite-step-1-wrap').show();
+                        $elementorscope.find('.elemailer-lite-preview-actions-wrap').remove();
+                        $elementorscope.find('.elemailer-lite-template-library-toolbar').show();
+                        $elementorscope.find('.elemailer-lite-modal__header').removeClass('elemailer-lite-preview-mode');
+
                         $(document).trigger('elemailer-lite__elementor-goback-step-1');
 
                         $elementorscope.find('#elemailer-lite-floating-notice-wrap-id').addClass('refreshed-notice').find('.elemailer-lite-floating-notice').html('<span class="message">' + elemailerElementorData.syncCompleteMessage + '</span><button type="button" class="notice-dismiss"><span class="screen-reader-text">' + elemailerElementorData.dismiss_text + '</span></button>');
@@ -559,7 +567,7 @@
             $elementorscope.find('.elemailer-lite-template-library-toolbar').show();
 
             // Show listing page.
-            if (ElemailerElementorAdmin.type == 'pages') {
+            if ( ElemailerElementorAdmin.type == 'pages' ) {
                 $elementorscope.find('.dialog-lightbox-content').show();
                 $elementorscope.find('.dialog-lightbox-content-block').hide();
 
