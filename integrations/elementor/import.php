@@ -1,4 +1,7 @@
 <?php
+
+namespace Elemailer_Lite\Integrations\Elementor;
+
 defined('ABSPATH') || exit;
 
 // If plugin - 'Elementor' not exist then return.
@@ -17,7 +20,9 @@ use Elementor\TemplateLibrary\Source_Local;
  *
  * @since 2.0.0 Added compatibility for Elemetnor v2.5.0
  */
-class Elemailer_Elementor_Pages_Import extends Source_Local {
+class Import extends Source_Local {
+
+    use \Elemailer_Lite\Traits\Singleton;
 
     /**
      * Import and update post meta.
