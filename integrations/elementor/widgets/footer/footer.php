@@ -128,6 +128,24 @@ class Elemailer_Widget_Footer extends Widget_Base
 		$this->end_controls_section();
 
 		$this->start_controls_section(
+			'section_subscription',
+			[
+				'label' => __('Subscription', 'elemailer-lite'),
+			]
+		);
+
+        $this->add_control(
+            'important_note',
+            [
+                'label' => sprintf( __( 'Unsubscribe and Manage Subscription feature available only in <a href="%s" target="_blank">Elemailer</a>.', 'elemailer-lite' ), esc_url( 'https://elemailer.com/pricing/' ) ),
+                'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'content_classes' => 'elemailer-lite-footer-promotion-text',
+            ]
+        );
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
 			'advanced_section',
 			[
 				'label' => esc_html__('Advanced Style', 'elemailer-lite'),
