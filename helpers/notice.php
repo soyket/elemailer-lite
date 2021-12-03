@@ -142,6 +142,7 @@ class Notice
         $notice['classes'] = implode(' ', $classes);
 
         // User meta.
+        $expired = '';
         $notice['data'] .= ' dismissible-meta=' . esc_attr($notice['dismissible-meta']) . ' ';
         if ('user' === $notice['dismissible-meta']) {
             $expired = get_user_meta(get_current_user_id(), $notice_id, true);
@@ -201,7 +202,7 @@ class Notice
 
                             <?php if ($notice['style'] == 'block') : ?>
 
-                                <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo esc_attr(isset($notice['target']) ? "target={$notice['target']}" : ""); ?>><?php echo esc_html($btn['label']) ?></a>
+                                <a id="<?php echo esc_html(isset($btn['id']) ? $btn['id'] : ''); ?>" class="<?php echo esc_html((isset($btn['style']['class'])) ? $btn['style']['class'] : 'button-primary'); ?>" href="<?php echo esc_html($btn['url']); ?>" <?php echo isset($btn['custom_style']) ? "style='{$btn['custom_style']}'" : ""; ?> <?php echo esc_attr(isset($btn['target']) ? "target={$btn['target']}" : ""); ?> <?php echo esc_attr(isset($notice['target']) ? "target={$notice['target']}" : ""); ?>><?php echo esc_html($btn['label']) ?></a>
 
                             <?php else : ?>
 

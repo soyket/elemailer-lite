@@ -89,12 +89,86 @@ final class Plugin
 
         // minify elementor default css and assign it to a new file for sending it to the mail clients. 
         Helpers\Util::minify_css(ELE_MAILER_LITE_PLUGIN_DIR . 'public/assets/css/elemailer-mail.css', ELE_MAILER_LITE_PLUGIN_DIR . 'app/form-template/view/default-elementor-style.php');
+
+        add_action( 'admin_init', [ $this, 'display_admin_notice_logic' ], 5 );
+        add_action( 'admin_notices', [ $this, 'display_admin_notice' ] );
     }
 
     public function after_wp_loaded_hooks()
     {
         // remove wp classic editor styles from themes
         remove_editor_styles();
+    }
+
+    /**
+     * Display Admin Notice rules add
+     *
+     * @since 1.0.5
+     */
+    public function display_admin_notice_logic()
+    {
+        if ( isset( $_GET['elemailer_lite_notice_not_now'] ) && ! empty( $_GET['elemailer_lite_notice_not_now'] ) ) {
+            if ( 1 === absint( $_GET['elemailer_lite_notice_not_now'] ) ) {
+                update_option( 'elemailer_lite_notice_not_now_time', strtotime( "now" ) );
+            }
+        }
+
+        if ( isset( $_GET['elemailer_lite_notice_never_show'] ) && ! empty( $_GET['elemailer_lite_notice_never_show'] ) ) {
+            if ( 1 === absint( $_GET['elemailer_lite_notice_never_show'] ) ) {
+                update_option( 'elemailer_lite_notice_never_show', 'yes' );
+            }
+        }
+    }
+
+    /**
+     * Display Admin Notice, asking for a review
+     *
+     * @since 1.0.5
+     */
+    public function display_admin_notice()
+    {
+        if ( 'yes' === get_option( 'elemailer_lite_notice_never_show' ) ) {
+            return;
+        }
+
+        $buttons = [
+            [
+                'label'  => esc_html__('Rate Now!', 'elemailer-lite'),
+                'url'    => esc_url('https://wordpress.org/support/plugin/elemailer-lite/reviews/#new-post'),
+                'custom_style' => 'margin: 0px 10px 10px 0px;',
+                'target' => '_blank',
+            ],
+            [
+                'label' => esc_html__('Not Now!', 'elemailer-lite'),
+                'url'   => esc_url( get_admin_url() . '?elemailer_lite_notice_not_now=1' ),
+                'style' => [
+                    'class' => 'secondary-primary',
+                ]
+            ],
+            [
+                'label'        => esc_html__('Never Show!', 'elemailer-lite'),
+                'url'          => esc_url( get_admin_url() . '?elemailer_lite_notice_never_show=1' ),
+                'custom_style' => 'position: absolute; right: 10px; color: #999;',
+                'style' => [
+                    'class' => 'elemailer-lite-notice-never-show',
+                ]
+            ],
+
+        ];
+
+        if ( strtotime( '-30 days' ) >= get_option( 'elemailer_lite_notice_not_now_time', strtotime( '-30 days' ) ) ) {
+            \Elemailer_Lite\Helpers\Notice::push(
+                [
+                    'id'               => 'elemailer-lite-request-for-rate',
+                    'type'             => 'info',
+                    'style'            => 'block',
+                    'dismissible-time' => 14 * DAY_IN_SECONDS,
+                    'dismissible'      => true,
+                    'btn'              => $buttons,
+                    'message'          => sprintf(esc_html__('You have been using Elemailer Lite for a couple of days. We hope you really enjoy using it. If so please do give us a rating to boost our morale to work more on this.', 'elemailer-lite'), '3.4'),
+                ]
+            );
+        }
     }
 
     /**
