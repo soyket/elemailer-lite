@@ -65,7 +65,8 @@ h1:before,
 h2:before {
     display: none !important;
 }
-.elementor .elementor-inner {
+.elementor .elementor-inner, 
+.elementor .elementor-section-wrap{
     max-width: 600px;
     margin: 0 auto;
 }
