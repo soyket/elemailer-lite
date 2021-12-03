@@ -224,16 +224,12 @@ class Notice
 
                     <?php endforeach; ?>
 
-        </div>
+        <?php else : ?>
+            <p>
+                <a href="<?php echo esc_url($notice['btn']['url']); ?>" class="<?php echo esc_html(isset($notice['btn']['style']['class']) ? $notice['btn']['style']['class'] : 'button-primary'); ?>" <?php echo esc_attr(isset($notice['target']) ? "target={$notice['target']}" : ""); ?>><?php echo esc_html($notice['btn']['label']); ?></a>
+            </p>
 
-
-
-    <?php else : ?>
-        <p>
-            <a href="<?php echo esc_url($notice['btn']['url']); ?>" class="<?php echo esc_html(isset($notice['btn']['style']['class']) ? $notice['btn']['style']['class'] : 'button-primary'); ?>" <?php echo esc_attr(isset($notice['target']) ? "target={$notice['target']}" : ""); ?>><?php echo esc_html($notice['btn']['label']); ?></a>
-        </p>
-
-    <?php endif; ?>
+        <?php endif; ?>
 <?php endif; ?>
 </div>
 <?php
