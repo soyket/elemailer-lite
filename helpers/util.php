@@ -387,7 +387,7 @@ class Util
           <tr>
             <td class="content-block">
               Email built with Elementor using <a target="_blank" href="//elemailer.com?source=inemail">Elemailer</a>              
-              <a target="_blank" href="//elemailer.com?source=inemail">
+              <a target="_blank" href="https://elemailer.com?source=inemail">
               	<img src="https://elemailer.com/wp-content/uploads/2020/11/logo.png" style=" display: block; width: 120px; margin: auto; padding: 15px 0px 0px 0px; ">
               </a>
               <br> Drag & Drop email template & campaign builder for WordPress

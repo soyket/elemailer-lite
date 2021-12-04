@@ -55,6 +55,91 @@ class Base
 
         // action for enqueue scripts on elementor frontend in editing page
         add_action('elementor/frontend/before_enqueue_scripts', [$this, 'load_js_elementor_frontend']);
+
+        add_action( 'admin_init', [ $this, 'display_admin_notice_logic' ], 5 );
+        add_action( 'admin_notices', [ $this, 'display_admin_notice' ] );
+    }
+
+
+
+    /**
+     * Display Admin Notice rules add
+     *
+     * @since 1.0.5
+     */
+    public function display_admin_notice_logic()
+    {
+        if ( isset( $_GET['elemailer_lite_notice_not_now'] ) && ! empty( $_GET['elemailer_lite_notice_not_now'] ) ) {
+            if ( 1 === absint( $_GET['elemailer_lite_notice_not_now'] ) ) {
+                update_option( 'elemailer_lite_notice_not_now_time', strtotime( "now" ) );
+            }
+        }
+
+        if ( isset( $_GET['elemailer_lite_notice_never_show'] ) && ! empty( $_GET['elemailer_lite_notice_never_show'] ) ) {
+            if ( 1 === absint( $_GET['elemailer_lite_notice_never_show'] ) ) {
+                update_option( 'elemailer_lite_notice_never_show', 'yes' );
+            }
+        }
+    }
+
+    /**
+     * Display Admin Notice, asking for a review
+     *
+     * @since 1.0.5
+     */
+    public function display_admin_notice()
+    {
+        if ( empty( get_option( 'elemailer_lite_info' ) ) ) {
+            return;
+        }
+
+        if ( 'yes' === get_option( 'elemailer_lite_notice_never_show' ) ) {
+            return;
+        }
+
+        $buttons = [
+            [
+                'label'  => esc_html__('Rate Now!', 'elemailer-lite'),
+                'url'    => esc_url('https://wordpress.org/support/plugin/elemailer-lite/reviews/#new-post'),
+                'custom_style' => 'margin: 0px 10px 10px 0px;',
+                'target' => '_blank',
+            ],
+            [
+                'label' => esc_html__('Not Now!', 'elemailer-lite'),
+                'url'   => esc_url( get_admin_url() . '?elemailer_lite_notice_not_now=1' ),
+                'style' => [
+                    'class' => 'secondary-primary',
+                ]
+            ],
+            [
+                'label'        => esc_html__('Never Show!', 'elemailer-lite'),
+                'url'          => esc_url( get_admin_url() . '?elemailer_lite_notice_never_show=1' ),
+                'custom_style' => 'position: absolute; right: 10px; color: #ccc;',
+                'style' => [
+                    'class' => 'elemailer-lite-notice-never-show',
+                ]
+            ],
+
+        ];
+
+        $elemailer_lite_info = get_option( 'elemailer_lite_info' );
+
+        if (
+            strtotime( '-30 days' ) >= get_option( 'elemailer_lite_notice_not_now_time', strtotime( '-30 days' ) ) &&
+            strtotime( date( "Y-m-d H:i:s", strtotime( '-7 days' ) ) ) >= strtotime( date( "Y-m-d H:i:s", strtotime( $elemailer_lite_info['activation_time'] ) ) )
+        ) {
+            \Elemailer_Lite\Helpers\Notice::push(
+                [
+                    'id'               => 'request-for-review',
+                    'type'             => 'info',
+                    'style'            => 'block',
+                    'dismissible-time' => 14 * DAY_IN_SECONDS,
+                    'dismissible'      => true,
+                    'btn'              => $buttons,
+                    'message'          => sprintf(esc_html__('You have been using Elemailer Lite for a couple of days. We hope you really enjoy using it. If so please do give us a rating to boost our morale to work more on this.', 'elemailer-lite'), '3.4'),
+                ]
+            );
+        }
     }
 
     /**
@@ -84,7 +169,7 @@ class Base
                 'type'        => 'error',
                 'dismissible' => false,
                 'btn'         => $btn,
-                'message'     => sprintf(esc_html__('Elemailer Lite needs Elementor version %1$s+ for working it, which is not activated.', 'elemailer-lite'), '3.4'),
+                'message'     => sprintf(esc_html__('Elemailer Lite needs Elementor version %1$s+ , which is not activated.', 'elemailer-lite'), '3.4'),
             ]
         );
     }
