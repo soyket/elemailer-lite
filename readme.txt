@@ -83,6 +83,7 @@ Update the plugin either via wp dashboard or via FTP. After the update makes sur
 == Changelog ==
 = 1.0.5 =
 * New: Template library added
+* Fix: Compatibility with Latest Elementor & Elementor pro
 = 1.0.4 =
 * Fix: Compatibility with ACF frontend plugin
 * Fix: Removed deprecated function use of elementor
