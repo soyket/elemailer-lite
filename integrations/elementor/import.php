@@ -37,7 +37,7 @@ class Import extends Source_Local {
     public function import( $post_id = 0, $data = array() ) {
         if ( ! empty( $post_id ) && ! empty( $data ) ) {
 
-            // Ignore placeholder when import.
+            // Ignore placeholder when import. @since 1.0.6
             add_filter( 'elementor/utils/get_placeholder_image_src', [ $this, 'ignore_placeholder' ], 35 );
 
             $data = wp_json_encode( $data, true );
@@ -60,7 +60,7 @@ class Import extends Source_Local {
     /**
      * Ignore placeholder when import
      *
-     * @since 1.0.5
+     * @since 1.0.6
      *
      * @param string $url Placeholder image url.
      *
