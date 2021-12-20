@@ -562,8 +562,6 @@
             // Hide Preview Page.
             $elementorscope.find('.theme-preview').hide();
             $elementorscope.find('.theme-preview').html('');
-            $elementorscope.find('.theme-preview-block').hide();
-            $elementorscope.find('.theme-preview-block').html('');
             $elementorscope.find('.elemailer-lite-template-library-toolbar').show();
 
             // Show listing page.
