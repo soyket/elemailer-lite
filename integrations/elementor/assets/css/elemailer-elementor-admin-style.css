@@ -1,6 +1,6 @@
 .elementor-add-new-section .elementor-add-elemailer-site-button {
     margin-left: 5px;
-    background-image: url( '../../../../public/assets/img/elemailer-icon.png' );
+    background-image: url( '../../../../public/assets/img/elemailer-icon.svg' );
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
@@ -10,7 +10,7 @@
 }
 .elementor-add-new-section .elementor-add-elemailer-lite-button:not(.elemailer-lite-elementor-white-label) {
     margin-left: 5px;
-    background-image: url( '../../../../public/assets/img/elemailer-icon.png' );
+    background-image: url( '../../../../public/assets/img/elemailer-icon.svg' );
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
@@ -106,7 +106,7 @@
 }
 
 #elemailer-lite-modal .elemailer-lite-modal__header__logo__icon-wrapper {
-    background-image: url( '../../../../public/assets/img/elemailer-icon.png' );
+    background-image: url( '../../../../public/assets/img/elemailer-icon.svg' );
     -webkit-border-radius: 2px;
     background-repeat: no-repeat;
     background-position: center center;
@@ -782,8 +782,7 @@
     color: #6d7882;
 }
 
-#elemailer-lite-modal .theme-preview,
-#elemailer-lite-modal .theme-preview-block {
+#elemailer-lite-modal .theme-preview {
     display: none;
     margin: 0 1.3%;
     margin-top: 10px;
@@ -919,6 +918,8 @@
 #elemailer-lite-modal .theme-preview img,
 #elemailer-lite-modal .theme-preview-block img {
     width: 100%;
+    max-width: 600px;
+    box-shadow: 0 0 16px 0 rgb(0 0 0 / 12%);
 }
 
 #elemailer-lite-modal .dialog-lightbox-back {

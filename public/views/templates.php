@@ -34,10 +34,6 @@ $suggestion_link = 'https://elemailer.com/';
                     <div class="dialog-content dialog-lightbox-content-my-templates" data-my-templates-page="1"></div>
                     <div class="theme-preview-my-templates"></div>
                 </div>
-                <div class="dialog-message dialog-lightbox-message-block" data-type="blocks">
-                    <div class="dialog-content dialog-lightbox-content-block theme-browser" data-block-page="1"></div>
-                    <div class="theme-preview-block"></div>
-                </div>
                 <div class="elemailer-lite-loading-wrap"><div class="elemailer-lite-loading-icon"></div></div>
             </div>
             <div class="dialog-buttons-wrapper dialog-lightbox-buttons-wrapper"></div>

@@ -54,7 +54,7 @@ class Library{
             return;
         }
 
-        if ( ! in_array( get_post_type(), ['em-form-template'] ) ) {
+        if ( ! in_array( get_post_type(), [ 'em-form-template', 'em-emails-template' ] ) ) {
             return;
         }
 
@@ -83,7 +83,7 @@ class Library{
      * @since 1.0.5
      */
     public function register_widget_scripts() {
-        if ( ! in_array( get_post_type(), ['em-form-template'] ) ) {
+        if ( ! in_array( get_post_type(), [ 'em-form-template', 'em-emails-template' ] ) ) {
             return;
         }
 
@@ -251,7 +251,7 @@ class Library{
      * @since 1.0.5
      */
     public function register_widget_styles() {
-        if ( ! in_array( get_post_type(), ['em-form-template'] ) ) {
+        if ( ! in_array( get_post_type(), [ 'em-form-template', 'em-emails-template' ] ) ) {
             return;
         }
         $version = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? time() : ELE_MAILER_LITE_VERSION;
