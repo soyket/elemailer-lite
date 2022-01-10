@@ -172,6 +172,15 @@ class Hooks
      */
     public function section_background($element, $args)
     {
+        // return if this is not post type of elemailer
+        $post_type = get_post_type();
+
+        if (
+            ! in_array( $post_type, ['em-form-template', 'em-emails-template'] ) &&
+            \Elementor\Plugin::$instance->editor->is_edit_mode()
+        ) {
+            return;
+        }
 
         $element->add_control(
             'section_background_type',
