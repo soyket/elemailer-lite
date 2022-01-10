@@ -1,10 +1,10 @@
 === Elemailer Lite - Elementor email template & campaign builder ===
 Contributors: elemailer
-Tags: email, cf7,email template, elementor addons, email marketing,email template builder, elementor,  contact form 7, email design, elementor form, free email builder
+Tags: email, cf7, email template, elementor addons, email marketing,email template builder, elementor,  contact form 7, email design, elementor form, free email builder
 Requires at least: 4.4
-Tested up to: 5.8.1
+Tested up to: 5.8.3
 Requires PHP: 7.2
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,6 +81,8 @@ In the lite version, you can add your own Branding if you want but you can't rem
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 1.0.8 =
+* Fix: Background control of Elemailer affecting normal pages
 = 1.0.7 =
 * Fix: Blury icon on library
 * Fix: Template library preview blury due to width issue in preview
