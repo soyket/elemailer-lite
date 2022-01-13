@@ -22,9 +22,9 @@ You should have [Elementor Pro](https://elementor.com/pro/) installed if you wan
 Elemailer -Best drag & drop Email design Plugin for WordPress
 </h3>
 
-Elemailer Lite is an email template & campaign builder based on Elementor page builder. 
+Elemailer Lite is an Email template & Campaign builder using Elementor page builder. 
 
-This plugin gives you the facility of override different WordPress Form plugin's email template. No more HTML code writing inside your forms to design good-looking emails. 
+This plugin gives you the facility of override different WordPress Form plugin's email template. No more HTML code writing to design good-looking emails. 
 
 ==List of Supported Form Plugins: ==
 
@@ -40,6 +40,8 @@ This plugin gives you the facility of override different WordPress Form plugin's
 * Supports 3 template creation at max in the lite version. 
 
 Check out our site for more features: [Elemailer](https://elemailer.com/). 
+
+[Get feature/news updates on facebook](https://www.facebook.com/groups/4824705354208369). 
 
 How to use Elemailer by Dante: 
 
@@ -83,6 +85,7 @@ Update the plugin either via wp dashboard or via FTP. After the update makes sur
 == Changelog ==
 = 1.0.8 =
 * Fix: Background control of Elemailer affecting normal pages
+* Tewak: Footer wording
 = 1.0.7 =
 * Fix: Blury icon on library
 * Fix: Template library preview blury due to width issue in preview
