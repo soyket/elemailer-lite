@@ -2,6 +2,10 @@
 
 namespace Elemailer_Lite\Helpers;
 
+require_once __DIR__ . '/vendor/autoload.php';
+
+use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
+
 defined('ABSPATH') || exit;
 
 /**
@@ -360,6 +364,12 @@ class Util
 	public static function get_email_html_template($template_id, $email_content)
 	{
 		$email_content = str_replace(['<section', '</section>'], ['<div', '</div>'], $email_content);
+
+		// $cssToInlineStyles = new CssToInlineStyles();
+
+		// // output
+		// $email_content = $cssToInlineStyles->convert( $email_content, self::get_template_styles( $template_id ) );
+
 		ob_start();
 ?>
 
@@ -374,6 +384,7 @@ class Util
 		</head>
 
 		<body>
+			<h3>Got it</h3>
 			<?php echo $email_content; ?>
 
 
@@ -406,6 +417,11 @@ class Util
 		$data_html = ob_get_contents();
 		ob_end_clean();
 
-		return $data_html;
+		$cssToInlineStyles = new CssToInlineStyles();
+
+		// output
+		$output = $cssToInlineStyles->convert( $data_html );
+
+		return $output;
 	}
 }
