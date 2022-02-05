@@ -61,6 +61,7 @@ final class Plugin
     {
         if ( current_user_can('manage_options' ) ) {
             add_action('admin_menu', [ $this, 'add_admin_menu' ] );
+            add_action( 'admin_init', [ $this, 'register_plugin_settings' ] );
         }
         // enqueue js and css on admin dashboard hook
         add_action( 'admin_enqueue_scripts', [ $this, 'load_js_css_admin' ] );
@@ -273,6 +274,36 @@ final class Plugin
             esc_url(ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/img/elemailer-icon.png'),
             25
         );
+
+        add_submenu_page(
+            'elemailer-menu',
+            __( 'Elemailer Settings', 'elemailer-lite' ),
+            __( 'Settings', 'elemailer-lite' ),
+            'manage_options',
+            'em-form-template-settings',
+            [ $this, 'tutorial_subpage_example_render_page' ]
+        );
+    }
+
+    /**
+     * Register plugin settings
+     *
+     * @return void
+     * @since 1.0.9
+     */
+    public function register_plugin_settings() {
+        //register our settings
+        register_setting( 'em-form-template-settings-group', 'elemailer_hide_mail_branding' );
+    }
+
+    /**
+     * Add_submenu_page callback function
+     *
+     * @return void
+     * @since 1.0.9
+     */
+    public function tutorial_subpage_example_render_page() {
+        include_once ELE_MAILER_LITE_PLUGIN_PUBLIC_DIR . '/views/em-form-template-settings.php';
     }
 
     /**

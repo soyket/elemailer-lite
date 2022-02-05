@@ -384,28 +384,26 @@ class Util
 		</head>
 
 		<body>
-			<h3>Got it</h3>
 			<?php echo $email_content; ?>
-
 
 			<?php $info=get_option('elemailer_lite_info');  // run footer branding only for new users after v-1.0.0
 			
-			if( isset($info['old_user']) && !$info['old_user'] ) : ?>
+			if ( isset( $info['old_user'] ) && ! $info['old_user'] && 'yes' !== get_option( 'elemailer_hide_mail_branding', true ) ) : ?>
 
 		 	<!-- START Branding FOOTER -->
-      <div class="elementor-section-wrap" style="text-align: center;padding-top: 40px;">
-        <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: auto;font-size: 14px;">
-          <tr>
-            <td class="content-block">
-              Email designed with Elementor ❤️ Powered by  <a target="_blank" href="https://elemailer.com?source=inemail">Elemailer</a>                           
-              <a target="_blank" href="https://elemailer.com?source=inemail">
-              	<img src="https://elemailer.com/wp-content/uploads/2020/11/logo.png" style=" display: block; width: 120px; margin: auto; padding: 15px 0px 15px 0px; ">
-              </a>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <!-- END Branding FOOTER -->
+			<div class="elementor-section-wrap" style="text-align: center;padding-top: 40px;">
+				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: auto;font-size: 14px;">
+				<tr>
+					<td class="content-block">
+					Email designed with Elementor ❤️ Powered by  <a target="_blank" href="https://elemailer.com?source=inemail">Elemailer</a>                           
+					<a target="_blank" href="https://elemailer.com?source=inemail">
+						<img src="https://elemailer.com/wp-content/uploads/2020/11/logo.png" style=" display: block; width: 120px; margin: auto; padding: 15px 0px 15px 0px; ">
+					</a>
+					</td>
+				</tr>
+				</table>
+			</div>
+			<!-- END Branding FOOTER -->
 
     	<?php endif; ?>
 

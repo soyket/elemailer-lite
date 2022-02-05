@@ -31,16 +31,15 @@ class Base
         $this->api = new Api();
 
         add_action('admin_footer', [$this, 'modal_view']);
-    /**
-     * Custom column in list table for showing shortcode
-     *
-     * @return void
-     * @since 1.0.4
-     */
 
+        /**
+         * Custom column in list table for showing shortcode
+         *
+         * @return void
+         * @since 1.0.4
+         */
         add_filter('manage_edit-em-form-template_columns', [$this, 'admin_column_elemailer_form_shortcode']);
         add_action( 'manage_em-form-template_posts_custom_column', [$this, 'admin_column_elemailer_form_shortcode_display'], 10, 2 );
-
     }
 
     /**
