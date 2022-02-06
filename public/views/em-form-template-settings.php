@@ -12,7 +12,7 @@
             </tr>
             <tr valign="middle">
                 <td scope="row" colspan="3">
-                <p class="em-form-template-settings-notes"><?php echo sprintf( __( 'In case you sill would like to remove the footer branding, it would be highly appreciated if you get our <strong>pro plan</strong> or tell your friends about us or even leave us a great <strong>review</strong> as this will boost our enthusiasm to work more on this amazing plugin.', 'elemailer-lite' ) ); ?></p>
+                <p class="em-form-template-settings-notes"><?php echo sprintf( __( 'In case you sill would like to remove the footer branding, it would be highly appreciated if you get our <a href="https://elemailer.com/pricing/" target="_blank"><strong>pro plan</strong></a> or tell your friends about us or even leave us a great <a href="https://wordpress.org/support/plugin/elemailer-lite/reviews/#new-post" target="_blank"><strong>review</strong></a> as this will boost our enthusiasm to work more on this amazing plugin.', 'elemailer-lite' ) ); ?></p>
                 </td>
             </tr>
             <tr valign="middle" class="elemailer-middle-action-buttons-area">
