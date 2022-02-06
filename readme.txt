@@ -70,7 +70,7 @@ With Elemailer Lite you can only create 3 email template for your forms.
 
 = Can I remove footer Branding and add my own? =
 
-In the lite version, you can add your own Branding if you want but you can't remove our footer branding. But you can get Elemailer ( The pro version from our site ) and remove the branding. This is a practice done in any platform/plugin. 
+Elemailer Lite comes with a footer branding by default. If you get the Elemailer paid version the footer branding will not be there at all. But besieds this we have also though of our users and kept a setting under Elemailer to remove the branding for free if you really want to. You may go to wp-admin > Elemailer > Setting > Select Remove footer branding > Hit save. But we would appricate sperading about this amazing plugin to the community by keeping the branding or in any other way as you see fit. 
 
 == Screenshots ==
 
@@ -84,7 +84,8 @@ Update the plugin either via wp dashboard or via FTP. After the update makes sur
 
 == Changelog ==
 = 1.0.9 =
-* Fix: When email reply or forward then email teamplate broken issue fixed
+* Fix: When email reply or forward then email teamplate broken
+* Tewak: Added setting panel for future use and footer branding control
 = 1.0.8 =
 * Fix: Background control of Elemailer affecting normal pages
 * Tewak: Footer wording
