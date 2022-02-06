@@ -6,13 +6,13 @@
         <table class="em-form-template-settings-form form-table">
             <tr valign="middle">
                 <td scope="row" colspan="3">
-                    <p class="em-form-template-settings-notes"><?php echo sprintf( __( 'We would appreciate you to keep the footer branding for spreading news about our amazing <b>Elemailer Lite</b> plugin.', 'elemailer-lite' ) ); ?></p>
+                    <p class="em-form-template-settings-notes"><?php echo sprintf( __( 'We would appreciate it if you keep the footer branding for spreading the news about our amazing <b>Elemailer Lite</b> plugin.', 'elemailer-lite' ) ); ?></p>
                     <img class="we-would-appreciate-icon" src="<?php echo esc_url( ELE_MAILER_LITE_PLUGIN_PUBLIC . '/assets/images/we-would-appreciate-you.png' ); ?>" alt="we-would-appreciate-you">
                 </td>
             </tr>
             <tr valign="middle">
                 <td scope="row" colspan="3">
-                <p class="em-form-template-settings-notes"><?php echo sprintf( __( 'In case you sill would like to remove the footer branding, it would be highly appreciated if you get our <a href="https://elemailer.com/pricing/" target="_blank"><strong>pro plan</strong></a> or tell your friends about us or even leave us a great <a href="https://wordpress.org/support/plugin/elemailer-lite/reviews/#new-post" target="_blank"><strong>review</strong></a> as this will boost our enthusiasm to work more on this amazing plugin.', 'elemailer-lite' ) ); ?></p>
+                <p class="em-form-template-settings-notes"><?php echo sprintf( __( 'In case you sill would like to remove the footer branding, it would be highly appreciated if you get one of our <a href="https://elemailer.com/pricing/" target="_blank"><strong>PRO plans</strong></a> or tell your friends about us or even leave us a great <a href="https://wordpress.org/support/plugin/elemailer-lite/reviews/#new-post" target="_blank"><strong>REVIEW</strong></a> as this will boost our enthusiasm to work more on this amazing plugin.', 'elemailer-lite' ) ); ?></p>
                 </td>
             </tr>
             <tr valign="middle" class="elemailer-middle-action-buttons-area">
@@ -30,8 +30,8 @@
                     </form>
                 </td>
                 <td scope="row">
-                    <?php esc_html_e( 'Get Elemailer Pro', 'elemailer-lite' ) ?>
-                    <p class="submit"><a href="<?php echo esc_url('https://elemailer.com/pricing/') ?>" target="_blank" class="button button-primary em-form-template-settings-get-elemailer"><?php esc_html_e( 'Go here', 'elemailer-lite' ) ?></a></p>
+                    <?php esc_html_e( 'Get Elemailer', 'elemailer-lite' ) ?>
+                    <p class="submit"><a href="<?php echo esc_url('https://elemailer.com/pricing/') ?>" target="_blank" class="button button-primary em-form-template-settings-get-elemailer"><?php esc_html_e( 'Go Pro', 'elemailer-lite' ) ?></a></p>
                 </td>
             </tr>
         </table>
