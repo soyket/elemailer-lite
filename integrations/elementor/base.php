@@ -58,9 +58,40 @@ class Base
 
         add_action( 'admin_init', [ $this, 'display_admin_notice_logic' ], 5 );
         add_action( 'admin_notices', [ $this, 'display_admin_notice' ] );
+        add_action('elementor/page_templates/canvas/after_content', [$this, 'show_footer_branding']);
     }
 
+    /**
+     * Show footer branding
+     *
+     * @return void
+     * @since 1.0.9
+     */
+    public function show_footer_branding( $content )
+    {
+        if ( ! in_array( get_post_type(), [ 'em-form-template', 'em-emails-template' ] ) ) {
+            return;
+        }
 
+        $info = get_option('elemailer_lite_info');  // run footer branding only for new users after v-1.0.0
+			
+		if ( isset( $info['old_user'] ) && ! $info['old_user'] && 'yes' !== get_option( 'elemailer_hide_mail_branding', true ) ) : ?>
+		 	<!-- START Branding FOOTER -->
+			<div class="elementor-section-wrap" style="text-align: center;padding-top: 40px;">
+				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: auto;font-size: 14px;">
+				<tr>
+					<td class="content-block">
+					Email designed with Elementor ❤️ Powered by  <a target="_blank" href="https://elemailer.com?source=inemail">Elemailer</a>                           
+					<a target="_blank" href="https://elemailer.com?source=inemail">
+						<img src="https://elemailer.com/wp-content/uploads/2020/11/logo.png" style=" display: block; width: 120px; margin: auto; padding: 15px 0px 15px 0px; ">
+					</a>
+					</td>
+				</tr>
+				</table>
+			</div>
+			<!-- END Branding FOOTER -->
+    	<?php endif;
+    }
 
     /**
      * Display Admin Notice rules add
