@@ -2,9 +2,9 @@
 Contributors: elemailer
 Tags: email, cf7, email template, elementor addons, email marketing,email template builder, elementor,  contact form 7, email design, elementor form, free email builder
 Requires at least: 4.4
-Tested up to: 5.8.3
+Tested up to: 5.9
 Requires PHP: 7.2
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,8 @@ In the lite version, you can add your own Branding if you want but you can't rem
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 1.0.9 =
+* Fix: When email reply or forward then email teamplate broken issue fixed
 = 1.0.8 =
 * Fix: Background control of Elemailer affecting normal pages
 * Tewak: Footer wording

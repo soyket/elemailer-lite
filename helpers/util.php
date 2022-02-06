@@ -2,6 +2,10 @@
 
 namespace Elemailer_Lite\Helpers;
 
+require_once __DIR__ . '/vendor/autoload.php';
+
+use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
+
 defined('ABSPATH') || exit;
 
 /**
@@ -360,6 +364,12 @@ class Util
 	public static function get_email_html_template($template_id, $email_content)
 	{
 		$email_content = str_replace(['<section', '</section>'], ['<div', '</div>'], $email_content);
+
+		// $cssToInlineStyles = new CssToInlineStyles();
+
+		// // output
+		// $email_content = $cssToInlineStyles->convert( $email_content, self::get_template_styles( $template_id ) );
+
 		ob_start();
 ?>
 
@@ -376,25 +386,24 @@ class Util
 		<body>
 			<?php echo $email_content; ?>
 
-
 			<?php $info=get_option('elemailer_lite_info');  // run footer branding only for new users after v-1.0.0
 			
-			if( isset($info['old_user']) && !$info['old_user'] ) : ?>
+			if ( isset( $info['old_user'] ) && ! $info['old_user'] && 'yes' !== get_option( 'elemailer_hide_mail_branding', true ) ) : ?>
 
 		 	<!-- START Branding FOOTER -->
-      <div class="elementor-section-wrap" style="text-align: center;padding-top: 40px;">
-        <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: auto;font-size: 14px;">
-          <tr>
-            <td class="content-block">
-              Email designed with Elementor ❤️ Powered by  <a target="_blank" href="https://elemailer.com?source=inemail">Elemailer</a>                           
-              <a target="_blank" href="https://elemailer.com?source=inemail">
-              	<img src="https://elemailer.com/wp-content/uploads/2020/11/logo.png" style=" display: block; width: 120px; margin: auto; padding: 15px 0px 15px 0px; ">
-              </a>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <!-- END Branding FOOTER -->
+			<div class="elementor-section-wrap" style="text-align: center;padding-top: 40px;">
+				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: auto;font-size: 14px;">
+				<tr>
+					<td class="content-block">
+					Email designed with Elementor ❤️ Powered by  <a target="_blank" href="https://elemailer.com?source=inemail">Elemailer</a>                           
+					<a target="_blank" href="https://elemailer.com?source=inemail">
+						<img src="https://elemailer.com/wp-content/uploads/2020/11/logo.png" style=" display: block; width: 120px; margin: auto; padding: 15px 0px 15px 0px; ">
+					</a>
+					</td>
+				</tr>
+				</table>
+			</div>
+			<!-- END Branding FOOTER -->
 
     	<?php endif; ?>
 
@@ -406,6 +415,11 @@ class Util
 		$data_html = ob_get_contents();
 		ob_end_clean();
 
-		return $data_html;
+		$cssToInlineStyles = new CssToInlineStyles();
+
+		// output
+		$output = $cssToInlineStyles->convert( $data_html );
+
+		return $output;
 	}
 }
