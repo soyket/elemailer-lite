@@ -365,11 +365,6 @@ class Util
 	{
 		$email_content = str_replace(['<section', '</section>'], ['<div', '</div>'], $email_content);
 
-		// $cssToInlineStyles = new CssToInlineStyles();
-
-		// // output
-		// $email_content = $cssToInlineStyles->convert( $email_content, self::get_template_styles( $template_id ) );
-
 		ob_start();
 ?>
 
