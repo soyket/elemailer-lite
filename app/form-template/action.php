@@ -109,7 +109,7 @@ class Action
             ];
         } else {
             $this->response['status'] = 0;
-            $this->response['error'][] = esc_html__('You can\'t create more than 3 templates with elemailer lite.', 'elemailer');
+            $this->response['error'][] = esc_html__('You can\'t create more than 3 templates with elemailer lite.', 'elemailer-lite');
         }
     }
 

@@ -31,6 +31,7 @@ final class Plugin
     {
         $this->define_constant();
         Autoloader::run();
+        add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
     }
 
     /**
@@ -49,6 +50,44 @@ final class Plugin
         define( 'ELE_MAILER_LITE_PLUGIN_PUBLIC', ELE_MAILER_LITE_PLUGIN_URL . 'public' );
         define( 'ELE_MAILER_LITE_PLUGIN_PUBLIC_DIR', ELE_MAILER_LITE_PLUGIN_DIR . 'public' );
     }
+
+    /**
+	 * Loads plugins translation file
+	 *
+	 * @return void
+	 * @since x.x.x
+	 */
+	public function load_textdomain() {
+		// Default languages directory.
+		$lang_dir = ELE_MAILER_LITE_PLUGIN_DIR . 'languages/';
+
+		// Traditional WordPress plugin locale filter.
+		global $wp_version;
+
+		$get_locale = get_locale();
+
+		if ( $wp_version >= 4.7 ) {
+			$get_locale = get_user_locale();
+		}
+
+		$locale = apply_filters( 'plugin_locale', $get_locale, 'elemailer-lite' );
+		$mofile = sprintf( '%1$s-%2$s.mo', 'elemailer-lite', $locale );
+
+		// Setup paths to current locale file.
+		$mofile_local  = $lang_dir . $mofile;
+		$mofile_global = WP_LANG_DIR . '/plugins/' . $mofile;
+
+		if ( file_exists( $mofile_global ) ) {
+			// Look in global /wp-content/languages/elemailer-lite/ folder.
+			load_textdomain( 'elemailer-lite', $mofile_global );
+		} elseif ( file_exists( $mofile_local ) ) {
+			// Look in local /wp-content/plugins/elemailer-lite/languages/ folder.
+			load_textdomain( 'elemailer-lite', $mofile_local );
+		} else {
+			// Load the default language files.
+			load_plugin_textdomain( 'elemailer-lite', false, $lang_dir );
+		}
+	}
 
     /**
      * Plugin initialization function
@@ -266,8 +305,8 @@ final class Plugin
     {
         // for main menu of this plugin in admin panel
         add_menu_page(
-            esc_html__( 'Elemailer' ),
-            esc_html__( 'Elemailer' ),
+            esc_html__( 'Elemailer', 'elemailer-lite' ),
+            esc_html__( 'Elemailer', 'elemailer-lite' ),
             'manage_options',
             'elemailer-menu',
             '',
