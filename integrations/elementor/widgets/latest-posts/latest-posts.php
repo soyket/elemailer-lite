@@ -75,7 +75,7 @@ class Elemailer_Widget_Latest_Posts extends Widget_Base
 		$this->add_control(
 			'taxonomy_type',
 			[
-				'label' => __('Select Taxonomy', 'void'),
+				'label' => __('Select Taxonomy', 'elemailer-lite'),
 				'type' => Controls_Manager::SELECT2,
 				'options' => (object) array(),
 			]
@@ -84,7 +84,7 @@ class Elemailer_Widget_Latest_Posts extends Widget_Base
 		$this->add_control(
 			'terms',
 			[
-				'label' => __('Select Terms (usually categories/tags) * Must Select Taxonomy First', 'void'),
+				'label' => __('Select Terms (usually categories/tags) * Must Select Taxonomy First', 'elemailer-lite'),
 				'type' => Controls_Manager::SELECT2,
 				'label_block' => true,
 				'options' => '',
@@ -123,7 +123,7 @@ class Elemailer_Widget_Latest_Posts extends Widget_Base
 		$this->add_control(
 			'posts_per_row',
 			[
-				'label' => esc_html__('Posts Per Row', 'void'),
+				'label' => esc_html__('Posts Per Row', 'elemailer-lite'),
 				'type' => Controls_Manager::SELECT,
 
 				'options' => [

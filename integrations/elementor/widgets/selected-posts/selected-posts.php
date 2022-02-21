@@ -110,7 +110,7 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 		$this->add_control(
 			'posts_per_row',
 			[
-				'label' => esc_html__('Posts Per Row', 'void'),
+				'label' => esc_html__('Posts Per Row', 'elemailer-lite'),
 				'type' => Controls_Manager::SELECT,
 
 				'options' => [

@@ -1,1 +1,4 @@
 .DS_Store
+
+# Leave node_modules from git
+node_modules/

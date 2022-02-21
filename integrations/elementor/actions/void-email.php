@@ -57,7 +57,7 @@ class Void_Email extends Email
 		$fields = [
 			'email_to' => get_option('admin_email'),
 			/* translators: %s: Site title. */
-			'email_subject' => sprintf(__('New message from "%s"', 'elementor-pro'), get_bloginfo('name')),
+			'email_subject' => sprintf(__('New message from "%s"', 'elemailer-lite'), get_bloginfo('name')),
 			'email_content' => '[all-fields]',
 			'email_from_name' => get_bloginfo('name'),
 			'email_from' => get_bloginfo('admin_email'),

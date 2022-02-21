@@ -23,7 +23,7 @@ class Void_Email2 extends Void_Email
 
 	public function get_label()
 	{
-		return __('Email 2', 'elementor-pro');
+		return __('Email 2', 'elemailer-lite');
 	}
 
 	protected function get_control_id($control_id)
