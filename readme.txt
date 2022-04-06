@@ -100,6 +100,8 @@ You may go to wp-admin > Elemailer > Setting > Select Remove footer branding > H
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 1.0.10 =
+* Fix: CSS fix for template layout broken when using Optimize DOM output feature of Elementor
 = 1.0.9 =
 * Fix: When email reply or forward then email teamplate broken
 * Tewak: Added setting panel for future use and footer branding control

@@ -60,6 +60,10 @@ p {
     max-width: 600px;
     margin: 0 auto;
 }
+body div{
+    max-width: 600px;
+    margin: auto auto;
+}
 .elementor-section-wrap {
     max-width: 600px;
     margin: 0 auto;
