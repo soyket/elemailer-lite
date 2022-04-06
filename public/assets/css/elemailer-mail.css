@@ -56,20 +56,11 @@ p {
     box-sizing: border-box;
     overflow: auto;
 }
-.elementor .elementor-inner {
+.elementor .elementor-inner,
+.elementor-section-wrap,
+.elementor-section{
     max-width: 600px;
     margin: 0 auto;
-}
-body div{
-    max-width: 600px;
-    margin: auto auto;
-}
-.elementor-section-wrap {
-    max-width: 600px;
-    margin: 0 auto;
-}
-.elementor-section {
-    width: 100%;
 }
 .elementor-section .elementor-container {
     margin-right: auto;
