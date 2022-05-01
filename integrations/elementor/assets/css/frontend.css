@@ -1,6 +1,8 @@
 /* elementor bottom templete library hide */
-#elementor-add-new-section .elementor-add-new-section .elementor-add-section-area-button.elementor-add-template-button,
-.elementor-add-section-inner .elementor-add-new-section .elementor-add-section-area-button.elementor-add-template-button,
-.elementor-inner .elementor-add-section .elementor-add-new-section .elementor-add-section-area-button.elementor-add-template-button{
-    display: none;
+.elementor-add-section-inner .elementor-add-new-section .elementor-add-section-area-button:not(.elementor-add-section-button,.elementor-add-elemailer-site-button){
+display: none;
+}
+/* limit the width of the panel add new section */
+#elementor-add-new-section{
+    max-width: 600px;
 }

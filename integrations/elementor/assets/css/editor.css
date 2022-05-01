@@ -3,8 +3,13 @@
     display: none;
 }
 
-/* hide advanced tab from elementor editor panel */
-#elementor-panel-content-wrapper #elementor-panel-page-editor .elementor-panel-navigation .elementor-component-tab.elementor-panel-navigation-tab.elementor-tab-control-advanced {
+/* hide advanced tab from elementor editor panel updated @2.6*/
+#elementor-panel-content-wrapper #elementor-panel-page-editor .elementor-panel-navigation .elementor-component-tab.elementor-panel-navigation-tab:not(.elementor-tab-control-content,.elementor-tab-control-style){
+    display: none;
+}
+
+/* hide editor panel settings except for needed ones updated @2.6*/
+#elementor-panel-content-wrapper #elementor-panel-page-menu-content .elementor-panel-menu-item:not(.elementor-panel-menu-item-editor-preferences,.elementor-panel-menu-item-view-page,.elementor-panel-menu-item-exit-to-dashboard,.elementor-panel-menu-item-elemailer-body-settings){
     display: none;
 }
 
@@ -13,10 +18,6 @@
     display: none;
 }
 
-/* hide site editor from elementor editor panel */
-#elementor-panel-content-wrapper #elementor-panel-page-menu-content .elementor-panel-menu-items .elementor-panel-menu-item-site-editor {
-    display: none;
-}
 /* hide global widget switching tab for avoiding show others global widgets */
 #elementor-panel-inner #elementor-panel-content-wrapper #elementor-panel-elements-navigation div[data-tab="global"] {
     display: none;

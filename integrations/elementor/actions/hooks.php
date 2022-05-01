@@ -33,6 +33,10 @@ class Hooks
 
         // add custom background control in section control
         add_action('elementor/element/section/section_background/before_section_end', [$this, 'section_background'], 10, 2);
+
+        // remove container experiement inside elemailer since @1.2
+        add_action( 'elementor/experiments/default-features-registered', [$this, 'remove_container_experiment'],1);
+
     }
 
     /**
@@ -162,6 +166,17 @@ class Hooks
             ]
         );
     }
+    
+    /**
+     * Remove the container experiement. TO DO: in future further modification will be needed for sure.
+     * @since 1.2
+     */
+    public function remove_container_experiment( $document ) {
+          if(isset( $_GET['post']) && in_array( get_post_type($_GET['post']), ['em-form-template', 'em-emails-template'] ) ){
+            $document->remove_feature( 'container');          
+          }
+    }
+
     /**
      * custom control add in section of elementor for adding background
      *

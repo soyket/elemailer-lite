@@ -28,7 +28,7 @@ class Base
 		add_action('elementor/elements/categories_registered', [$this, 'add_elementor_widget_categories']);
 
 		// register widgets hook for elementor editor
-		add_action('elementor/widgets/widgets_registered', [$this, 'on_widgets_registered']);
+		add_action('elementor/widgets/register', [$this, 'on_widgets_registered']);
 	}
 
 	/**
@@ -102,19 +102,19 @@ class Base
 	private function register_widget()
 	{
 		//this is where we create objects for each widget the above  ->use voidquery\Widgets\Hello_World; is needed
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Heading());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Image());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Video());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Button());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Divider());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Spacer());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Text_Editor());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Image_Box());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Social());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Shortcode());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Latest_Posts());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Selected_Posts());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Elemailer_Widget_Footer());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Heading());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Image());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Video());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Button());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Divider());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Spacer());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Text_Editor());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Image_Box());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Social());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Shortcode());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Latest_Posts());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Selected_Posts());
+		\Elementor\Plugin::instance()->widgets_manager->register(new Elemailer_Widget_Footer());
 	}
 
 	/**
