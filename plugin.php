@@ -42,7 +42,7 @@ final class Plugin
      */
     public function define_constant()
     {
-        define( 'ELE_MAILER_LITE_VERSION', '1.2' );
+        define( 'ELE_MAILER_LITE_VERSION', '1.3' );
         define( 'ELE_MAILER_LITE_PACKAGE', 'free' );
         define( 'ELE_MAILER_LITE_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__ ) ) );
         define( 'ELE_MAILER_LITE_PLUGIN_DIR', trailingslashit(plugin_dir_path(__FILE__ ) ) );
@@ -198,6 +198,9 @@ final class Plugin
             $elementor = WP_PLUGIN_URL . '/elementor/';
             // get elementor pro plugin uri
             $elementor_pro = WP_PLUGIN_URL . '/elementor-pro/';
+            // add support for 3rd party plugin script loading
+            $query_monitor_plugin = WP_PLUGIN_URL . '/query-monitor/';
+            $debug_bar = WP_PLUGIN_URL . '/debug-bar/';
 
             foreach ($wp_scripts->registered as $wp_script) {
                 // check is this script comes from theme
@@ -222,6 +225,17 @@ final class Plugin
                         // keep this script to load
                         continue;
                     }
+                    // check is this script comes from query monitor plugin
+                    else if (strpos($wp_script->src, $query_monitor_plugin) !== false) {
+                        // keep this script to load
+                        continue;
+                    } 
+                    // check is this script comes from query monitor plugin
+                    else if (strpos($wp_script->src, $debug_bar) !== false) {
+                        // keep this script to load
+                        continue;
+                    }
+
                     // doesn't meet any condition
                     else {
                         // prevent this script from loading in our template editor page
@@ -253,6 +267,17 @@ final class Plugin
                         // keep this style to load
                         continue;
                     }
+                    // check is this style comes from Query monitor plugin
+                    else if (strpos($wp_style->src, $query_monitor_plugin) !== false) {
+                        // keep this style to load
+                        continue;
+                    }
+                    // check is this style comes from Query monitor plugin
+                    else if (strpos($wp_style->src, $debug_bar) !== false) {
+                        // keep this style to load
+                        continue;
+                    }
+
                     // doesn't meet any condition
                     else {
                         // prevent this style from loading in our template editor page

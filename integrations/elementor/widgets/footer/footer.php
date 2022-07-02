@@ -137,8 +137,9 @@ class Elemailer_Widget_Footer extends Widget_Base
         $this->add_control(
             'important_note',
             [
-                'label' => sprintf( __( 'Unsubscribe and Manage Subscription feature available only in <a href="%s" target="_blank">Elemailer</a>.', 'elemailer-lite' ), esc_url( 'https://elemailer.com/pricing/' ) ),
+                
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'raw' => sprintf( __( '<div style="font-size: 16px;line-height: 20px;">Unsubscribe and Manage Subscription feature available only in <a href="%s" target="_blank">Elemailer</a> paid version.</div>', 'elemailer-lite' ), esc_url( 'https://elemailer.com/pricing/' ) ),
                 'content_classes' => 'elemailer-lite-footer-promotion-text',
             ]
         );

@@ -36,3 +36,26 @@
     min-width: 100% !important;
     width: 100% !important;
 }
+#elementor-panel-get-pro-elements{
+background: #93003c;
+margin-top: 20px;
+}
+
+#elementor-panel-get-pro-elements img, #elementor-panel-get-pro-elements a{
+display: none;
+}
+#elementor-panel-get-pro-elements .elementor-nerd-box-message{
+visibility: hidden;
+font-size: 0px;
+}
+#elementor-panel-get-pro-elements .elementor-nerd-box-message::before{
+content: 'Get More with Elemailer Paid version \A';
+visibility: visible;
+font-size: 15px;
+  white-space: pre-wrap;
+}
+#elementor-panel-get-pro-elements .elementor-nerd-box-message::after{
+content: 'WooCommerce Emails, Newsletter, Subscriber, Lists, tracking and more!';
+visibility: visible;
+font-size: 10px;
+}
