@@ -378,7 +378,7 @@ class Util
 			<?php echo self::get_template_styles($template_id); ?>
 		</head>
 
-		<body>
+		<body class="elementor-page-<?php echo $template_id; ?> elemailer-send-template">
 			<?php echo $email_content; ?>
 
 			<?php $info=get_option('elemailer_lite_info');  // run footer branding only for new users after v-1.0.0

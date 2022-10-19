@@ -72,6 +72,10 @@ p {
 .elementor-column-gap-default>.elementor-row>.elementor-column>.elementor-element-populated {
     padding: 0px;
 }
+.elementor-column .elementor-element-populated .elementor-widget-wrap,
+.elementor-column .elementor-element-populated.elementor-widget-wrap{
+    padding: 10px;
+}
 .elementor-widget-wrap {
     width: 100%;
 }

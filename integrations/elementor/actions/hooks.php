@@ -108,7 +108,7 @@ class Hooks
         $element->add_control(
             'show_elemailer_email_template_selector',
             [
-                'label' => esc_html__('Use elemailer lite', 'elemailer-lite'),
+                'label' => esc_html__('Use Elemailer Lite', 'elemailer-lite'),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => esc_html__('Yes', 'elemailer-lite'),
                 'label_off' => esc_html__('No', 'elemailer-lite'),
@@ -120,7 +120,7 @@ class Hooks
         $element->add_control(
             'select_elemailer_email_template',
             [
-                'label' => esc_html__('Select elemailer lite', 'elemailer-lite'),
+                'label' => esc_html__('Select elemailer lite template', 'elemailer-lite'),
                 'type' => Controls_Manager::SELECT,
                 'label_block' => true,
                 'options' => \Elemailer_Lite\App\Form_Template\Action::instance()->get_all_template(),
@@ -202,6 +202,7 @@ class Hooks
             [
                 'label' => __('Background Type', 'elemailer-lite'),
                 'type' => Controls_Manager::SELECT,
+                'separator' => 'before',
                 'default' => 'color',
                 'options' => [
                     'color'  => __('Color', 'elemailer-lite'),

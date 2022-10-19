@@ -1,10 +1,10 @@
 === Elemailer Lite - Elementor email template & campaign builder ===
 Contributors: elemailer
 Tags: email, cf7, email template, elementor addons, email marketing,email template builder, elementor, contact form 7, email design, elementor form, free email builder
-Requires at least: 4.4
-Tested up to: 6.0
+Requires at least: 4.5
+Tested up to: 6.0.3
 Requires PHP: 7.2
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,9 +38,10 @@ You should have [Elementor Pro](https://elementor.com/pro/) installed if you wan
 
 == Features ==
 
-* You can create email templates with easy to use, drag and drop elementor editor.
-* Facility to use for contact form 7 form template
-* Facility to use it as form submission template for Elementor Pro's Form Widget. 
+* Create Email Templates with easy to use, drag and drop Elementor editor
+* No more custom HTML writing for creating emails
+* Design contact form 7 email templates
+* Design Elementor Pro's Form Widget's email template
 * Marketers can use it easily for sending our beautiful emails to clients on submission.
 * Create upto 3 email templates for your forms
 
@@ -48,11 +49,14 @@ You should have [Elementor Pro](https://elementor.com/pro/) installed if you wan
 <strong>The free version is enough for normal use case. But if you are a marketer or want to take advantage of more out of your site we invite you to check our pro version - <a target="_blank" href="https://elemailer.com">Elemailer</a></strong>
 
 💥 Remove limitation of 3 form templates
+💥 Background settings
+💥 Send test emails
 💥 Integartion to more forms (growing)
+💥 wp_mail override method to support almost all mail
 💥 Subscriber & Lists
 💥 Pro template library
 💥 Newsletter
-💥 Email Statistics
+💥 Email Statistics/Tracking
 💥 Import Lists and Subscribers
 💥 Design Mailpoet emails with Elementor
 💥 Design WooCommerce Emails with Elementor
@@ -100,6 +104,12 @@ You may go to wp-admin > Elemailer > Setting > Select Remove footer branding > H
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 1.4 =
+* Fix: Preview & Email different because of 10px gap missing for columns
+* Fix: Compatiblity with Latest WP & Elementor
+* Tweak: Fixed some wording
+* Tweak: Changed icon color
+* Tweak: Added class in body for future update support
 = 1.3 =
 * Fix: Compatiblity with Latest WP & Elementor
 * Fix: Compatiblity with Debug bar & debu log plugin
