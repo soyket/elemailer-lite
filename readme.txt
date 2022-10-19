@@ -1,6 +1,6 @@
 === Elemailer Lite - Elementor email template & campaign builder ===
 Contributors: elemailer
-Tags: email, cf7, email template, elementor addons, email marketing,email template builder, elementor, contact form 7, email design, elementor form, free email builder
+Tags: email, cf7, email template, elementor addons, email marketing, email template builder, elementor, contact form 7, email design, woocommerce email customizer, free email builder
 Requires at least: 4.5
 Tested up to: 6.0.3
 Requires PHP: 7.2
