@@ -173,7 +173,11 @@ class Hooks
      */
     public function remove_container_experiment( $document ) {
           if(isset( $_GET['post']) && in_array( get_post_type($_GET['post']), ['em-form-template', 'em-emails-template'] ) ){
-            $document->remove_feature( 'container');          
+            $document->remove_feature( 'container'); 
+
+            // patch for fixing fatal error on elementor loop builder as it reqires container. So we are initializing fake loop
+            $document->add_feature( ['name' => 'loop']  ); 
+         
           }
     }
 

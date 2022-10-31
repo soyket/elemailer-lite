@@ -4,7 +4,7 @@ Tags: email, cf7, email template, elementor addons, email marketing, email templ
 Requires at least: 4.5
 Tested up to: 6.0.3
 Requires PHP: 7.2
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,6 +104,8 @@ You may go to wp-admin > Elemailer > Setting > Select Remove footer branding > H
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 1.5 =
+* Fix: Fatal error with Elementor 3.8 update
 = 1.4 =
 * Fix: Preview & Email different because of 10px gap missing for columns
 * Fix: Compatiblity with Latest WP & Elementor
