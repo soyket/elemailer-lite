@@ -176,7 +176,7 @@ class Hooks
             $document->remove_feature( 'container'); 
 
             // patch for fixing fatal error on elementor loop builder as it reqires container. So we are initializing fake loop
-            $document->add_feature( ['name' => 'loop']  ); 
+            require_once('container.php');
          
           }
     }
