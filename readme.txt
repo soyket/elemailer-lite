@@ -105,7 +105,7 @@ Update the plugin either via wp dashboard or via FTP. After the update makes sur
 
 == Changelog ==
 = 1.7 =
-* Tweak: Compatiblity with latest WP version
+* Tweak: Compatibility with latest WP version
 * New: WPML support started (ongoing)
 = 1.6 =
 * Fix: Fatal error with Elementor 3.10 update
@@ -113,13 +113,13 @@ Update the plugin either via wp dashboard or via FTP. After the update makes sur
 * Fix: Fatal error with Elementor 3.8 update
 = 1.4 =
 * Fix: Preview & Email different because of 10px gap missing for columns
-* Fix: Compatiblity with Latest WP & Elementor
+* Fix: Compatibility with Latest WP & Elementor
 * Tweak: Fixed some wording
 * Tweak: Changed icon color
 * Tweak: Added class in body for future update support
 = 1.3 =
-* Fix: Compatiblity with Latest WP & Elementor
-* Fix: Compatiblity with Debug bar & debu log plugin
+* Fix: Compatibility with Latest WP & Elementor
+* Fix: Compatibility with Debug bar & debu log plugin
 * Tweak: CSS fixes
 = 1.2 =
 * Fix: CSS fix for email
