@@ -2,9 +2,9 @@
 Contributors: elemailer
 Tags: email, cf7, email template, elementor addons, email marketing, email template builder, elementor, contact form 7, email design, woocommerce email customizer, free email builder
 Requires at least: 4.5
-Tested up to: 6.0.3
+Tested up to: 6.1.1
 Requires PHP: 7.2
-Stable tag: 1.6
+Stable tag: 1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,6 +104,9 @@ You may go to wp-admin > Elemailer > Setting > Select Remove footer branding > H
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 1.7 =
+* Tweak: Compatiblity with latest WP version
+* New: WPML support started (ongoing)
 = 1.6 =
 * Fix: Fatal error with Elementor 3.10 update
 = 1.5 =
