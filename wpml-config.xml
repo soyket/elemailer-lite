@@ -5,7 +5,7 @@
         <condition key="widgetType">elemailer-heading</condition>
       </conditions>
       <fields>
-        <field type="title" editor_type="LINE">title</field>
+        <field type="Heading Title" editor_type="LINE">title</field>
         <field type="Heading Link" editor_type="LINK">link>url</field>
       </fields>
     </widget>
