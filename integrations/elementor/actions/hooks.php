@@ -36,6 +36,8 @@ class Hooks
 
         // remove container experiement inside elemailer since @1.2
         add_action( 'elementor/experiments/default-features-registered', [$this, 'remove_container_experiment'],1);
+        
+        add_filter( 'elementor/admin/localize_settings', [$this, 'remove_all_experiment_requirement'],1);
 
     }
 
@@ -173,12 +175,24 @@ class Hooks
      */
     public function remove_container_experiment( $document ) {
           if(isset( $_GET['post']) && in_array( get_post_type($_GET['post']), ['em-form-template', 'em-emails-template'] ) ){
-            $document->remove_feature( 'container'); 
+          
+          $document->remove_feature( 'container'); 
 
-            // patch for fixing fatal error on elementor loop builder as it reqires container. So we are initializing fake loop
-            require_once('container.php');
+         // @since 1.8 we no longer need it because of remove_all_experiement_requirement system. we will remove it later
+         // patch for fixing fatal error on elementor loop builder as it reqires container. So we are initializing fake loop
+         // require_once('container.php');
          
           }
+    }
+    public function remove_all_experiment_requirement( $settings ) {
+          if(isset( $_GET['post']) && in_array( get_post_type($_GET['post']), ['em-form-template', 'em-emails-template'] ) ){
+           
+            $settings['experiments']='';
+            
+            return $settings; //return empty expreiemt list for our post types
+         
+          }
+          return $settings; // return original value
     }
 
     /**

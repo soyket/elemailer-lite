@@ -31,6 +31,7 @@ class Base
         $this->api = new Api();
 
         add_action('admin_footer', [$this, 'modal_view']);
+        add_action( 'publish_em-form-template', [$this, 'our_elemailer_lite_post_number_max'],10,3);
 
         /**
          * Custom column in list table for showing shortcode
@@ -68,7 +69,7 @@ class Base
      */
 
     public function admin_column_elemailer_form_shortcode($columns){
-         $columns["shortcode"] = 'Shortcode<style>th#shortcode {text-align: center;}.column-shortcode { text-align: center; vertical-align: middle; width: 300px !important;}</style>';
+         $columns["shortcode"] = 'Shortcode<style>th#shortcode {text-align: left;}.column-shortcode {padding-left:3%!important;} .inline-edit-em-form-template .inline-edit-status {display:none!important; }</style>';
          return $columns;
     }
 
@@ -80,8 +81,28 @@ class Base
      */
 
     public function admin_column_elemailer_form_shortcode_display($column, $post_id ){
-        if ( $column == 'shortcode'){
-            echo '[elemailer:id="'.$post_id.'"]';
+        if ( $column == 'shortcode'){ 
+        ?>
+
+            <input class="elementor-shortcode-input" type="text" readonly="" onfocus="this.select()" value='[elemailer:id="<?php echo $post_id; ?>"]' >
+        <?php
+
         }
     }
+
+    public function our_elemailer_lite_post_number_max($post_id, $post, $old_status){
+
+        $count_property = wp_count_posts('em-form-template')->publish;
+
+        if ( $count_property > 3 && $old_status!=='publish' ) {
+            // count too high, let's set it to not published.
+
+            //$post = array('post_status' => 'draft');
+            $post->post_status= 'draft';
+
+            wp_update_post( $post );
+
+        }
+    }
+  
 }
