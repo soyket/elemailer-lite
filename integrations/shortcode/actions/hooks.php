@@ -68,6 +68,8 @@ class Hooks
 
         $match = isset($data[0][0]) ? $data[0][0] : false;
         $id = rtrim(ltrim($match, '[elemailer:id="'), '"]');
+        
+        if ( get_post_status ( $id ) !== 'publish' ) return $shortcode;
 
         $html = \Elemailer_Lite\Helpers\Util::get_template_content($id);
         $html = \Elemailer_Lite\Helpers\Util::get_email_html_template($id, $html);

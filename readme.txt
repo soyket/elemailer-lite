@@ -109,6 +109,7 @@ Update the plugin either via wp dashboard or via FTP. After the update makes sur
 * Fix: Fatal error if template wp editor is accessed
 * Tweak: Fixed some loopholes for better restriction
 * Tweak: Elemailer Shortcode box UI fixes
+* Tweak: Remove default underline from links on apple devices
 = 1.7 =
 * Tweak: Compatibility with latest WP version
 * New: WPML support started (ongoing)

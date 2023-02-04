@@ -50,6 +50,10 @@ p {
     font-size: 14px;
     line-height: 24px;
 }
+a{
+    text-decoration: unset;
+    text-decoration: none;
+}
 .elementor *, 
 .elementor {
     -webkit-box-sizing: border-box;
