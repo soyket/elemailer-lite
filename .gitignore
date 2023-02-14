@@ -2,3 +2,4 @@
 
 # Leave node_modules from git
 node_modules/
+app/form-template/view/default-elementor-style.php

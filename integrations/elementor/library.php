@@ -256,7 +256,6 @@ class Library{
         }
         $version = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? time() : ELE_MAILER_LITE_VERSION;
         wp_enqueue_style( 'elemailer-elementor-admin-page', ELE_MAILER_LITE_PLUGIN_URL . 'integrations/elementor/assets/css/elemailer-elementor-admin-style.css', false, $version );
-        wp_style_add_data( 'elemailer-elementor-admin-page', 'rtl', 'replace' );
     }
 
     /**
