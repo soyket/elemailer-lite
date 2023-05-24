@@ -143,11 +143,13 @@ class Elemailer_Widget_Button extends Widget_Base
 			[
 				'label' => __('Color', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_3,
-				],
 				'default' => '#fff',
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 
 			]
 		);
@@ -157,11 +159,13 @@ class Elemailer_Widget_Button extends Widget_Base
 			[
 				'label' => __('Background', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_1,
-				],
 				'default' => '#61CE70',
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 
 			]
 		);
@@ -242,6 +246,12 @@ class Elemailer_Widget_Button extends Widget_Base
 				'condition' => [
 					'advance_background_type' => 'color',
 				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 			]
 		);
 

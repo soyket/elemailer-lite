@@ -97,7 +97,7 @@ class Library{
         /* translators: %s are link. */
         $license_msg      = sprintf( __( 'This is a premium template. you can purchase it from <a href="%s" target="_blank">here</a>.', 'elemailer-lite' ), 'https://elemailer.com/pricing/' );
         /* translators: %s are link. */
-        $license_msg_save = sprintf( __( 'Save template feature is available only in <a href="%s" target="_blank">Elemailer</a>.', 'elemailer-lite' ), 'https://elemailer.com/pricing/' );
+        $license_msg_save = sprintf( __( 'Save Email template feature is available only in <a href="%s" target="_blank">Elemailer</a> paid version.', 'elemailer-lite' ), 'https://elemailer.com/pricing/' );
 
         $data = apply_filters(
             'elemailer_render_localize_vars',
@@ -118,6 +118,7 @@ class Library{
                 'getProText'           => __( 'Get Access!', 'elemailer-lite' ),
                 'syncCompleteMessage'  => __( 'Template library refreshed!', 'elemailer-lite' ),
                 'confirmDeleteMessage' => __( 'Are you sure you want to delete?', 'elemailer-lite' ),
+                'public_asset_dir'     => ELE_MAILER_LITE_PLUGIN_PUBLIC,
                 'getProURL'            => esc_url( 'https://elemailer.com/pricing/?utm_source=demo-import-panel&utm_campaign=elemailer-lite&utm_medium=wp-dashboard' ),
 
             )

@@ -119,11 +119,13 @@ class Elemailer_Widget_Heading extends Widget_Base
 			[
 				'label' => __('Color', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_1,
-				],
 				'default' => '#6EC1E4',
+				'dynamic' => [
+					'active' => false,
+				],
+				'global' => [
+					'active' => false,
+				],
 			]
 		);
 
@@ -227,6 +229,12 @@ class Elemailer_Widget_Heading extends Widget_Base
 				'condition' => [
 					'advance_background_type' => 'color',
 				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 			]
 		);
 

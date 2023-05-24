@@ -200,6 +200,12 @@ class Elemailer_Widget_Image extends Widget_Base
 				'condition' => [
 					'advance_background_type' => 'color',
 				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 			]
 		);
 
@@ -225,6 +231,10 @@ class Elemailer_Widget_Image extends Widget_Base
 		$settings = $this->get_settings_for_display();
 
 		$void_email_image = isset($settings['void_email_image']['url']) ? $settings['void_email_image']['url'] : '';
+		$void_email_image_alt = \Elementor\Control_Media::get_image_alt( $settings['void_email_image'] );
+		$void_email_image_title = \Elementor\Control_Media::get_image_title( $settings['void_email_image'] );
+
+
 		$alignment = isset($settings['text_align']) ? $settings['text_align'] : 'left';
 
 		$image_link_type = (($settings['image_link_type'] != '') ? $settings['image_link_type'] : 'none');
@@ -242,9 +252,9 @@ class Elemailer_Widget_Image extends Widget_Base
 
 		<div style=" text-align: <?php echo esc_attr($alignment); ?>; <?php echo esc_attr($advance_style); ?>;" class="void-email-image">
 			<?php if ($image_link_type == 'custom_url') : ?>
-				<a href="<?php echo esc_url($image_link); ?>">
+				<a href="<?php echo esc_url(do_shortcode($image_link)); ?>">
 				<?php endif; ?>
-				<img style="<?php echo esc_attr($image_styles); ?>" src="<?php echo esc_url($void_email_image) ?>" alt="">
+				<img width="<?php echo ($settings['width']['size'] ? $settings['width']['size'] : '600'); ?>%" style="<?php echo esc_attr($image_styles); ?>" src="<?php echo esc_url($void_email_image) ?>" alt="<?php echo $void_email_image_alt; ?>" title="<?php echo $void_email_image_title; ?>" >
 				<?php if ($image_link_type == 'custom_url') : ?>
 				</a>
 			<?php endif; ?>

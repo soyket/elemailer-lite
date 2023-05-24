@@ -255,26 +255,34 @@
 
     });
 
+    // remove extra control of section control hooks 
     elementor.hooks.addAction('panel/open_editor/section', function (panel, model, view) {
         elemailer_hide_unwanted_section_controls();
 
         function elemailer_hide_unwanted_section_controls() {
-            // panel.$el.find('#elementor-panel-content-wrapper').find('#elementor-panel-page-editor').find('.elementor-panel-navigation').find('.elementor-tab-control-layout').removeClass('elementor-active');
             panel.$el.find('#elementor-panel-content-wrapper').find('#elementor-panel-page-editor').find('.elementor-panel-navigation').find('.elementor-tab-control-style').find('a').trigger('click');
+            panel.$el.find('#elementor-panel-content-wrapper').find('#elementor-panel-page-editor').find('.elementor-panel-navigation').find('.elementor-tab-control-style').trigger('click'); // needed for new version of elementor
             panel.$el.find('#elementor-panel-content-wrapper').find('#elementor-panel-page-editor').find('.elementor-panel-navigation').find('.elementor-tab-control-layout').hide();
 
             var parentLayoutControls = panel.$el.find('#elementor-panel-content-wrapper').find('#elementor-panel-page-editor').find('#elementor-controls');
             var layoutControlsChildrens = parentLayoutControls.children();
-            layoutControlsChildrens.eq(0).css('display', 'none');
-            layoutControlsChildrens.eq(1).css('display', 'none');
-            layoutControlsChildrens.eq(2).css('display', 'none');
 
-            layoutControlsChildrens.eq(-4).css('display', 'none');
-            layoutControlsChildrens.eq(-3).css('display', 'none');
-            layoutControlsChildrens.eq(-2).css('display', 'none');
-            layoutControlsChildrens.eq(-1).css('display', 'none');
-            layoutControlsChildrens.eq(-7).css('margin-top', '10px');
-            layoutControlsChildrens.eq(-7).css('padding-top', '20px');
+            for (let i = 0; i < layoutControlsChildrens.length; i++) {
+                if( !layoutControlsChildrens.eq(i).prop('class').includes("elemailer-section-control") ){
+                        layoutControlsChildrens.eq(i).css('display', 'none');
+                }
+            }
+
+            // layoutControlsChildrens.eq(0).css('display', 'none');
+            // layoutControlsChildrens.eq(1).css('display', 'none');
+            // layoutControlsChildrens.eq(2).css('display', 'none');
+
+            // layoutControlsChildrens.eq(-4).css('display', 'none');
+            // layoutControlsChildrens.eq(-3).css('display', 'none');
+            // layoutControlsChildrens.eq(-2).css('display', 'none');
+            // layoutControlsChildrens.eq(-1).css('display', 'none');
+            // layoutControlsChildrens.eq(-7).css('margin-top', '10px');
+            // layoutControlsChildrens.eq(-7).css('padding-top', '20px');
         }
 
     });

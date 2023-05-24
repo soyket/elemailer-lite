@@ -42,6 +42,7 @@
             if (elementorCommon) {
 
                 $('body').on("click", "#elementor-panel-footer-sub-menu-item-save-template", ElemailerElementorAdmin._restrictSaveTemplate);
+                $('body').on("click", ".elementor-context-menu-list__group.elementor-context-menu-list__group-save", ElemailerElementorAdmin._restrictSaveTemplate);
 
                 let add_section_tmpl = $("#tmpl-elementor-add-section");
 
@@ -104,6 +105,7 @@
 
             $(".elementor-template-library-blank-title").html( elemailerElementorData.getProText );
             $(".elementor-template-library-blank-message").html( elemailerElementorData.license_msg_save );
+            $(".elementor-template-library-blank-message").append('<a href="https://elemailer.com/" target="_blank"><img src="'+elemailerElementorData.public_asset_dir+'/assets/img/elemailer-banner.png" style=" width: 100vh; display: block; margin: auto; margin-top: 16px; "></a>');
         },
 
         _open: function (e) {

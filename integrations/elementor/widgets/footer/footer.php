@@ -97,10 +97,12 @@ class Elemailer_Widget_Footer extends Widget_Base
 			[
 				'label' => __('Text Color', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_3,
-				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 				'default' => '#000',
 			]
 		);
@@ -200,6 +202,12 @@ class Elemailer_Widget_Footer extends Widget_Base
 				'condition' => [
 					'advance_background_type' => 'color',
 				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 			]
 		);
 

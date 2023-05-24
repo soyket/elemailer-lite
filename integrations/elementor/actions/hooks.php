@@ -222,6 +222,7 @@ class Hooks
                 'type' => Controls_Manager::SELECT,
                 'separator' => 'before',
                 'default' => 'color',
+                'classes' => 'elemailer-section-control',
                 'options' => [
                     'color'  => __('Color', 'elemailer-lite'),
                     'image' => __('Image', 'elemailer-lite'),
@@ -234,11 +235,18 @@ class Hooks
             [
                 'label' => __('Background Color', 'elemailer-lite'),
                 'type' => Controls_Manager::COLOR,
+                'classes' => 'elemailer-section-control',
                 'condition' => [
                     'section_background_type' => 'color',
                 ],
                 'selectors' => [
                     '{{WRAPPER}} > .elementor-container' => 'background: {{VALUE}};',
+                ],
+                'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
                 ],
             ]
         );
@@ -248,6 +256,7 @@ class Hooks
             [
                 'label' => __('Choose Image', 'elemailer-lite'),
                 'type' => Controls_Manager::MEDIA,
+                'classes' => 'elemailer-section-control',
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
                 ],

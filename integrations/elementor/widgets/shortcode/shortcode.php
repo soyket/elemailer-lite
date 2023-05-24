@@ -171,10 +171,12 @@ class Elemailer_Widget_Shortcode extends Widget_Base
 			[
 				'label' => __('Color', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_1,
-				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 				'default' => '#93003C',
 			]
 		);
@@ -213,10 +215,12 @@ class Elemailer_Widget_Shortcode extends Widget_Base
 			[
 				'label' => __('Color', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_2,
-				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 				'default' => '#000',
 			]
 		);

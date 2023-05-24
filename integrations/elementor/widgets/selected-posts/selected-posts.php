@@ -331,10 +331,12 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 			[
 				'label' => __('Color', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_1,
-				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 				'default' => '#000',
 
 			]
@@ -401,10 +403,12 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 			[
 				'label' => __('Color', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_1,
-				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 				'default' => '#000',
 
 			]
@@ -471,10 +475,12 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 			[
 				'label' => __('Color', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_1,
-				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 				'default' => '#000',
 
 			]
@@ -559,6 +565,12 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 				'condition' => [
 					'advance_background_type' => 'color',
 				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 			]
 		);
 

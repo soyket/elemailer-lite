@@ -1220,6 +1220,7 @@
     margin-right: 0;
     max-height: calc( 100vh - 160px );
     height: auto;
+    text-align: center;
 }
 
 #elemailer-lite-modal .elemailer-lite-floating-notice-wrap {

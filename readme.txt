@@ -2,9 +2,9 @@
 Contributors: elemailer
 Tags: email, cf7, email template, elementor addons, email marketing, email template builder, elementor, contact form 7, email design, woocommerce email customizer, free email builder
 Requires at least: 4.5
-Tested up to: 6.1.1
+Tested up to: 6.2.2
 Requires PHP: 7.2
-Stable tag: 1.8
+Stable tag: 1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,8 @@ You should have [Elementor Pro](https://elementor.com/pro/) installed if you wan
 💥 Remove limitation of 3 form templates
 💥 Background settings
 💥 Send test emails
+💥 Custom CSS & CSS Class
+💥 Custom HTML
 💥 Integartion to more forms (growing)
 💥 wp_mail override method to support almost all mail
 💥 Subscriber & Lists
@@ -104,6 +106,11 @@ You may go to wp-admin > Elemailer > Setting > Select Remove footer branding > H
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 1.9 =
+* Tweak: Compatibility with Latest Elementor & WordPress
+* Tweak: Added Title & Alt in images for widgets
+* Tweak: Remove global & dynmic option as they will not work
+* Fix: Fixed few editor panel layout issue
 = 1.8 =
 * Fix: Compatibility with Elementor experiments
 * Fix: Fatal error if template wp editor is accessed

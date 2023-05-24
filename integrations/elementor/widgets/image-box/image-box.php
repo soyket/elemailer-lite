@@ -229,10 +229,12 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 			[
 				'label' => __('Color', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_3,
-				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 				'default' => '#6EC1E4',
 			]
 		);
@@ -314,10 +316,12 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 			[
 				'label' => __('Color', 'elemailer-lite'),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Color::get_type(),
-					'value' => Color::COLOR_3,
-				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 				'default' => '#000',
 			]
 		);
@@ -398,6 +402,12 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 				'condition' => [
 					'advance_background_type' => 'color',
 				],
+				'dynamic' => [
+                    'active' => false,
+                ],
+                'global' => [
+                    'active' => false,
+                ],
 			]
 		);
 
@@ -423,6 +433,9 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 		$settings = $this->get_settings_for_display();
 
 		$void_email_image = ($settings['void_email_image']['url'] != '') ? $settings['void_email_image']['url'] : '';
+		$void_email_image_alt = \Elementor\Control_Media::get_image_alt( $settings['void_email_image'] );
+		$void_email_image_title = \Elementor\Control_Media::get_image_title( $settings['void_email_image'] );
+
 
 		$email_image_text_title = $settings['void_email_title'];
 		$email_image_text_description = $settings['void_email_description'];
@@ -479,7 +492,7 @@ class Elemailer_Widget_Image_Box extends Widget_Base
 
 ?>
 		<div style="text-align: <?php echo esc_attr($alignment); ?>; <?php echo esc_attr($advance_style); ?> " class="void-email-image-box">
-			<img style="<?php echo esc_attr($image_styles); ?>" src="<?php echo esc_url($void_email_image) ?>" alt="">
+			<img width="<?php echo $image_width; ?>" style="<?php echo esc_attr($image_styles); ?>" src="<?php echo esc_url($void_email_image) ?>" alt="<?php echo $void_email_image_alt; ?>" title="<?php echo $void_email_image_title; ?>">
 
 			<div style="<?php echo esc_attr($image_title_text_position_css); ?>text-align: <?php echo esc_attr($alignment); ?>;" class="ib-content">
 				<h3 style="<?php echo esc_attr($title_styles); ?>"><?php echo esc_html($email_image_text_title); ?></h3>

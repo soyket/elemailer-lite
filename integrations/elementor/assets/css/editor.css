@@ -22,8 +22,12 @@
 #elementor-panel-inner #elementor-panel-content-wrapper #elementor-panel-elements-navigation div[data-tab="global"] {
     display: none;
 }
-/* hide search button for avoiding show others widgets during search */
-#elementor-panel-inner #elementor-panel-content-wrapper #elementor-panel-page-elements #elementor-panel-elements-search-area {
+/* hide left editor panel global widget selection system as the above don't work with update */
+#elementor-panel-elements-navigation{
+    display: none;
+}
+/* hide search button for avoiding show others widgets during search + hide panel notice*/
+#elementor-panel-inner #elementor-panel-content-wrapper #elementor-panel-page-elements #elementor-panel-elements-search-area, #elementor-panel-content-wrapper #elementor-panel-elements-notice-area {
     display: none;
 }
 /* hide settings for avoiding unwanted controls and styles */
@@ -39,6 +43,7 @@
 #elementor-panel-get-pro-elements{
 background: #93003c;
 margin-top: 20px;
+color:#fff;
 }
 
 #elementor-panel-get-pro-elements img, #elementor-panel-get-pro-elements a{
@@ -49,13 +54,16 @@ visibility: hidden;
 font-size: 0px;
 }
 #elementor-panel-get-pro-elements .elementor-nerd-box-message::before{
-content: 'Get More with Elemailer Paid version \A';
+content: 'Get More with Elemailer Pro \A';
 visibility: visible;
 font-size: 15px;
   white-space: pre-wrap;
 }
+#elementor-panel-get-pro-elements{
+    display: block!important;
+}
 #elementor-panel-get-pro-elements .elementor-nerd-box-message::after{
-content: 'WooCommerce Emails, Newsletter, Subscriber, Lists, tracking and more!';
+content: 'Custom CSS, Custom HTML, Email tests, Body background controls, WooCommerce Emails, Newsletter, Subscriber, Lists, tracking and more!';
 visibility: visible;
 font-size: 10px;
 }
