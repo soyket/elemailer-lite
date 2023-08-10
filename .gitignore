@@ -1,5 +1,7 @@
+# Ignore Mac DS_Store files
 .DS_Store
+**/.DS_Store
 
 # Leave node_modules from git
 node_modules/
-app/form-template/view/default-elementor-style.php
+#app/form-template/view/default-elementor-style.php
