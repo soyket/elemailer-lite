@@ -2,9 +2,9 @@
 Contributors: elemailer
 Tags: email, cf7, email template, elementor addons, email marketing, email template builder, elementor, contact form 7, email design, woocommerce email customizer, free email builder
 Requires at least: 4.5
-Tested up to: 6.2.2
+Tested up to: 6.3
 Requires PHP: 7.2
-Stable tag: 1.9
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,19 +44,22 @@ You should have [Elementor Pro](https://elementor.com/pro/) installed if you wan
 * Design Elementor Pro's Form Widget's email template
 * Marketers can use it easily for sending our beautiful emails to clients on submission.
 * Create upto 3 email templates for your forms
+* Use the power of AI to write email content, Edit/Create images with Elementor AI for free*
+
 
 <blockquote>
 <strong>The free version is enough for normal use case. But if you are a marketer or want to take advantage of more out of your site we invite you to check our pro version - <a target="_blank" href="https://elemailer.com">Elemailer</a></strong>
 
 💥 Remove limitation of 3 form templates
 💥 Background settings
-💥 Send test emails
+💥 Typography/font control for widgets (WebSafe)
+💥 Send Test Emails
 💥 Custom CSS & CSS Class
-💥 Custom HTML
+💥 Custom HTML Widget
 💥 Integartion to more forms (growing)
-💥 wp_mail override method to support almost all mail
+💥 wp_mail override method to make it possible to use Elemailer template anywhere
 💥 Subscriber & Lists
-💥 Pro template library
+💥 Pro template library (growing)
 💥 Newsletter
 💥 Email Statistics/Tracking
 💥 Import Lists and Subscribers
@@ -106,6 +109,10 @@ You may go to wp-admin > Elemailer > Setting > Select Remove footer branding > H
 Update the plugin either via wp dashboard or via FTP. After the update makes sure you clear your browser cache.
 
 == Changelog ==
+= 2.0 =
+* Tweak: Compatibility with Latest Elementor & WordPress
+* Fix: Removed Elementor experiments to avoid confusion
+* Fix: Other widgets that are not of Elemailer was pastable
 = 1.9 =
 * Tweak: Compatibility with Latest Elementor & WordPress
 * Tweak: Added Title & Alt in images for widgets
