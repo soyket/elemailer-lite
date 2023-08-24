@@ -50,9 +50,32 @@ p {
     font-size: 14px;
     line-height: 24px;
 }
+img {
+    width: 100%;
+}
 a{
     text-decoration: unset;
     text-decoration: none;
+    font-weight: 600;
+    line-height: initial;
+    box-shadow: none;
+    cursor: pointer;
+}
+.void-section-text p,
+.void-section-text h1,
+.void-section-text h2,
+.void-section-text h3,
+.void-section-text h4,
+.void-section-text h5,
+.void-section-text h6 {
+    margin: 0px auto;
+    display: block; 
+    font-family: Arial,Helvetica,sans-serif;
+    color: #000;
+}
+h1:before,
+h2:before {
+    display: none !important;
 }
 .elementor *, 
 .elementor {
@@ -60,11 +83,21 @@ a{
     box-sizing: border-box;
     overflow: auto;
 }
-.elementor .elementor-inner,
-.elementor-section-wrap,
-.elementor-section{
+ul li,ol li,ul,ol{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 0px;
+    overflow: visible!important;
+}
+.elementor .elementor-inner, 
+.elementor-section,
+.elementor-section-wrap{
     max-width: 600px;
     margin: 0 auto;
+}
+.elementor-widget:not(:last-child) {
+    margin: 0px !important;
 }
 .elementor-section .elementor-container {
     margin-right: auto;
@@ -86,6 +119,7 @@ a{
 .elementor:not(.elementor-bc-flex-widget) .elementor-widget-wrap {
     width: 100%;
 }
+
 .elementor-widget {
     width: 100%;
 }
@@ -118,10 +152,15 @@ a{
     width: 100%;
     display: block;
 }
-
 .elemailer-play-icon{
     height: 100%;
     width: 100%;
+}
+.void-email-image-box h3,.void-email-image-box p, .ele-footer-text p, .ele-unsubscribe a{
+    line-height: initial;
+}
+.ele-unsubscribe a{
+    text-decoration: underline;
 }
 
 /* Default elementor CSS for layout and basic structures END */

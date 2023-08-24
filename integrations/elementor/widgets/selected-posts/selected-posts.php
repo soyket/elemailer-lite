@@ -9,8 +9,6 @@ use \Elementor\Controls_Manager;
 
 use \Elementor\Utils;
 
-use \Elementor\Core\Schemes\Color;
-
 
 class Elemailer_Widget_Selected_Posts extends Widget_Base
 {

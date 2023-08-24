@@ -291,8 +291,8 @@ class Library{
 
         $template_id = isset( $_POST['template_id'] ) ? sanitize_text_field( $_POST['template_id'] ) : '';
 
-        wp_delete_post( $template_id, ture );
-
+        wp_delete_post( $template_id, TRUE );
+        
         wp_send_json_success( 1 );
     }
 

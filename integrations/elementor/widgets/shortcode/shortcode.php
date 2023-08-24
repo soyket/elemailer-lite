@@ -6,7 +6,6 @@ defined('ABSPATH') || exit;
 
 use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
-use \Elementor\Core\Schemes\Color;
 use \Elementor\Utils;
 /**
  * shortcode widget class for registering shortcode widget

@@ -28,7 +28,7 @@ class Base
 		add_action('elementor/elements/categories_registered', [$this, 'add_elementor_widget_categories']);
 
 		// register widgets hook for elementor editor
-		add_action('elementor/widgets/register', [$this, 'on_widgets_registered']);
+		add_action('elementor/widgets/register', [$this, 'on_widgets_registered'],100);
 	}
 
 	/**
@@ -69,6 +69,7 @@ class Base
 	 */
 	public function on_widgets_registered()
 	{
+		$this->remove_widgets();	// remove all widget before registaring our own widgets hookd with 100 delay
 		$this->includes();
 		$this->register_widget();
 	}
@@ -91,6 +92,28 @@ class Base
 			require_once ELE_MAILER_LITE_PLUGIN_DIR . 'integrations/elementor/widgets/' . $widget . '/' . $widget . '.php';
 		}
 	}
+
+	private function remove_widgets(){
+		if(!in_array( get_post_type(), ['em-form-template', 'em-emails-template'] ) ){
+            return;
+        } 
+
+		$all_widgets_config=\Elementor\Plugin::instance()->widgets_manager->get_widget_types();
+		
+		$all_widget_names=array_keys($all_widgets_config);
+
+		//unset($all_widget_names['common']);
+
+		foreach($all_widget_names as $name){
+
+			if($name=='common'){
+
+			}else{
+				\Elementor\Plugin::instance()->widgets_manager->unregister($name);
+			}		
+		}
+	}
+
 
 	/**
 	 * Register Widget

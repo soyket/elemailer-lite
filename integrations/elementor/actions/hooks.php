@@ -34,6 +34,10 @@ class Hooks
         // add custom background control in section control
         add_action('elementor/element/section/section_background/before_section_end', [$this, 'section_background'], 10, 2);
 
+        // change the title of the setting panel for our email type
+        add_filter('elementor/document/config', [$this, 'register_document_config'],10,2);
+
+
         // remove container experiement inside elemailer since @1.2
         add_action( 'elementor/experiments/default-features-registered', [$this, 'remove_container_experiment'],1);
         
@@ -174,16 +178,23 @@ class Hooks
      * @since 1.2
      */
     public function remove_container_experiment( $document ) {
-          if(isset( $_GET['post']) && in_array( get_post_type($_GET['post']), ['em-form-template', 'em-emails-template'] ) ){
+        if(isset( $_GET['post']) && in_array( get_post_type($_GET['post']), ['em-form-template', 'em-emails-template'] ) ){
           
-          $document->remove_feature( 'container'); 
+        $document->remove_feature( 'container'); 
 
          // @since 1.8 we no longer need it because of remove_all_experiement_requirement system. we will remove it later
          // patch for fixing fatal error on elementor loop builder as it reqires container. So we are initializing fake loop
          // require_once('container.php');
+
+        add_filter( 'pre_option_elementor_experiment-editor_v2', function() {
+            return 'inactive';
+             } );
+
          
           }
     }
+
+    
     public function remove_all_experiment_requirement( $settings ) {
           if(isset( $_GET['post']) && in_array( get_post_type($_GET['post']), ['em-form-template', 'em-emails-template'] ) ){
            
@@ -194,6 +205,20 @@ class Hooks
           }
           return $settings; // return original value
     }
+
+    // passed array, id of the page
+    public function register_document_config($obj, $id){
+
+        if(!in_array( get_post_type($id), ['em-form-template', 'em-emails-template'] ) ){
+            return;
+        } 
+
+        $obj['settings']['panelPage']['title'] = __('Email Settings','elemailer');
+        $obj['urls']['exit_to_dashboard'] =  empty(wp_get_referer()) ? admin_url() : wp_get_referer();
+        
+        return $obj;
+    }
+
 
     /**
      * custom control add in section of elementor for adding background

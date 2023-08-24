@@ -372,7 +372,7 @@ class Elemailer_Widget_Social extends Widget_Base
 			<?php foreach ($socials as $key => $value) : ?>
 				<a style="display: inline-block; overflow:hidden;" href="<?php echo esc_url(isset($value['social_link']['url']) ? $value['social_link']['url'] : ''); ?>">
 					<?php $src = isset($value['select_social_media']) ? plugin_dir_url(__FILE__) . 'assets/social-icons/' . $icon_type . $value['select_social_media'] . '-48.png' : ''; ?>
-					<img style="<?php echo esc_attr($icons_styles); ?>" src="<?php echo esc_url($src); ?>" alt="">
+					<img style="<?php echo esc_attr($icons_styles); ?>" src="<?php echo esc_url($src); ?>" alt="social icon">
 				</a>
 			<?php endforeach; ?>
 		</div>

@@ -7,8 +7,6 @@ defined('ABSPATH') || exit;
 use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 use \Elementor\Utils;
-
-use \Elementor\Core\Schemes\Color;
 use \Elemailer_Lite\Helpers\Util;
 
 /**

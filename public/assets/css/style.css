@@ -1,4 +1,5 @@
-/* Default elementor CSS for layout and basic structures START */
+/* Loaded for the editor / front end only not sent in email...
+Default elementor CSS for layout and basic structures START */
 h1,
 h2,
 h3,
@@ -50,22 +51,38 @@ p {
     font-size: 14px;
     line-height: 24px;
 }
-
 img {
     width: 100%;
 }
-
 a {
+    text-decoration: unset;
     text-decoration: none;
+    font-weight: 600;
+    line-height: initial;
     box-shadow: none;
     cursor: pointer;
 }
-
+.void-section-text p,
+.void-section-text h1,
+.void-section-text h2,
+.void-section-text h3,
+.void-section-text h4,
+.void-section-text h5,
+.void-section-text h6 {
+    margin: 0px auto;
+    display: block; 
+    font-family: Arial,Helvetica,sans-serif;
+    color: #000;
+}
 h1:before,
 h2:before {
     display: none !important;
 }
-.elementor .elementor-inner, 
+ul li,ol li,ul,ol{
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: visible;
+}
+.elementor .elementor-inner,
 .elementor .elementor-section-wrap,
 .elementor-section{
     max-width: 600px;
@@ -81,8 +98,7 @@ h2:before {
 .elementor-column-gap-default>.elementor-row>.elementor-column>.elementor-element-populated {
     padding: 0px !important;
 }
-
-/* Text Editor Widget CSS */
+/* Text Editor Widget CSS invalid as these were not loaded in the elemailer-mail.css so commnted out to avoid confusion
 .void-section-text p,
 .void-section-text h1,
 .void-section-text h2,
@@ -125,31 +141,22 @@ h2:before {
     line-height: 24px;
 }
 
-.void-section-text ul li {
-    font-size: 16px;
-    line-height: 24px;
-    font-family: Arial,Helvetica,sans-serif;
-    color: #000;
+Text Editor Widget CSS END */
+
+/* image box css needed due to backward compatibility */
+.void-email-image-box h3,.void-email-image-box p, .ele-footer-text p, .ele-unsubscribe a{
+    line-height: initial;
 }
-.void-section-text ol li {
-    font-size: 16px;
-    line-height: 24px;
-    font-family: Arial,Helvetica,sans-serif;
-    color: #000;
+/* footer css needed due to backward compatibility */
+.ele-unsubscribe a{
+    text-decoration: underline;
 }
 
-h1:before,
-h2:before {
-    display: none !important;
-}
-/* Text Editor Widget CSS END */
-
-/* hide admin bar elementor editor start */
-.em-form-template-template li#wp-admin-bar-elementor_edit_page {
+/* hide admin bar elementor editor start so*/
+.em-emails-template-template li#wp-admin-bar-elementor_edit_page,.em-form-template-template li#wp-admin-bar-elementor_edit_page,.em-emails-template-template #wp-admin-bar-edit{
     display: none;
 }
-
-.em-form-template-template li#wp-admin-bar-elementor_inspector {
+.em-emails-template-template li#wp-admin-bar-elementor_inspector,.em-form-template-template li#wp-admin-bar-elementor_inspector {
     display: none;
 }
 /* hide admin bar elementor editor end */

@@ -9,7 +9,7 @@
 }
 
 /* hide editor panel settings except for needed ones updated @2.6*/
-#elementor-panel-content-wrapper #elementor-panel-page-menu-content .elementor-panel-menu-item:not(.elementor-panel-menu-item-editor-preferences,.elementor-panel-menu-item-view-page,.elementor-panel-menu-item-exit-to-dashboard,.elementor-panel-menu-item-elemailer-body-settings){
+#elementor-panel-content-wrapper #elementor-panel-page-menu-content .elementor-panel-menu-item:not(.elementor-panel-menu-item-editor-preferences,.elementor-panel-menu-item-view-page,.elementor-panel-menu-item-exit-to-dashboard,.elementor-panel-menu-item-elemailer-body-settings, .elementor-panel-menu-item-exit){
     display: none;
 }
 
@@ -27,7 +27,34 @@
     display: none;
 }
 /* hide search button for avoiding show others widgets during search + hide panel notice*/
-#elementor-panel-inner #elementor-panel-content-wrapper #elementor-panel-page-elements #elementor-panel-elements-search-area, #elementor-panel-content-wrapper #elementor-panel-elements-notice-area {
+/*#elementor-panel-inner #elementor-panel-content-wrapper #elementor-panel-page-elements #elementor-panel-elements-search-area, #elementor-panel-content-wrapper #elementor-panel-elements-notice-area {
+    display: none;
+}*/
+
+/* disable responsive control icons. Enable in future. since @2.6 */
+[class*="elemailer"].elementor-group-control-background .elementor-control-responsive-switchers {
+    display: none;
+}
+.elementor-control-type-font .elementor-control-field-description{
+    border-color: var(--e-a-color-warning);
+    background: var(--e-a-bg-warning);
+    padding: 5px;
+    border-left: 3px solid var(--e-a-color-warning);
+    position: relative;
+    font-size: 11px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    text-align: left;
+    border-radius: 0 3px 3px 0;
+}
+
+/* remove all responsive control buttons */
+.elementor-responsive-switcher{
+    display: none;
+}
+
+#elementor-panel-content-wrapper #elementor-panel-elements-notice-area {
     display: none;
 }
 /* hide settings for avoiding unwanted controls and styles */
@@ -40,6 +67,16 @@
     min-width: 100% !important;
     width: 100% !important;
 }
+
+/* global color selection remove from color control */
+#elementor-panel-content-wrapper #elementor-panel-page-editor #elementor-controls .e-global__popover-toggle.elementor-control-unit-1 {
+    display: none;
+}
+/* global color add button remove from color control */
+.pcr-app.visible .e-color-picker__tools button.e-control-tool{
+    display: none;
+}
+
 #elementor-panel-get-pro-elements{
 background: #93003c;
 margin-top: 20px;

@@ -245,6 +245,22 @@ final class Plugin
             }
 
             foreach ($wp_styles->registered as $wp_style) {
+
+                //remove elementor global style
+                wp_dequeue_style('elementor-global');
+                // remove gutenberg reset css
+                wp_dequeue_style( 'global-styles' );
+               // wp_dequeue_style( 'elementor-post-'.get_the_id() );
+                
+                // Remove default kit /theme style / any other post CSS file to avoid issue
+                if (strpos($wp_style->handle, 'elementor-post-') !== false) {
+                    // prevent this style from loading in our template editor page
+                    if (strcmp($wp_style->handle, 'elementor-post-'.get_the_id()) ==true) {
+                        wp_dequeue_style($wp_style->handle);
+                    }
+                }    
+
+
                 // check is this style comes from theme
                 if (strpos($wp_style->src, $themes_uri) !== false) {
                     // prevent this style from loading in our template editor page
@@ -264,7 +280,8 @@ final class Plugin
                     }
                     // check is this style comes from elementor pro
                     else if (strpos($wp_style->src, $elementor_pro) !== false) {
-                        // keep this style to load
+                        // remove this style to load
+                        wp_dequeue_style($wp_style->handle);                       
                         continue;
                     }
                     // check is this style comes from Query monitor plugin

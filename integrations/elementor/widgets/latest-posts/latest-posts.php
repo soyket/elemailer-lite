@@ -8,8 +8,6 @@ use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 use \Elementor\Utils;
 
-use \Elementor\Core\Schemes\Color;
-
 /**
  * divider widget class for registering divider widget
  *
@@ -785,7 +783,7 @@ class Elemailer_Widget_Latest_Posts extends Widget_Base
 								?>
 
 									<div style="text-align: <?php echo esc_attr($alignment); ?>;<?php echo esc_attr($image_styles); ?>" class="elemailer-template-thumbnail">
-										<img style="width: 100%;" class="<?php echo esc_attr($image_position); ?>" src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+										<img width="100%" style="width: 100%;" class="<?php echo esc_attr($image_position); ?>" src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
 									</div>
 								<?php
 
@@ -829,7 +827,7 @@ class Elemailer_Widget_Latest_Posts extends Widget_Base
 
 									<div style="text-align: <?php echo esc_attr($alignment); ?>;<?php echo esc_attr($image_styles_right); ?>" class="elemailer-template-thumbnail">
 
-										<img style="width: 100%;" class="<?php echo esc_attr($image_position); ?>" src="<?php echo esc_attr($img_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+										<img width="100%" style="width: 100%;" class="<?php echo esc_attr($image_position); ?>" src="<?php echo esc_attr($img_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
 
 									</div>
 								<?php endif; ?>

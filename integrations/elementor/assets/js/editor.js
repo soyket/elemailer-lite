@@ -287,4 +287,21 @@
 
     });
 
+    function change_exit_link_attr() {
+       
+        // change exit URL target as otherwise it will have issue with iframe of elemailer
+
+       $('#elementor-panel-header-menu-button').click('click', function() {
+            setTimeout(function() {
+               $(".elementor-panel-menu-item-exit a").attr('target', '_top');
+               $(".elementor-panel-menu-item-view-page a").attr('target', '_top');
+            }, 100);
+                 
+        }, false);
+
+    }
+    
+    elementor.on('preview:loaded', change_exit_link_attr);
+
+
 })(jQuery);
