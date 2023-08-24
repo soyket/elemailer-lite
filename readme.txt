@@ -15,7 +15,7 @@ Elemailer is an Elementor addon to create Email templates. It gives you the most
 Elemailer - Best drag & drop Email design Plugin for WordPress.
 </h3>
 
-Elemailer Lite is an <strong>Email template & Campaign builder</strong>using <strong>Drag & Drop Elementor builder.</strong>
+Elemailer Lite is an <strong>Email template & Campaign builder</strong> using <strong>Drag & Drop Elementor builder.</strong>
 
 This plugin gives you the facility of override different WordPress Form plugin's email template. No more HTML code writing to design great looking emails. Take the help of AI in writing the content & creating Image right inside the editor.
 
