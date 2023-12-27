@@ -52,7 +52,7 @@ class Elemailer_Widget_Latest_Posts extends Widget_Base
 	{
 
 		$this->start_controls_section(
-			'content_section',
+			'elemailer_lp_content_section',
 			[
 				'label' => __('Content', 'elemailer-lite'),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -82,7 +82,8 @@ class Elemailer_Widget_Latest_Posts extends Widget_Base
 		$this->add_control(
 			'terms',
 			[
-				'label' => __('Select Terms (usually categories/tags) * Must Select Taxonomy First', 'elemailer-lite'),
+				'label' => __('Select Terms', 'elemailer-lite'),
+				'description' => __('Terms usually mean categories/tags/product tag etc. Important: Select Taxonomy First','elemailer'),
 				'type' => Controls_Manager::SELECT2,
 				'label_block' => true,
 				'options' => '',
@@ -92,6 +93,7 @@ class Elemailer_Widget_Latest_Posts extends Widget_Base
 				],
 			]
 		);
+
 
 		$this->end_controls_section();
 
@@ -108,8 +110,6 @@ class Elemailer_Widget_Latest_Posts extends Widget_Base
 			[
 				'label' => __('Posts per page', 'elemailer-lite'),
 				'type' => Controls_Manager::NUMBER,
-				'min' => 1,
-				'max' => 30,
 				'step' => 1,
 				'default' => 5,
 				'condition' => [
@@ -283,7 +283,6 @@ class Elemailer_Widget_Latest_Posts extends Widget_Base
 				'label' => __('Excerpt Length', 'elemailer-lite'),
 				'type' => Controls_Manager::NUMBER,
 				'min' => 1,
-				'max' => 30,
 				'step' => 1,
 				'default' => 15,
 				'condition' => [

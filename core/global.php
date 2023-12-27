@@ -67,24 +67,32 @@ function elemailer_get_posts()
 		if (!wp_verify_nonce($_POST['postTypeNonce'], 'wp_rest')) {
 			wp_die('You are not allowed!');
 		}
-		$taxonomy_type = sanitize_text_field(isset($_POST['taxonomy_type']) ? $_POST['taxonomy_type'] : '');
+		//$taxonomy_type = sanitize_text_field(isset($_POST['taxonomy_type']) ? $_POST['taxonomy_type'] : '');
 		$post_type = sanitize_text_field(isset($_POST['post_type']) ? $_POST['post_type'] : '');
 
 		$posts = array();
-		$obj_terms =  get_terms(array('taxonomy' => $taxonomy_type));
-		$terms =  wp_list_pluck($obj_terms, 'slug');
+		//$obj_terms =  get_terms(array('taxonomy' => $taxonomy_type));
+		//$terms =  wp_list_pluck($obj_terms, 'slug');
 
 		$args = array(
 			'post_type' => $post_type,
 			'posts_per_page' => -1,
-			'tax_query' => array(
-				array(
-					'taxonomy' => $taxonomy_type,
-					'field' => 'slug',
-					'terms' => $terms,
-				),
-			),
+			'no_found_rows'		=> true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
 		);
+
+		// Append our tax-query if we have terms. Make sure it is a valid string or array
+		// if ( $taxonomy_type ) {
+		//     $args['tax_query'] = array(
+		// 		array(
+		// 			'taxonomy' => $taxonomy_type,
+		// 			'field' => 'slug',
+		// 			'terms' => $terms,
+		// 		),
+		// 	);
+		// }
+
 
 		$loop = new WP_Query($args);
 

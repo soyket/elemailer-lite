@@ -48,7 +48,7 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 	{
 
 		$this->start_controls_section(
-			'content_section',
+			'elemailer_sp_content_section',
 			[
 				'label' => __('Content', 'elemailer-lite'),
 				'tab' => Controls_Manager::TAB_CONTENT,
@@ -71,10 +71,12 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 				'label' => __('Select Taxonomy', 'elemailer-lite'),
 				'type' => Controls_Manager::SELECT,
 				'label_block' => true,
+				'classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+				'description' => __('Select Taxonomy is kept for future use to allow users to select Taxonomy type and then select term to narrow down their selected post list below. For now Skip this','elemailer'),
 				'options' => (object) array(),
 				'condition' => [
-					'post_type!' => '',
-
+					//'post_type!' => '',
+					'taxonomy_type' => 'hidden',
 				],
 
 			]
@@ -83,17 +85,18 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 		$this->add_control(
 			'post_select',
 			[
-				'label' => __('Post select', 'elemailer-lite'),
+				'label' => __('Selected Posts', 'elemailer-lite'),
 				'type' => Controls_Manager::SELECT2,
 				'label_block' => true,
 				'options' => '',
 				'multiple' => true,
-				'condition' => [
-					'taxonomy_type!' => '',
+				// 'condition' => [
+				// 	'taxonomy_type!' => '',
 
-				],
+				// ],
 			]
 		);
+
 
 		$this->end_controls_section();
 
@@ -241,7 +244,6 @@ class Elemailer_Widget_Selected_Posts extends Widget_Base
 				'label' => __('Excerpt Length', 'elemailer-lite'),
 				'type' => Controls_Manager::NUMBER,
 				'min' => 1,
-				'max' => 30,
 				'step' => 1,
 				'default' => 15,
 				'condition' => [

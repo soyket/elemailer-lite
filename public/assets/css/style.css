@@ -160,3 +160,6 @@ Text Editor Widget CSS END */
     display: none;
 }
 /* hide admin bar elementor editor end */
+.elementor-row {
+    overflow: auto;
+}

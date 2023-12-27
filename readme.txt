@@ -2,9 +2,9 @@
 Contributors: elemailer,soyket,tanvir2024
 Tags: email, cf7, email template, elementor addons, email marketing, email template builder, elementor, contact form 7, email design, woocommerce email customizer, free email builder, ai
 Requires at least: 4.5
-Tested up to: 6.3
+Tested up to: 6.4.2
 Requires PHP: 7.2
-Stable tag: 2.0
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -146,6 +146,11 @@ You may go to wp-admin > Elemailer > Setting > Select Remove footer branding > H
 Before Update take a full backup of your site just incase. Update the plugin either via wp dashboard or via FTP(old-day method). After the update, makes sure you clear your browser cache & and regenerate the CSS of Elementor by going to wp-admin > Elementor > Tools > Press Regenerate CSS button > Hit Save. 
 
 == Changelog ==
+= 2.1 =
+* Fix: Selected & Latest post widget flicker
+* Fix: Some CSS fixes for emails overflow
+* Fix: Limitation in Selected & Latest post widget for numbers
+* Tewak: Removed confusing control from Selected posts widget
 = 2.0 =
 * Tweak: Compatibility with Latest Elementor & WordPress
 * Tweak: Some js code fixes
@@ -183,7 +188,7 @@ Before Update take a full backup of your site just incase. Update the plugin eit
 = 1.2 =
 * Fix: CSS fix for email
 * Fix: 3rd party plugin panel and template library showing
-* Fix: Elementor latest version compatibility
+* Fix: Elementor latest version Compatibility
 * Fix: Removed container as it's not supported in email
 = 1.0.10 =
 * Fix: CSS fix for template layout broken when using Optimize DOM output feature of Elementor

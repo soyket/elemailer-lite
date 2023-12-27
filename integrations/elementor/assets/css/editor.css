@@ -77,6 +77,22 @@
     display: none;
 }
 
+input:disabled{
+    cursor: not-allowed;
+}
+select:disabled,.select2-container--disabled * span{
+    cursor: not-allowed!important;
+}
+.select2-container--disabled ul li{
+    color: transparent!important;
+}
+
+/* CSS for dark mode */
+
+.select2-selection ul:not(.select2-selection__rendered){
+    background: red;
+}
+
 #elementor-panel-get-pro-elements{
 background: #93003c;
 margin-top: 20px;
