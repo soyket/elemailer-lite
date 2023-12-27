@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Elemailer Lite 2.0\n"
+"Project-Id-Version: Elemailer Lite 2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elemailer-lite\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-12-27T18:01:19+00:00\n"
+"POT-Creation-Date: 2023-12-27T21:31:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: elemailer-lite\n"
@@ -185,8 +185,8 @@ msgstr ""
 #: integrations/elementor/widgets/heading/heading.php:213
 #: integrations/elementor/widgets/image-box/image-box.php:384
 #: integrations/elementor/widgets/image/image.php:185
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:589
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:548
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:588
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:550
 #: integrations/elementor/widgets/shortcode/shortcode.php:287
 #: integrations/elementor/widgets/social/social.php:303
 #: integrations/elementor/widgets/spacer/spacer.php:115
@@ -207,14 +207,14 @@ msgstr ""
 #: integrations/elementor/widgets/image-box/image-box.php:314
 #: integrations/elementor/widgets/image-box/image-box.php:388
 #: integrations/elementor/widgets/image/image.php:189
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:373
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:444
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:516
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:593
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:330
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:402
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:474
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:552
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:372
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:443
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:515
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:592
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:332
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:404
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:476
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:554
 #: integrations/elementor/widgets/shortcode/shortcode.php:171
 #: integrations/elementor/widgets/shortcode/shortcode.php:215
 #: integrations/elementor/widgets/shortcode/shortcode.php:291
@@ -234,8 +234,8 @@ msgstr ""
 #: integrations/elementor/widgets/image-box/image-box.php:389
 #: integrations/elementor/widgets/image/image.php:27
 #: integrations/elementor/widgets/image/image.php:190
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:594
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:553
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:593
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:555
 #: integrations/elementor/widgets/shortcode/shortcode.php:292
 #: integrations/elementor/widgets/social/social.php:308
 #: integrations/elementor/widgets/spacer/spacer.php:120
@@ -251,8 +251,8 @@ msgstr ""
 #: integrations/elementor/widgets/heading/heading.php:226
 #: integrations/elementor/widgets/image-box/image-box.php:397
 #: integrations/elementor/widgets/image/image.php:198
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:602
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:561
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:601
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:563
 #: integrations/elementor/widgets/shortcode/shortcode.php:300
 #: integrations/elementor/widgets/social/social.php:316
 #: integrations/elementor/widgets/spacer/spacer.php:128
@@ -270,8 +270,8 @@ msgstr ""
 #: integrations/elementor/widgets/image-box/image-box.php:414
 #: integrations/elementor/widgets/image/image.php:64
 #: integrations/elementor/widgets/image/image.php:215
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:619
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:578
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:618
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:580
 #: integrations/elementor/widgets/shortcode/shortcode.php:311
 #: integrations/elementor/widgets/social/social.php:333
 #: integrations/elementor/widgets/spacer/spacer.php:145
@@ -453,8 +453,8 @@ msgstr ""
 #: integrations/elementor/widgets/heading/heading.php:85
 #: integrations/elementor/widgets/image-box/image-box.php:120
 #: integrations/elementor/widgets/image/image.php:95
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:337
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:295
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:336
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:297
 #: integrations/elementor/widgets/shortcode/shortcode.php:115
 #: integrations/elementor/widgets/social/social.php:175
 #: integrations/elementor/widgets/text-editor/text-editor.php:86
@@ -468,9 +468,9 @@ msgstr ""
 #: integrations/elementor/widgets/image-box/image-box.php:124
 #: integrations/elementor/widgets/image/image.php:99
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:195
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:341
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:153
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:299
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:340
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:156
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:301
 #: integrations/elementor/widgets/shortcode/shortcode.php:69
 #: integrations/elementor/widgets/shortcode/shortcode.php:119
 #: integrations/elementor/widgets/social/social.php:179
@@ -483,8 +483,8 @@ msgstr ""
 #: integrations/elementor/widgets/heading/heading.php:93
 #: integrations/elementor/widgets/image-box/image-box.php:128
 #: integrations/elementor/widgets/image/image.php:103
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:345
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:303
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:344
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:305
 #: integrations/elementor/widgets/shortcode/shortcode.php:123
 #: integrations/elementor/widgets/social/social.php:183
 #: integrations/elementor/widgets/text-editor/text-editor.php:94
@@ -498,9 +498,9 @@ msgstr ""
 #: integrations/elementor/widgets/image-box/image-box.php:132
 #: integrations/elementor/widgets/image/image.php:107
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:196
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:349
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:154
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:307
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:348
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:157
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:309
 #: integrations/elementor/widgets/shortcode/shortcode.php:127
 #: integrations/elementor/widgets/social/social.php:187
 #: integrations/elementor/widgets/text-editor/text-editor.php:98
@@ -522,8 +522,8 @@ msgstr ""
 #: integrations/elementor/widgets/heading/heading.php:204
 #: integrations/elementor/widgets/image-box/image-box.php:375
 #: integrations/elementor/widgets/image/image.php:176
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:580
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:539
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:579
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:541
 #: integrations/elementor/widgets/shortcode/shortcode.php:278
 #: integrations/elementor/widgets/social/social.php:294
 #: integrations/elementor/widgets/spacer/spacer.php:106
@@ -541,12 +541,12 @@ msgstr ""
 #: integrations/elementor/widgets/heading/heading.php:134
 #: integrations/elementor/widgets/image-box/image-box.php:242
 #: integrations/elementor/widgets/image-box/image-box.php:329
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:389
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:460
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:532
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:346
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:418
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:490
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:388
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:459
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:531
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:348
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:420
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:492
 #: integrations/elementor/widgets/shortcode/shortcode.php:186
 #: integrations/elementor/widgets/shortcode/shortcode.php:230
 msgid "Font Size (px)"
@@ -558,8 +558,8 @@ msgstr ""
 #: integrations/elementor/widgets/heading/heading.php:180
 #: integrations/elementor/widgets/image-box/image-box.php:351
 #: integrations/elementor/widgets/image/image.php:152
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:556
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:515
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:555
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:517
 #: integrations/elementor/widgets/shortcode/shortcode.php:254
 #: integrations/elementor/widgets/social/social.php:270
 #: integrations/elementor/widgets/spacer/spacer.php:89
@@ -574,8 +574,8 @@ msgstr ""
 #: integrations/elementor/widgets/heading/heading.php:188
 #: integrations/elementor/widgets/image-box/image-box.php:359
 #: integrations/elementor/widgets/image/image.php:160
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:564
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:523
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:563
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:525
 #: integrations/elementor/widgets/shortcode/shortcode.php:262
 #: integrations/elementor/widgets/social/social.php:278
 #: integrations/elementor/widgets/spacer/spacer.php:97
@@ -655,9 +655,9 @@ msgstr ""
 #: integrations/elementor/widgets/image-box/image-box.php:74
 #: integrations/elementor/widgets/image-box/image-box.php:219
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:252
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:365
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:210
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:322
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:364
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:213
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:324
 msgid "Title"
 msgstr ""
 
@@ -671,10 +671,10 @@ msgid "Add Your Heading Text Here"
 msgstr ""
 
 #: integrations/elementor/widgets/heading/heading.php:156
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:412
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:483
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:369
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:441
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:411
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:482
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:371
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:443
 msgid "Line Height (px)"
 msgstr ""
 
@@ -710,7 +710,7 @@ msgstr ""
 
 #: integrations/elementor/widgets/image-box/image-box.php:104
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:194
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:152
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:155
 #: integrations/elementor/widgets/shortcode/shortcode.php:68
 msgid "Top"
 msgstr ""
@@ -769,21 +769,21 @@ msgid "Select Taxonomy"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:85
-msgid "Select Terms (usually categories/tags) * Must Select Taxonomy First"
+msgid "Select Terms"
 msgstr ""
 
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:101
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:103
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:103
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:106
 #: plugin.php:362
 msgid "Settings"
 msgstr ""
 
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:109
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:111
 msgid "Posts per page"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:124
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:111
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:114
 msgid "Posts Per Row"
 msgstr ""
 
@@ -796,92 +796,89 @@ msgid "Order By"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:170
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:128
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:131
 msgid "Layout"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:178
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:136
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:139
 msgid "Display Thumbnail"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:180
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:254
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:273
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:307
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:138
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:212
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:231
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:265
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:306
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:141
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:215
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:234
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:267
 msgid "Show"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:181
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:255
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:274
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:308
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:139
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:213
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:232
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:266
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:307
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:142
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:216
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:235
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:268
 msgid "Hide"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:190
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:148
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:151
 msgid "Image position"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:209
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:167
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:170
 msgid "Image size"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:222
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:180
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:183
 msgid "Width(%)"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:271
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:436
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:229
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:394
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:435
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:232
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:396
 msgid "Excerpt"
 msgstr ""
 
 #: integrations/elementor/widgets/latest-posts/latest-posts.php:283
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:241
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:244
 msgid "Excerpt Length"
 msgstr ""
 
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:305
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:508
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:263
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:466
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:304
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:507
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:265
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:468
 msgid "Read More"
 msgstr ""
 
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:317
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:275
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:316
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:277
 msgid "Read More Text"
 msgstr ""
 
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:319
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:277
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:318
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:279
 msgid "Read More »"
 msgstr ""
 
-#: integrations/elementor/widgets/latest-posts/latest-posts.php:320
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:278
+#: integrations/elementor/widgets/latest-posts/latest-posts.php:319
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:280
 msgid "Type your read more text here"
 msgstr ""
 
 #: integrations/elementor/widgets/selected-posts/selected-posts.php:23
+#: integrations/elementor/widgets/selected-posts/selected-posts.php:88
 msgid "Selected Posts"
-msgstr ""
-
-#: integrations/elementor/widgets/selected-posts/selected-posts.php:86
-msgid "Post select"
 msgstr ""
 
 #: integrations/elementor/widgets/shortcode/shortcode.php:26
