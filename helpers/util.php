@@ -390,7 +390,7 @@ class Util
 				<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: auto;font-size: 14px;">
 				<tr>
 					<td class="content-block">
-					Email designed with Elementor ❤️ Powered by  <a target="_blank" href="https://elemailer.com?source=inemail">Elemailer</a>                           
+					Email designed with Elementor <div style="width: 1em; display:inline-block;">❤️</div> Powered by  <a target="_blank" href="https://elemailer.com?source=inemail">Elemailer</a>                           
 					<a target="_blank" href="https://elemailer.com?source=inemail">
 						<img src="https://elemailer.com/wp-content/uploads/2020/11/logo.png" style=" display: block; width: 120px; margin: auto; padding: 15px 0px 15px 0px; ">
 					</a>

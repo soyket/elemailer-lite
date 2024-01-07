@@ -96,11 +96,12 @@ ul li,ol li,ul,ol{
     margin: 0 auto;
 }
 .elementor-widget:not(:last-child) {
-    margin: 0px !important;
+    margin: 0px;
 }
 .elementor-section .elementor-container {
     margin-right: auto;
     margin-left: auto;
+    overflow:auto;
 }
 .elementor-column-wrap {
     width: 100%;
@@ -150,6 +151,9 @@ ul li,ol li,ul,ol{
 .elementor-row {
     width: 100%;
     display: block;
+    overflow: auto;
+}
+body,.elemailer-send-template{
     overflow: auto;
 }
 .elemailer-play-icon{
