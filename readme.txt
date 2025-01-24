@@ -4,7 +4,7 @@ Tags: email, cf7, email template, elementor addons, email marketing, email templ
 Requires at least: 4.5
 Tested up to: 6.7.1
 Requires PHP: 7.2
-Stable tag: 2.5
+Stable tag: 2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
