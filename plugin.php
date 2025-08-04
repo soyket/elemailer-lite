@@ -31,7 +31,9 @@ final class Plugin
     {
         $this->define_constant();
         Autoloader::run();
-        add_action( 'init', [ $this, 'load_textdomain' ] ); // plugins_loaded causing issue with latest wp 6.7.0
+        // Load translations early on the init hook so all strings are available
+        // before other features run.
+        add_action( 'init', [ $this, 'load_textdomain' ], 5 );
     }
 
     /**

@@ -35,7 +35,8 @@ register_deactivation_hook(__FILE__, [Elemailer_Lite\Plugin::instance(), 'action
 /**
  * Load plugin after initialize wordpress core
  */
-add_action( 'plugins_loaded', function () {
+// Initialize the plugin once WordPress core is ready.
+add_action( 'init', function () {
     // load when elemailer is not present
     if ( ! did_action( 'elemailer/after_load' ) ) {
         // active hook before plugin load
