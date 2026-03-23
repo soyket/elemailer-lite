@@ -121,12 +121,14 @@ class Void_Email extends Email
 			$fields['email_content'] = \Elemailer_Lite\Helpers\Util::get_email_html_template($template_id, $fields['email_content']);
 		}
 
+		$attachments = $this->get_mail_attachments($record, $settings, $fields);
+
 		$email_sent = false;
-		$email_sent = wp_mail($fields['email_to'], $fields['email_subject'], $fields['email_content'], $headers . $cc_header);
+		$email_sent = wp_mail($fields['email_to'], $fields['email_subject'], $fields['email_content'], $headers . $cc_header, $attachments);
 		if (!empty($fields['email_to_bcc'])) {
 			$bcc_emails = explode(',', $fields['email_to_bcc']);
 			foreach ($bcc_emails as $bcc_email) {
-				wp_mail(trim($bcc_email), $fields['email_subject'], $fields['email_content'], $headers);
+				wp_mail(trim($bcc_email), $fields['email_subject'], $fields['email_content'], $headers, $attachments);
 			}
 		}
 		/**
@@ -189,5 +191,142 @@ class Void_Email extends Email
 			$email_content = str_replace($all_fields_shortcode, $text, $email_content);
 		}
 		return $email_content;
+	}
+
+	/**
+	 * Retrieve attachments for the outgoing email.
+	 *
+	 * Collects attachments from supported Elementor settings and upload fields,
+	 * then allows 3rd parties to filter the final list.
+	 *
+	 * @param Form_Record $record
+	 * @param array       $settings
+	 * @param array       $fields
+	 *
+	 * @return array
+	 * @since 1.9.2
+	 */
+	private function get_mail_attachments($record, $settings, $fields)
+	{
+		$attachments = [];
+
+		$setting_attachment_keys = [
+			$this->get_control_id('email_attachments'),
+			$this->get_control_id('attachments'),
+		];
+
+		foreach ($setting_attachment_keys as $attachment_key) {
+			if (!empty($settings[$attachment_key])) {
+				$attachments = array_merge($attachments, $this->normalize_attachment_value($settings[$attachment_key]));
+			}
+		}
+
+		foreach ($record->get('fields') as $field) {
+			if (empty($field['value'])) {
+				continue;
+			}
+
+			$field_type = isset($field['type']) ? $field['type'] : '';
+			if (!in_array($field_type, ['upload', 'file'], true)) {
+				continue;
+			}
+
+			$attachments = array_merge($attachments, $this->normalize_attachment_value($field['value']));
+		}
+
+		$attachments = array_values(array_unique(array_filter($attachments)));
+
+		/**
+		 * Filters attachments sent via Elemailer custom email action.
+		 *
+		 * @since 1.9.2
+		 *
+		 * @param array       $attachments Attachment paths passed to wp_mail().
+		 * @param Form_Record $record      Current Elementor form record.
+		 * @param array       $settings    Current form settings.
+		 * @param array       $fields      Final computed mail fields.
+		 */
+		return apply_filters('elemailer/forms/wp_mail_attachments', $attachments, $record, $settings, $fields);
+	}
+
+	/**
+	 * Normalize a setting or field value into filesystem attachment paths.
+	 *
+	 * @param mixed $value
+	 *
+	 * @return array
+	 * @since 1.9.2
+	 */
+	private function normalize_attachment_value($value)
+	{
+		if (empty($value)) {
+			return [];
+		}
+
+		if (is_string($value)) {
+			$decoded = json_decode($value, true);
+			if (JSON_ERROR_NONE === json_last_error() && is_array($decoded)) {
+				$value = $decoded;
+			}
+		}
+
+		if (!is_array($value)) {
+			$value = preg_split('/[\r\n,]+/', (string) $value);
+		}
+
+		$attachments = [];
+		foreach ($value as $item) {
+			if (is_array($item)) {
+				$item = isset($item['path']) ? $item['path'] : (isset($item['url']) ? $item['url'] : '');
+			}
+
+			$path = $this->normalize_attachment_path($item);
+			if (!empty($path)) {
+				$attachments[] = $path;
+			}
+		}
+
+		return $attachments;
+	}
+
+	/**
+	 * Convert a candidate attachment into a local readable path.
+	 *
+	 * @param string $attachment
+	 *
+	 * @return string
+	 * @since 1.9.2
+	 */
+	private function normalize_attachment_path($attachment)
+	{
+		$attachment = trim((string) $attachment);
+		if ('' === $attachment) {
+			return '';
+		}
+
+		if (file_exists($attachment) && is_readable($attachment)) {
+			return $attachment;
+		}
+
+		if (filter_var($attachment, FILTER_VALIDATE_URL)) {
+			$attachment_id = attachment_url_to_postid($attachment);
+			if ($attachment_id) {
+				$attachment_path = get_attached_file($attachment_id);
+				if ($attachment_path && file_exists($attachment_path) && is_readable($attachment_path)) {
+					return $attachment_path;
+				}
+			}
+
+			$upload_dir = wp_get_upload_dir();
+			if (!empty($upload_dir['baseurl']) && 0 === strpos($attachment, $upload_dir['baseurl'])) {
+				$relative_path = ltrim(substr($attachment, strlen($upload_dir['baseurl'])), '/');
+				$attachment_path = trailingslashit($upload_dir['basedir']) . $relative_path;
+				if (file_exists($attachment_path) && is_readable($attachment_path)) {
+					return $attachment_path;
+				}
+			}
+		}
+
+		return '';
 	}
 }
