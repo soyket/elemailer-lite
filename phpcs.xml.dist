@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ruleset name="Elemailer Lite">
+    <description>Advisory WordPress coding standards for Elemailer Lite.</description>
+    <file>.</file>
+    <exclude-pattern>*/lib/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/languages/*</exclude-pattern>
+    <arg name="extensions" value="php"/>
+    <arg value="ps"/>
+    <config name="minimum_supported_wp_version" value="5.8"/>
+    <rule ref="WordPress-Extra"/>
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array" value="elemailer-lite"/>
+        </properties>
+    </rule>
+</ruleset>
