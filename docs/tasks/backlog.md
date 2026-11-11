@@ -1,10 +1,10 @@
 # Backlog
 
-The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to C31). This backlog is the suggested order. Each item should be its own branch and pull request.
+The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to C33). This backlog is the suggested order. Each item should be its own branch and pull request.
 
 ## Suggested order
-- [ ] C1 library delete handler (high)
-- [ ] C2, C3 library URL and post checks
+- [ ] C1 library delete handler (high), with the owner decision on removing it
+- [ ] C2, C3 library URL and post checks (the import flow was verified, so these are safe to implement)
 - [ ] C5 notice dismiss handler
 - [ ] C4 REST read check, together with the nonce fix in `form-template-functions.js`
 - [ ] C6 notice option updates from `$_GET`
@@ -18,8 +18,12 @@ The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to
 - [ ] C21 to C23 compatibility and modal fields
 - [ ] C24 to C27 remove dead code after a reference search
 - [ ] C28 to C31 release tooling clean-up
+- [ ] C33 library panel script clean-up
+
+## Done
+- [x] C32 read the full library panel script (2026-11-11)
 
 ## Other
 - [ ] Add PHPUnit tests for `Helpers\Util` string and CSS functions
-- [ ] Read the rest of `elemailer-elementor-admin-page.js` and the CSS files that docs/architecture.md lists as not opened
+- [ ] Open and review the files that docs/architecture.md lists as 'listed but not opened' (other CSS, vendor source) if any of them need to change
 - [ ] Fill the exact local environment into docs/local-setup.md
