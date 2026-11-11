@@ -1,6 +1,6 @@
 # Backlog
 
-The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to C33). This backlog is the suggested order. Each item should be its own branch and pull request.
+The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to C38). This backlog is the suggested order. Each item should be its own branch and pull request.
 
 ## Suggested order
 - [ ] C1 library delete handler (high), with the owner decision on removing it
@@ -11,7 +11,7 @@ The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to
 - [ ] C7 remove `nopriv` AJAX registrations
 - [ ] C9 Vimeo thumbnail (https, no unserialize, cache)
 - [ ] C8 sanitize template settings
-- [ ] C10 stop rewriting the CSS file on every request
+- [ ] C10 stop rewriting the CSS file on every request (keep the generated file without a closing style tag)
 - [ ] C11 cache the remote library list
 - [ ] C20 decide PHP minimum (7.2.5)
 - [ ] C12 to C19 small correctness and escaping fixes
@@ -19,11 +19,14 @@ The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to
 - [ ] C24 to C27 remove dead code after a reference search
 - [ ] C28 to C31 release tooling clean-up
 - [ ] C33 library panel script clean-up
+- [ ] C34 to C36, C38 stylesheet and icon clean-up
 
 ## Done
 - [x] C32 read the full library panel script (2026-11-11)
 
+## Review gaps
+- [ ] C37 remaining unread: the tail of languages/elemailer-lite.pot (generated), helpers/src/Css/Property/Property.php, the .wordpress-org images
+
 ## Other
 - [ ] Add PHPUnit tests for `Helpers\Util` string and CSS functions
-- [ ] Open and review the files that docs/architecture.md lists as 'listed but not opened' (other CSS, vendor source) if any of them need to change
 - [ ] Fill the exact local environment into docs/local-setup.md
