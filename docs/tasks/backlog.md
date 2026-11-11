@@ -1,17 +1,25 @@
 # Backlog
 
-Suggested order. Each item should be its own branch and pull request.
+The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to C31). This backlog is the suggested order. Each item should be its own branch and pull request.
 
-- [ ] Fix known issue 1: restrict `my_template_delete_request` to Elemailer library templates and check `delete_post`
-- [ ] Fix known issues 2 and 3: validate URL host and post type in library AJAX handlers
-- [ ] Fix known issue 7: add a nonce, capability check and id allowlist to `Notice::dismiss()`
-- [ ] Fix known issue 4: add capability and post-type checks to `get_template_setting` / REST read (first fix the nonce source in `form-template-functions.js`)
-- [ ] Fix known issue 6: add nonce and capability checks to the notice dismiss handler in `Elementor\Base`
-- [ ] Known issue 5: remove the `wp_ajax_nopriv_` registrations in `core/global.php` and test the Latest Posts and Selected Posts widget dropdowns
-- [ ] Sanitize template settings values in `Action::sanitize()`
-- [ ] Stop writing the CSS file on every request in `Plugin::init()` (and decide whether `default-elementor-style.php` stays tracked)
-- [ ] Cache the remote library list
-- [ ] Review the files listed as not reviewed in docs/architecture.md (12 widgets, templates.php, admin-page JS, CSS)
+## Suggested order
+- [ ] C1 library delete handler (high)
+- [ ] C2, C3 library URL and post checks
+- [ ] C5 notice dismiss handler
+- [ ] C4 REST read check, together with the nonce fix in `form-template-functions.js`
+- [ ] C6 notice option updates from `$_GET`
+- [ ] C7 remove `nopriv` AJAX registrations
+- [ ] C9 Vimeo thumbnail (https, no unserialize, cache)
+- [ ] C8 sanitize template settings
+- [ ] C10 stop rewriting the CSS file on every request
+- [ ] C11 cache the remote library list
+- [ ] C20 decide PHP minimum (7.2.5)
+- [ ] C12 to C19 small correctness and escaping fixes
+- [ ] C21 to C23 compatibility and modal fields
+- [ ] C24 to C27 remove dead code after a reference search
+- [ ] C28 to C31 release tooling clean-up
+
+## Other
 - [ ] Add PHPUnit tests for `Helpers\Util` string and CSS functions
-- [ ] Fix `.distignore` entry `.Gruntfile.js` and stale Grunt asset paths
+- [ ] Read the rest of `elemailer-elementor-admin-page.js` and the CSS files that docs/architecture.md lists as not opened
 - [ ] Fill the exact local environment into docs/local-setup.md

@@ -12,7 +12,9 @@ There is no automated test suite in this repository yet (no `tests/` directory, 
   5. With Elementor Pro: add a Form widget, choose the template under Email and Email 2, submit, check the received email.
   6. With Contact Form 7: paste the shortcode as the mail body, submit, check the received email.
   7. In the editor, add Latest Posts and Selected Posts widgets and confirm the taxonomy and term dropdowns fill in.
-  8. Check `wp-content/debug.log` for new notices.
+  8. Open the template library (folder icon in the add-section area), preview a free template and import it.
+  9. For widget changes, add the changed widget to a template, send a test submission, and read the email in a real client.
+  10. Check `wp-content/debug.log` for new notices.
 - The plugin rewrites `app/form-template/view/default-elementor-style.php` on page loads. If Git shows it modified and you did not change `public/assets/css/elemailer-mail.css`, do not commit it.
 - Email rendering changes must be checked in at least Gmail web and one other client. Preview in the editor is not proof.
 - Logic that can run without WordPress (string and CSS processing in `Helpers\Util`) is a good first target for PHPUnit tests.

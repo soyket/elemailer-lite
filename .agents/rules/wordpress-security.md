@@ -1,13 +1,13 @@
 # Security rules for this repository
 
-These rules come from patterns actually present in the code (see docs/known-issues.md). Follow them in all new and changed code.
+These rules come from patterns actually present in the code (see docs/known-issues.md and docs/core-changes-needed.md). Follow them in all new and changed code.
 
 ## REST API
 - `Core\Api::init()` registers every route with `'permission_callback' => '__return_true'`, so routes are public by default. Authorization must be done inside each action method with `current_user_can()`.
 - Every action method, including read-only `get_*` methods, must check a capability that matches the data it returns.
 - If you add or change route registration, prefer a real `permission_callback` and keep the existing `elemailer_lite/v1/form-templates/{action}/{id}` URL working.
 - Validate that an ID refers to the expected post type (`em-form-template`) before reading or writing it.
-- Caution when tightening `form-templates/get/{id}`: the admin script `public/assets/js/admin/form-template-functions.js` sends `X-WP-Nonce` taken from `data-nonce` on the clicked link, while the nonce is printed on the modal form (`#elemailer-modal-settings`). Check which nonce is really sent before adding a capability check, and update the script so the nonce comes from the form.
+- Caution when tightening `form-templates/get/{id}`: the admin script `public/assets/js/admin/form-template-functions.js` sends `X-WP-Nonce` taken from `data-nonce` on the clicked link, while the nonce is printed on the modal form (`#elemailer-modal-settings`). Check which nonce is really sent before adding a capability check, and update the script so the nonce comes from the form (core-changes item C4).
 
 ## AJAX
 - The three handlers in `core/global.php` are registered with `wp_ajax_nopriv_` and only check a `wp_rest` nonce. Their only callers in this repository are in `integrations/elementor/assets/js/editor.js`, which runs inside the Elementor editor (logged-in users). Do not add more public handlers. If a handler is not meant for logged-out users, register only `wp_ajax_`.
@@ -21,11 +21,15 @@ These rules come from patterns actually present in the code (see docs/known-issu
 - Do not change state from a GET request without a nonce and a capability check.
 - Use `$wpdb->prepare()` for dynamic SQL (the current code does not run custom SQL).
 - `Helpers\Notice::markup()` prints `message` and `data` unescaped. Only pass plugin-controlled strings to `Notice::push()`.
+- In widget `render()` methods, escape every value that goes into a `style`, `href`, `src`, `alt` or `title` attribute (`esc_attr`, `esc_url`). Most widgets do; `heading.php`, `image.php` and `image-box.php` do not fully (core-changes item C16). Do not use `esc_attr()` for URLs.
+- In the Elementor panel templates (`public/views/templates.php`), use `{{ }}` (escaped) and not `{{{ }}}` for any value that comes from the remote library.
 
 ## Outbound requests
 - The library code calls `wp_remote_get()` with URLs that come from the request. For any URL from user input use `wp_safe_remote_get()`, restrict hosts to `lib.elemailer.com` or `elemailer.com`, set a `timeout`, and handle `WP_Error`.
+- Never use `unserialize()` or `file_get_contents()` on a remote URL. Use `wp_remote_get()` and `json_decode()` (see the Vimeo branch in `widgets/video/video.php`, core-changes item C9).
+- Cache remote data in a transient; do not fetch it on every render or page load.
 
 ## Email content
 - Do not log recipient addresses, form values, or rendered email bodies.
 - Rendered templates pass through `Util::get_email_html_template()` and a CSS inliner. Keep user-controlled text out of the HTML unescaped.
-- Widgets write inline styles into email HTML. Escape every value that goes into a `style` or `href` attribute (`esc_attr`, `esc_url`) as `latest-posts.php` does for most values.
+- Selected Posts renders whatever post ids are stored in the widget. Do not extend it to show non-public content.
