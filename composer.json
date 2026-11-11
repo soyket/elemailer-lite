@@ -14,7 +14,7 @@
         }
     },
     "scripts": {
-        "lint:syntax": "find . -name '*.php' -not -path './lib/*' -not -path './node_modules/*' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l > /dev/null",
+        "lint:syntax": "find . -name '*.php' -not -path '*/vendor/*' -not -path './lib/*' -not -path '*/node_modules/*' -print0 | xargs -0 -n1 php -l > /dev/null",
         "lint:phpcs": "phpcs"
     }
 }

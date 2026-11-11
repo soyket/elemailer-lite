@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.4', '8.1', '8.3']
+        php: ['7.2', '8.3']
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
@@ -19,7 +19,7 @@ jobs:
           php-version: ${{ matrix.php }}
       - name: PHP syntax lint
         run: |
-          find . -name '*.php' -not -path './lib/*' -not -path './node_modules/*' -not -path './vendor/*' -print0 | xargs -0 -n1 -P4 php -l > /dev/null
+          find . -name '*.php' -not -path '*/vendor/*' -not -path './lib/*' -not -path '*/node_modules/*' -print0 | xargs -0 -n1 -P4 php -l > /dev/null
 
   phpcs:
     runs-on: ubuntu-latest

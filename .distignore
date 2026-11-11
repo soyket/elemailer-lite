@@ -10,3 +10,14 @@
 .AppleDouble
 .LSOverride
 .Gruntfile.js
+
+# AI-assisted development and developer tooling (not part of the plugin package)
+/AGENTS.md
+/CLAUDE.md
+/.agents
+/docs
+/tests
+/vendor
+/composer.json
+/composer.lock
+/phpcs.xml.dist
