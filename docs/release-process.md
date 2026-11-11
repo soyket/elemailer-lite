@@ -16,7 +16,7 @@
 4. Tag the release (this deploys to WordPress.org).
 
 ## Package contents
-The `.distignore` on this branch excludes AGENTS.md, CLAUDE.md, .agents, docs, tests, root vendor, composer files, and phpcs.xml.dist. `helpers/vendor` is NOT excluded because the plugin needs it at runtime.
+The `.distignore` on this branch excludes AGENTS.md, CLAUDE.md, .agents, docs, tests, root vendor, composer files, and phpcs.xml.dist. `helpers/vendor` is NOT excluded because the plugin needs it at runtime. `.gitattributes` also marks these AI and tooling files `export-ignore`, so GitHub source archives leave them out.
 
 ## Grunt
-`Gruntfile.js` has a `release` task (clean, copy, compress) that builds `elemailer-lite-{package.json version}.zip`. Its copy step has its own exclude list. See docs/known-issues.md for problems in the other Grunt tasks.
+`Gruntfile.js` has a `release` task (clean, copy, compress) that builds `elemailer-lite-{package.json version}.zip`. Its copy step has its own exclude list and does not know about the AI files (the `docs/`, `AGENTS.md` and `CLAUDE.md` paths would be copied into a Grunt-built zip; dot-folders such as `.agents` are skipped by default). Prefer the `.distignore`-based WordPress.org deploy, or add the paths to the Grunt exclude list. See docs/known-issues.md for problems in the other Grunt tasks.

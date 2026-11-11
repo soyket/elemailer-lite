@@ -48,3 +48,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Dev tooling (root only; helpers/vendor is tracked and must stay)
+/vendor/
+/.phpcs.cache

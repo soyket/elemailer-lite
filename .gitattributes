@@ -21,3 +21,11 @@ package.json export-ignore
 /.github/ export-ignore
 /Build/ export-ignore
 /Tests/ export-ignore
+
+# AI-assisted development and developer tooling
+/AGENTS.md export-ignore
+/CLAUDE.md export-ignore
+/.agents export-ignore
+/docs export-ignore
+/composer.json export-ignore
+/phpcs.xml.dist export-ignore
