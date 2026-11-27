@@ -12,7 +12,7 @@ Then read only what the task needs:
 
 ## Token budget
 - Search first (grep for the function, hook, or string), then read the matching function or line range. Do not read whole large files when a range answers the question.
-- Do not read `helpers/vendor/`, `helpers/src/`, `languages/elemailer-lite.pot`, images, or `app/form-template/view/default-elementor-style.php` unless the task is specifically about them.
+- Do not read `helpers/vendor/`, `helpers/src/`, root `vendor/` or `node_modules/` if present, `.wordpress-org/`, `languages/elemailer-lite.pot`, lockfiles (`composer.lock`, `package-lock.json`), images, or `app/form-template/view/default-elementor-style.php` unless the task is specifically about them.
 - Keep command output small: run PHPCS on changed files only (`composer lint:phpcs:changed`), and summarize findings in docs/tasks/current-task.md instead of pasting long logs.
 
 ## Facts you must know
