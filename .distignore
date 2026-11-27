@@ -9,7 +9,10 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-.Gruntfile.js
+/Gruntfile.js
+/package.json
+/package-lock.json
+/README.md
 
 # AI-assisted development and developer tooling (not part of the plugin package)
 /AGENTS.md
