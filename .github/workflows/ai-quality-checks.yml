@@ -8,10 +8,14 @@ on:
 
 jobs:
   syntax:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        php: ['7.2', '8.3']
+        include:
+          - php: '7.2'
+            os: ubuntu-22.04
+          - php: '8.3'
+            os: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
@@ -31,3 +35,24 @@ jobs:
           php-version: '8.1'
       - run: composer install --no-interaction --no-progress
       - run: composer lint:phpcs
+
+  phpcs-changed:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+      - run: composer install --no-interaction --no-progress
+      - name: PHPCS on changed PHP files
+        run: |
+          files=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }}...HEAD -- '*.php' | grep -v '^helpers/vendor/' || true)
+          if [ -n "$files" ]; then
+            echo "$files" | xargs phpcs --report=summary
+          else
+            echo "No PHP files changed."
+          fi
