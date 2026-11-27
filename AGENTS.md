@@ -38,11 +38,15 @@ Then read only what the task needs:
 
 ## Commands
 - Syntax lint: `composer install` then `composer lint:syntax`
+- Unit tests: `composer test:unit`
+- WordPress smoke test: `npm install`, `npm run env:start`, `npm run test:smoke`, `npm run env:stop` (needs Docker)
 - Coding standards on changed files (advisory, legacy code has violations): `composer lint:phpcs:changed` (full run: `composer lint:phpcs`)
 - Translations: `npm run i18n` (needs WP-CLI)
 
 ## Definition of done
 - `composer lint:syntax` passes
+- `composer test:unit` passes
+- `npm run test:smoke` passes when the change touches WordPress runtime behavior and Docker is available
 - No new PHPCS errors in lines you changed (`composer lint:phpcs:changed`)
 - Manually tested in WordPress with Elementor active and WP_DEBUG on, no new notices in debug.log (see docs/local-setup.md)
 - Docs updated if behavior changed

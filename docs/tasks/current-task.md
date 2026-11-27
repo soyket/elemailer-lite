@@ -1,23 +1,25 @@
 # Current task
 
 ## Goal
-Apply the 2026-11-27 review fixes to branch `ai-native-dev-setup` for owner review: token-saving tiered reading, packaging fixes (C28), CI clean-ups, and doc corrections. No runtime code changes, no changes to `master`.
+Add a reproducible WordPress test environment and first automated tests for Elemailer Lite: wp-env setup, PHPUnit unit tests for `Helpers\Util`, and a WordPress smoke test. Test tooling and docs only; no plugin runtime behavior changes and no changes to `master`.
 
 ## Scope / out of scope
-In scope: AGENTS.md/CLAUDE.md, .agents/rules/testing.md, docs corrections (C18, C25, C28, C33), .distignore/.gitattributes, Gruntfile copy excludes, composer.json + composer.lock, phpcs.xml.dist, CI workflow, README.md.
-Out of scope: C1–C27 and C29–C38 code fixes, version bumps, merges to `master`.
+In scope: `.wp-env.json`, `phpunit.xml.dist`, `tests/`, npm and Composer test scripts/dependencies, local setup and testing docs, packaging exclusions for test tooling.
+Out of scope: C1-C38 code fixes, GitHub workflow changes, version bumps, merges to `master`.
 
 ## Acceptance criteria
+- [x] `.wp-env.json`, `package.json`, `composer.json`, and `phpunit.xml.dist` parse
+- [x] `composer test:unit` passes where PHP/Composer are available
 - [x] `composer lint:syntax` passes
-- [x] Workflow YAML parses; PHP 7.2 CI leg pinned to ubuntu-22.04
-- [x] `git archive` excludes the AI/dev files including README.md and composer.lock
+- [x] `composer lint:phpcs:changed` passes or reports only pre-existing issues outside changed lines
+- [ ] `npm run test:smoke` passes where Docker is available; if Docker is unavailable, the limitation is stated in the handoff
 - [ ] Owner reviews the branch diff
 
 ## Manual test steps
-No runtime files changed, so no WordPress smoke test is required for this change. Gruntfile.js syntax checked with `node --check`.
+Run `npm install`, `composer install`, `npm run env:start`, `composer test:unit`, `npm run test:smoke`, and `npm run env:stop`. The smoke test activates Elemailer Lite, Elementor, and Contact Form 7 in wp-env, renders a minimal Elemailer template, expands the Elemailer shortcode, captures `wp_mail()` instead of sending it, and fails on assertion failures.
 
 ## Status / handoff
-Done: edits applied and verified (see acceptance criteria).
-Remaining: owner review of the branch; merge decision is the owner's.
-Blockers: none.
-Next step: owner reviews the diff on `ai-native-dev-setup`; after that, start C1 from docs/tasks/backlog.md.
+Done: implementation and local verification (config parsing, unit tests, syntax lint, PHPCS changed files).
+Remaining: Docker-backed smoke test run and owner review.
+Blockers: Docker may not be available in every agent environment; unit tests and config checks still run without Docker.
+Next step: after owner review, start C1 from docs/tasks/backlog.md and add regression tests for the security handlers.

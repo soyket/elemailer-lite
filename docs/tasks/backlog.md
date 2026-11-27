@@ -29,5 +29,5 @@ The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to
 - [ ] C37 remaining unread: the tail of languages/elemailer-lite.pot (generated), helpers/src/Css/Property/Property.php, the .wordpress-org images
 
 ## Other
-- [ ] Add PHPUnit tests for `Helpers\Util` string and CSS functions
-- [ ] Fill the exact local environment into docs/local-setup.md
+- [x] Add PHPUnit tests for `Helpers\Util` string and CSS functions (2026-11-28)
+- [x] Fill the exact local environment into docs/local-setup.md (2026-11-28)
