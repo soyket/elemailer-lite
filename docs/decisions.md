@@ -13,3 +13,6 @@ docs/known-issues.md lists security and robustness problems found during the rev
 
 ## 2026-11-11: Effective PHP minimum is 7.2.5
 The bundled Composer dependencies in `helpers/vendor` enforce PHP 7.2.5 or newer, although readme.txt says 7.2. Until the owner decides otherwise (core-changes item C20), agents write code that runs on 7.2.5.
+
+## 2026-11-27: Token-saving agent workflow
+Agent reading is tiered: always AGENTS.md plus docs/tasks/current-task.md, then only the relevant C-item, architecture section, and rule file. PHPCS runs on changed files by default (`composer lint:phpcs:changed`). `composer.lock` is committed so dev tooling (PHPCS/WPCS) resolves to the same versions locally and in CI; it stays excluded from the WordPress.org package and source archives.

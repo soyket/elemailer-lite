@@ -35,7 +35,6 @@ Found by reading the source on 2026-11-11. Nothing here has been changed. The fi
 - The PHP actions `elemailer-lite-my-template-remote-request`, `elemailer-lite-elementor-batch-my-template-process` and `elemailer-lite-my-template-delete-request`, and the unbound JS function `_myTemplateDelete`: no caller in the Lite panel script. (C1, C3, C33)
 
 ## Release tooling
-- `Gruntfile.js` rtlcss, cssmin and uglify read `assets/css` and `assets/js` at the repo root, which do not exist (assets live under `public/assets`). `version-bump` only rewrites a three-part version (x.y.z) in the plugin header and takes the number from `package.json` (1.1.0). The plugin version is 2.8, so it does not match. The `copy` excludes do not list the AI files. (C29)
-- `.distignore` lists `.Gruntfile.js` (leading dot), so Gruntfile.js, package.json and package-lock.json are not excluded from the WordPress.org deploy. (C28)
+- `Gruntfile.js` rtlcss, cssmin and uglify read `assets/css` and `assets/js` at the repo root, which do not exist (assets live under `public/assets`). `version-bump` only rewrites a three-part version (x.y.z) in the plugin header and takes the number from `package.json` (1.1.0). The plugin version is 2.8, so it does not match. (C29)
 - `package.json` scripts `start` and `build` run `wp-scripts` but there is no `src/` directory. (C30)
 - `.gitattributes` has duplicate entries and mentions folders that do not exist (`/Build/`, `/Tests/`). (C31)

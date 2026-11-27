@@ -2,12 +2,18 @@
 
 Elemailer Lite is the free WordPress plugin that lets users design form emails with Elementor. Elemailer (Pro) is a separate premium plugin. The owner states that Pro does not require Lite to be installed or active, so there is no file or compatibility dependency between them. Do not add code that assumes either plugin needs the other.
 
-## Read first
-1. docs/architecture.md (how the code is wired, with file paths)
-2. docs/core-changes-needed.md (the file-by-file list of changes the main plugin files need, with ids C1, C2, ...)
-3. docs/known-issues.md (verified problems, do not repeat them in new code)
-4. .agents/rules/*.md
-5. docs/tasks/current-task.md (the task you are doing now)
+## Read first (tiered, to save tokens)
+Always read: this file and docs/tasks/current-task.md.
+Then read only what the task needs:
+- The relevant item in docs/core-changes-needed.md (ids C1, C2, ...), not the whole file.
+- The relevant section of docs/architecture.md (how the code is wired, with file paths).
+- The relevant rule file in .agents/rules/ (architecture, testing, or wordpress-security).
+- docs/known-issues.md only for the area you are changing (verified problems, do not repeat them in new code).
+
+## Token budget
+- Search first (grep for the function, hook, or string), then read the matching function or line range. Do not read whole large files when a range answers the question.
+- Do not read `helpers/vendor/`, `helpers/src/`, `languages/elemailer-lite.pot`, images, or `app/form-template/view/default-elementor-style.php` unless the task is specifically about them.
+- Keep command output small: run PHPCS on changed files only (`composer lint:phpcs:changed`), and summarize findings in docs/tasks/current-task.md instead of pasting long logs.
 
 ## Facts you must know
 - Plugin version is 2.8. WordPress 5.8+. readme.txt says PHP 7.2, but the bundled Composer code (`helpers/vendor`) refuses to run below **PHP 7.2.5**, so treat 7.2.5 as the real minimum. Write code that works on 7.2.5: no typed properties, arrow functions, `match`, named arguments, nullsafe `?->`, `str_contains()`, `??=`.
@@ -32,12 +38,12 @@ Elemailer Lite is the free WordPress plugin that lets users design form emails w
 
 ## Commands
 - Syntax lint: `composer install` then `composer lint:syntax`
-- Coding standards (advisory, legacy code has violations): `composer lint:phpcs`
+- Coding standards on changed files (advisory, legacy code has violations): `composer lint:phpcs:changed` (full run: `composer lint:phpcs`)
 - Translations: `npm run i18n` (needs WP-CLI)
 
 ## Definition of done
 - `composer lint:syntax` passes
-- No new PHPCS errors in lines you changed
+- No new PHPCS errors in lines you changed (`composer lint:phpcs:changed`)
 - Manually tested in WordPress with Elementor active and WP_DEBUG on, no new notices in debug.log (see docs/local-setup.md)
 - Docs updated if behavior changed
 - docs/tasks/current-task.md updated

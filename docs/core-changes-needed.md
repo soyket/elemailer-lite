@@ -33,7 +33,7 @@ Rules for working from this list:
 
 - [ ] **C16** `widgets/heading/heading.php`: the link is printed with `esc_attr()`; use `esc_url()`. `widgets/image/image.php` and `widgets/image-box/image-box.php`: `alt` and `title` from `Control_Media` and the `width` attribute are echoed without a local escape; wrap in `esc_attr()` (verify the output is unchanged for normal values).
 - [ ] **C17** `public/views/templates.php`: `{{{site_title}}}` prints a title from the remote library unescaped inside the Elementor editor. Change to `{{site_title}}` and check that titles with entities still look right (the panel JS has its own `_unescape` helpers).
-- [ ] **C18** `integrations/elementor/actions/hooks.php` `register_document_config()` and the Terms description in `widgets/latest-posts/latest-posts.php` use the text domain `elemailer`; change to `elemailer-lite`. `register_document_config()` also returns nothing for other post types; return `$obj`.
+- [ ] **C18** `integrations/elementor/actions/hooks.php` `register_document_config()`, the Terms description in `widgets/latest-posts/latest-posts.php`, and the taxonomy description in `widgets/selected-posts/selected-posts.php` use the text domain `elemailer`; change to `elemailer-lite`. `register_document_config()` also returns nothing for other post types; return `$obj`. Note: `wpml-config.xml` also contains `elemailer-wc-new-accouont` (misspelled "account"); verify the correct widget id before changing it, since the WooCommerce widgets are not part of Lite.
 - [ ] **C19** `integrations/elementor/widgets/text-editor/text-editor.php`: WYSIWYG content is printed raw. **Owner decision:** keep (Elementor-authored content) or pass through `Util::kses()` / `wp_kses_post()`; test that email layouts do not change.
 
 ## Compatibility and metadata
@@ -46,14 +46,14 @@ Rules for working from this list:
 ## Dead code (remove only after a repository-wide search finds no references)
 
 - [ ] **C24** `integrations/elementor/actions/container.php`: fake `Container` class marked obsolete since 1.8; its `require_once` is commented out in `actions/hooks.php`.
-- [ ] **C25** `helpers/src/`: a copy of `CssToInlineStyles` and its `Css/` classes that is not autoloaded (the Composer PSR-4 map points to `helpers/vendor/tijsverkoyen/css-to-inline-styles/src`). Note: this copy uses `mb_convert_encoding( ..., 'HTML-ENTITIES', ... )`, which is deprecated since PHP 8.2, and `Css/Property/Processor.php` has a parameter written as `Specificity $specificity = null` (implicit nullable), which is deprecated since PHP 8.4. Whether the vendored copy (2.2.4) has the same code was not checked.
+- [ ] **C25** `helpers/src/`: a copy of `CssToInlineStyles` and its `Css/` classes that is not autoloaded (the Composer PSR-4 map points to `helpers/vendor/tijsverkoyen/css-to-inline-styles/src`). Note: this copy uses `mb_convert_encoding( ..., 'HTML-ENTITIES', ... )`, which is deprecated since PHP 8.2, and `Css/Property/Processor.php` has a parameter written as `Specificity $specificity = null` (implicit nullable), which is deprecated since PHP 8.4. Checked 2026-11-27: the vendored copy (2.2.4) in `helpers/vendor/tijsverkoyen/css-to-inline-styles` contains the same deprecated calls, so the runtime inliner is affected too; fold this into the C20 PHP-version decision (update the library or rebuild `helpers/vendor`).
 - [ ] **C26** `core/taxonomy.php`: abstract class with no subclass found.
 - [ ] **C27** `public/assets/js/functions.js` and `integrations/elementor/assets/js/frontend.js`: placeholder files that only contain a comment.
 
 ## Release tooling
 
-- [ ] **C28** `.distignore`: `.Gruntfile.js` should be `Gruntfile.js`; also exclude `package.json` and `package-lock.json` if they should not ship.
-- [ ] **C29** `Gruntfile.js`: rtlcss, cssmin and uglify read `assets/css` and `assets/js` at the repo root, which do not exist; `version-bump` rewrites a three-part version from `package.json` (1.1.0) while the plugin is 2.8; the `copy` excludes do not list `docs/`, `AGENTS.md` or `CLAUDE.md`.
+- [x] **C28** `.distignore`: `.Gruntfile.js` should be `Gruntfile.js`; also exclude `package.json` and `package-lock.json` if they should not ship. Fixed 2026-11-27 on branch `ai-native-dev-setup`: the typo is corrected and `Gruntfile.js`, `package.json`, `package-lock.json`, and `README.md` are excluded from the WordPress.org package.
+- [ ] **C29** `Gruntfile.js`: rtlcss, cssmin and uglify read `assets/css` and `assets/js` at the repo root, which do not exist; `version-bump` rewrites a three-part version from `package.json` (1.1.0) while the plugin is 2.8. (The `copy` excludes for `docs/`, `AGENTS.md`, `CLAUDE.md`, and `.agents/` were added 2026-11-27.)
 - [ ] **C30** `package.json`: `start` and `build` run `wp-scripts` but there is no `src/` directory; version is stale; `@wordpress/scripts` is `^19.2.2`. **Owner decision:** keep, update or remove.
 - [ ] **C31** `.gitattributes`: duplicate entries and rules for `/Build/` and `/Tests/` that do not exist (cosmetic).
 
@@ -63,7 +63,7 @@ Rules for working from this list:
 
 ## Library panel script clean-up
 
-- [ ] **C33** `integrations/elementor/assets/js/elemailer-elementor-admin-page.js`: (a) `_enableImport()` calls `ElemailerElementorAdmin.createTemplate()` in the branch where the action is not `insert`; the action is always set to `insert` before, so the branch is unreachable, and `createTemplate` is not defined in the file; remove the branch. (b) `_myTemplateDelete()` is never bound; remove it together with the PHP delete handler if the owner chooses that in C1. (c) `ElemailerElementorAdmin` and `$elementorscope` are implicit globals; declare them with `var`. (d) Debug `console.log` / `console.group*` calls could be removed. Test: open the library, preview, import a free template, sync.
+- [ ] **C33** `integrations/elementor/assets/js/elemailer-elementor-admin-page.js`: (a) `_enableImport()` calls `ElemailerElementorAdmin._createTemplate()` in the branch where the action is not `insert`; the action is always set to `insert` before, so the branch is unreachable, and `_createTemplate` is not defined in the file; remove the branch. (b) `_myTemplateDelete()` is never bound; remove it together with the PHP delete handler if the owner chooses that in C1. (c) `ElemailerElementorAdmin` and `$elementorscope` are implicit globals; declare them with `var`. (d) Debug `console.log` / `console.group*` calls could be removed. Test: open the library, preview, import a free template, sync.
 
 ## Stylesheets and icons
 

@@ -15,6 +15,7 @@
     },
     "scripts": {
         "lint:syntax": "find . -name '*.php' -not -path '*/vendor/*' -not -path './lib/*' -not -path '*/node_modules/*' -print0 | xargs -0 -n1 php -l > /dev/null",
-        "lint:phpcs": "phpcs"
+        "lint:phpcs": "phpcs",
+        "lint:phpcs:changed": "git diff --name-only --diff-filter=ACMRT HEAD -- '*.php' | grep -v '^helpers/vendor/' | xargs -r phpcs"
     }
 }

@@ -120,4 +120,3 @@ Read only in part: languages/elemailer-lite.pot (about 25,000 of 40,533 characte
 
 Not opened: helpers/src/Css/Property/Property.php (1,587 bytes); the `.wordpress-org/` images (binary files, only names and sizes listed); the symfony and tijsverkoyen source under helpers/vendor; widget asset folders (video and social icons; folder existence only); public/assets/{images,img}; and the 53-byte `index.php` stubs other than the root one. The root stub contains an ABSPATH guard and a comment; its Git blob id equals that of public/assets/css/index.php, so those two are identical. The others were only checked by size (all 53 bytes).
 
-Tool limit to remember: any file larger than about 25,000 characters is cut off by the GitHub connector. Check the end of the output for a truncation marker, and ask the owner for the file when it appears.

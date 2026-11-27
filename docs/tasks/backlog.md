@@ -17,12 +17,13 @@ The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to
 - [ ] C12 to C19 small correctness and escaping fixes
 - [ ] C21 to C23 compatibility and modal fields
 - [ ] C24 to C27 remove dead code after a reference search
-- [ ] C28 to C31 release tooling clean-up
+- [ ] C29 to C31 release tooling clean-up
 - [ ] C33 library panel script clean-up
 - [ ] C34 to C36, C38 stylesheet and icon clean-up
 
 ## Done
 - [x] C32 read the full library panel script (2026-11-11)
+- [x] C28 .distignore typo fixed; Gruntfile.js, package.json, package-lock.json and README.md excluded from the WordPress.org package (2026-11-27)
 
 ## Review gaps
 - [ ] C37 remaining unread: the tail of languages/elemailer-lite.pot (generated), helpers/src/Css/Property/Property.php, the .wordpress-org images
