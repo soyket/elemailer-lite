@@ -3,7 +3,7 @@
 There is no automated test suite in this repository yet (no `tests/` directory, no PHPUnit config). Until one exists, testing is syntax lint plus manual checks.
 
 - Run `composer lint:syntax` before every commit.
-- Run `composer lint:phpcs` and fix issues on lines you changed. Do not reformat unrelated code.
+- Run `composer lint:phpcs:changed` before committing and fix issues on lines you changed. Use the full `composer lint:phpcs` only when you need a whole-repo report; its output is large. Do not reformat unrelated code.
 - Manual smoke test for any change (WP_DEBUG and WP_DEBUG_LOG on, Elementor active):
   1. Elemailer > Form Templates: create a template through the modal (the modal has a single Template Name field), edit it in Elementor, confirm only Elemailer widgets appear.
   2. Reopen the template from the list (Edit link) and confirm the modal loads its name.
