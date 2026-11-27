@@ -13,7 +13,9 @@
     <rule ref="WordPress-Extra"/>
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" type="array" value="elemailer-lite"/>
+            <property name="text_domain" type="array">
+                <element value="elemailer-lite"/>
+            </property>
         </properties>
     </rule>
 </ruleset>
