@@ -170,7 +170,7 @@ class Library{
         $api_url = 'https://lib.elemailer.com/wp-json/wp/v2/elemailerlib/';
 
         for ( $attempt = 0; $attempt < 2; $attempt++ ) {
-            $response = wp_safe_remote_get( $api_url, array( 'timeout' => 15 ) );
+            $response = wp_remote_get( $api_url, array( 'timeout' => 15 ) );
 
             if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
                 continue;
