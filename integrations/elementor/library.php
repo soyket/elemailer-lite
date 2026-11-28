@@ -282,17 +282,53 @@ class Library{
      *
      * @since 1.0.5
      */
+    private function is_elemailer_library_template( $post_id ) {
+        return 'elementor_library' === get_post_type( $post_id )
+            && 'elemailer_library' === get_post_meta( $post_id, '_elementor_template_type', true );
+    }
+
+    private function is_allowed_library_url( $url ) {
+        $parts = wp_parse_url( $url );
+
+        return isset( $parts['scheme'], $parts['host'] )
+            && 'https' === $parts['scheme']
+            && 'lib.elemailer.com' === $parts['host'];
+    }
+
+    private function remote_get_library_url( $url ) {
+        if ( ! $this->is_allowed_library_url( $url ) ) {
+            return new \WP_Error( 'elemailer_invalid_library_url', __( 'Invalid library URL.', 'elemailer-lite' ) );
+        }
+
+        $response = wp_safe_remote_get( $url, array( 'timeout' => 15 ) );
+
+        if ( is_wp_error( $response ) ) {
+            return $response;
+        }
+
+        if ( 200 !== wp_remote_retrieve_response_code( $response ) ) {
+            return new \WP_Error( 'elemailer_library_request_failed', __( 'Library request failed.', 'elemailer-lite' ) );
+        }
+
+        return $response;
+    }
+
+    private function can_import_into_post( $post_id ) {
+        return in_array( get_post_type( $post_id ), array( 'em-form-template', 'em-emails-template' ), true )
+            && current_user_can( 'edit_post', $post_id );
+    }
+
     public function my_template_delete_request() {
         check_ajax_referer( 'elemailer-lite-check', '_ajax_nonce' );
 
-        if ( ! current_user_can( 'edit_posts' ) ) {
+        $template_id = isset( $_POST['template_id'] ) ? absint( $_POST['template_id'] ) : 0;
+
+        if ( ! $template_id || ! $this->is_elemailer_library_template( $template_id ) || ! current_user_can( 'delete_post', $template_id ) ) {
             wp_send_json_error( __( 'You are not allowed to perform this action', 'elemailer-lite' ) );
         }
 
-        $template_id = isset( $_POST['template_id'] ) ? sanitize_text_field( $_POST['template_id'] ) : '';
-
         wp_delete_post( $template_id, TRUE );
-        
+
         wp_send_json_success( 1 );
     }
 
@@ -308,11 +344,11 @@ class Library{
             wp_send_json_error( __( 'You are not allowed to perform this action', 'elemailer-lite' ) );
         }
 
-        $template_id = isset( $_POST['template_id'] ) ? sanitize_text_field( $_POST['template_id'] ) : '';
-        $template    = get_post( $template_id );
+        $template_id = isset( $_POST['template_id'] ) ? absint( $_POST['template_id'] ) : 0;
+        $template    = $template_id ? get_post( $template_id ) : null;
 
-        if ( is_wp_error( $template ) ) {
-            wp_send_json_error( wp_remote_retrieve_body( 'No data found' ) );
+        if ( ! $template || ! $this->is_elemailer_library_template( $template_id ) || ! current_user_can( 'edit_post', $template_id ) ) {
+            wp_send_json_error( __( 'No data found', 'elemailer-lite' ) );
         }
 
         $templates = [
@@ -336,12 +372,12 @@ class Library{
             wp_send_json_error( __( 'You are not allowed to perform this action', 'elemailer-lite' ) );
         }
 
-        $api_url  = isset( $_POST['url'] ) ? sanitize_text_field( $_POST['url'] ) : '';
+        $api_url  = isset( $_POST['url'] ) ? esc_url_raw( $_POST['url'] ) : '';
         $api_url  = add_query_arg( $this->get_api_params(), $api_url );
-        $response = wp_remote_get( $api_url );
+        $response = $this->remote_get_library_url( $api_url );
 
         if ( is_wp_error( $response ) ) {
-            wp_send_json_error( wp_remote_retrieve_body( $response ) );
+            wp_send_json_error( $response->get_error_message() );
         }
 
         $body = wp_remote_retrieve_body( $response );
@@ -371,7 +407,7 @@ class Library{
 
         $template = get_post( $template_id );
 
-        if ( empty( $template ) ) {
+        if ( empty( $template ) || ! $this->is_elemailer_library_template( $template_id ) || ! current_user_can( 'edit_post', $template_id ) ) {
             wp_send_json_error( __( 'Invalid data.', 'elemailer-lite' ) );
         }
 
@@ -384,7 +420,7 @@ class Library{
         $meta    = json_decode( $elementor_data, true );
         $post_id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : '';
 
-        if ( empty( $post_id ) || empty( $meta ) ) {
+        if ( empty( $post_id ) || empty( $meta ) || ! $this->can_import_into_post( $post_id ) ) {
             wp_send_json_error( __( 'Invalid Post ID or Elementor Meta', 'elemailer-lite' ) );
         }
 
@@ -413,10 +449,10 @@ class Library{
             wp_send_json_error( __( 'Invalid API URL.', 'elemailer-lite' ) );
         }
 
-        $response = wp_remote_get( $api_url );
+        $response = $this->remote_get_library_url( $api_url );
 
         if ( is_wp_error( $response ) ) {
-            wp_send_json_error( wp_remote_retrieve_body( $response ) );
+            wp_send_json_error( $response->get_error_message() );
         }
 
         $body = wp_remote_retrieve_body( $response );
@@ -429,7 +465,7 @@ class Library{
         $meta    = json_decode( $data['_elementor_data'], true );
         $post_id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : '';
 
-        if ( empty( $post_id ) || empty( $meta ) ) {
+        if ( empty( $post_id ) || empty( $meta ) || ! $this->can_import_into_post( $post_id ) ) {
             wp_send_json_error( __( 'Invalid Post ID or Elementor Meta', 'elemailer-lite' ) );
         }
 

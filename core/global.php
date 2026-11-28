@@ -6,14 +6,13 @@
  */
 
 //ajax action to get taxonomies by post type
-add_action('wp_ajax_nopriv_elemailer_get_taxonomies', 'elemailer_get_taxonomies');
 add_action('wp_ajax_elemailer_get_taxonomies', 'elemailer_get_taxonomies');
 
 function elemailer_get_taxonomies()
 {
 	// first check if data is being sent and that it is the data we want   
 	if (isset($_POST['postTypeNonce'])) {
-		if (!wp_verify_nonce($_POST['postTypeNonce'], 'wp_rest')) {
+		if (!wp_verify_nonce($_POST['postTypeNonce'], 'wp_rest') || !current_user_can('edit_posts')) {
 			wp_die('You are not allowed!');
 		}
 		$post_type = sanitize_text_field(isset($_POST['post_type']) ? $_POST['post_type'] : '');
@@ -28,14 +27,13 @@ function elemailer_get_taxonomies()
 }
 
 //ajax action to get terms by category
-add_action('wp_ajax_nopriv_elemailer_get_terms', 'elemailer_get_terms');
 add_action('wp_ajax_elemailer_get_terms', 'elemailer_get_terms');
 
 function elemailer_get_terms()
 {
 	// first check if data is being sent and that it is the data we want
 	if (isset($_POST['postTypeNonce'])) {
-		if (!wp_verify_nonce($_POST['postTypeNonce'], 'wp_rest')) {
+		if (!wp_verify_nonce($_POST['postTypeNonce'], 'wp_rest') || !current_user_can('edit_posts')) {
 			wp_die('You are not allowed!');
 		}
 		$taxonomy_type = sanitize_text_field(isset($_POST['taxonomy_type']) ? $_POST['taxonomy_type'] : '');
@@ -57,14 +55,13 @@ function elemailer_get_terms()
 }
 
 //ajax action to get terms by category
-add_action('wp_ajax_nopriv_elemailer_get_posts', 'elemailer_get_posts');
 add_action('wp_ajax_elemailer_get_posts', 'elemailer_get_posts');
 
 function elemailer_get_posts()
 {
 	// first check if data is being sent and that it is the data we want
 	if (isset($_POST['postTypeNonce'])) {
-		if (!wp_verify_nonce($_POST['postTypeNonce'], 'wp_rest')) {
+		if (!wp_verify_nonce($_POST['postTypeNonce'], 'wp_rest') || !current_user_can('edit_posts')) {
 			wp_die('You are not allowed!');
 		}
 		//$taxonomy_type = sanitize_text_field(isset($_POST['taxonomy_type']) ? $_POST['taxonomy_type'] : '');

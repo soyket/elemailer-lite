@@ -51,7 +51,9 @@ abstract class Api
             register_rest_route(untrailingslashit('elemailer_lite/v1/' . $this->prefix), '/(?P<action>\w+)/' . ltrim($this->param, '/'), array(
                 'methods' => \WP_REST_Server::ALLMETHODS,
                 'callback' => [$this, 'action'],
-                'permission_callback' => '__return_true',
+                'permission_callback' => function () {
+                    return current_user_can('manage_options');
+                },
             ));
         });
     }
@@ -72,5 +74,7 @@ abstract class Api
         if (method_exists($this, $action_class)) {
             return $this->{$action_class}();
         }
+
+        return new \WP_Error('rest_no_route', __('No route was found matching the URL and request method.'), array('status' => 404));
     }
 }

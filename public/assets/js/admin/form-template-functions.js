@@ -13,7 +13,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         //console.log('click event');
         var data = null,
-            nonce = $(this).attr('data-nonce'),
+            nonce = form.attr('data-nonce'),
             column = $(this).parents('.column-title');
 
         modal.addClass('loading');

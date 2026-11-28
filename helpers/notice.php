@@ -35,24 +35,23 @@ class Notice
      */
     public static function dismiss()
     {
+        check_ajax_referer('elemailer-notices', '_ajax_nonce');
 
         $id = (isset($_POST['id'])) ? sanitize_text_field($_POST['id']) : '';
-        $time = (isset($_POST['time'])) ? sanitize_text_field($_POST['time']) : '';
+        $time = (isset($_POST['time'])) ? absint($_POST['time']) : 0;
         $meta = (isset($_POST['meta'])) ? sanitize_text_field($_POST['meta']) : '';
 
-        // Valid inputs?
-        if (!empty($id)) {
-
-            if ('user' === $meta) {
-                update_user_meta(get_current_user_id(), $id, true);
-            } else {
-                set_transient($id, true, $time);
-            }
-
-            wp_send_json_success();
+        if (0 !== strpos($id, 'elemailer-sites-notice-id-') || !in_array($meta, ['user', 'transient'], true)) {
+            wp_send_json_error();
         }
 
-        wp_send_json_error();
+        if ('user' === $meta) {
+            update_user_meta(get_current_user_id(), $id, true);
+        } else {
+            set_transient($id, true, min($time, YEAR_IN_SECONDS));
+        }
+
+        wp_send_json_success();
     }
 
     /**
@@ -77,6 +76,7 @@ class Notice
 						type: 'POST',
 						data: {
 							action 	: 'elemailer-notices',
+							_ajax_nonce : '<?php echo esc_js(wp_create_nonce('elemailer-notices')); ?>',
 							id 		: id,
 							meta 	: meta,
 							time 	: time,

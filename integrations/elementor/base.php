@@ -100,6 +100,10 @@ class Base
      */
     public function display_admin_notice_logic()
     {
+        if ( ! current_user_can( 'manage_options' ) || ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'elemailer_lite_notice' ) ) {
+            return;
+        }
+
         if ( isset( $_GET['elemailer_lite_notice_not_now'] ) && ! empty( $_GET['elemailer_lite_notice_not_now'] ) ) {
             if ( 1 === absint( $_GET['elemailer_lite_notice_not_now'] ) ) {
                 update_option( 'elemailer_lite_notice_not_now_time', strtotime( "now" ) );
@@ -137,14 +141,14 @@ class Base
             ],
             [
                 'label' => esc_html__('Not Now!', 'elemailer-lite'),
-                'url'   => esc_url( get_admin_url() . '?elemailer_lite_notice_not_now=1' ),
+                'url'   => esc_url( wp_nonce_url( get_admin_url() . '?elemailer_lite_notice_not_now=1', 'elemailer_lite_notice' ) ),
                 'style' => [
                     'class' => 'secondary-primary',
                 ]
             ],
             [
                 'label'        => esc_html__('Never Show!', 'elemailer-lite'),
-                'url'          => esc_url( get_admin_url() . '?elemailer_lite_notice_never_show=1' ),
+                'url'          => esc_url( wp_nonce_url( get_admin_url() . '?elemailer_lite_notice_never_show=1', 'elemailer_lite_notice' ) ),
                 'custom_style' => 'position: absolute; right: 10px; color: #ccc;',
                 'style' => [
                     'class' => 'elemailer-lite-notice-never-show',

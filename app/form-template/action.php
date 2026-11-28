@@ -125,6 +125,11 @@ class Action
             return;
         }
 
+        if ($this->post_type !== get_post_type($this->template_id)) {
+            $this->response['error'][] = esc_html__('Invalid template.', 'elemailer-lite');
+            return;
+        }
+
         if (isset($this->submitted_data['title'])) {
             $update_post = array(
                 'ID'           => $this->template_id,
@@ -163,8 +168,8 @@ class Action
 
         foreach ($submitted_data as $key => $value) {
 
-            if (isset($fields[$key])) {
-                $this->submitted_data[$key] = $value;
+            if (isset($fields[$key]) && is_scalar($value)) {
+                $this->submitted_data[$key] = sanitize_text_field((string) $value);
             }
         }
 
@@ -190,6 +195,10 @@ class Action
         }
 
         if (!property_exists($post, 'ID')) {
+            return null;
+        }
+
+        if ($this->post_type !== $post->post_type) {
             return null;
         }
 

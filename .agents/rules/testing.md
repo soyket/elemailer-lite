@@ -4,7 +4,7 @@ Automated tests live in `tests/`: PHPUnit unit tests for logic that can run with
 
 - Run `composer lint:syntax` before every commit.
 - Run `composer test:unit` before every commit.
-- For WordPress runtime behavior, run `npm run env:start`, `npm run test:smoke`, and `npm run env:stop` when Docker is available. If Docker is not available, state that in the pull request and use the manual smoke test below.
+- For WordPress runtime behavior, run `npm run env:start`, `npm run test:smoke`, `npm run test:integration`, and `npm run env:stop` when Docker is available. If Docker is not available, state that in the pull request and use the manual smoke test below.
 - Run `composer lint:phpcs:changed` before committing and fix issues on lines you changed. Use the full `composer lint:phpcs` only when you need a whole-repo report; its output is large. Do not reformat unrelated code.
 - Manual smoke test for any change (WP_DEBUG and WP_DEBUG_LOG on, Elementor active):
   1. Elemailer > Form Templates: create a template through the modal (the modal has a single Template Name field), edit it in Elementor, confirm only Elemailer widgets appear.

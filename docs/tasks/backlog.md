@@ -3,18 +3,18 @@
 The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to C38). This backlog is the suggested order. Each item should be its own branch and pull request.
 
 ## Suggested order
-- [ ] C1 library delete handler (high), with the owner decision on removing it
-- [ ] C2, C3 library URL and post checks (the import flow was verified, so these are safe to implement)
-- [ ] C5 notice dismiss handler
-- [ ] C4 REST read check, together with the nonce fix in `form-template-functions.js`
-- [ ] C6 notice option updates from `$_GET`
-- [ ] C7 remove `nopriv` AJAX registrations
+- [x] C1 library delete handler hardened (2026-11-28)
+- [x] C2, C3 library URL and post checks (2026-11-28)
+- [x] C5 notice dismiss handler (2026-11-28)
+- [x] C4 REST read check, together with the nonce fix in `form-template-functions.js` (2026-11-28)
+- [x] C6 notice option updates from `$_GET` (2026-11-28)
+- [x] C7 remove `nopriv` AJAX registrations (2026-11-28)
 - [ ] C9 Vimeo thumbnail (https, no unserialize, cache)
-- [ ] C8 sanitize template settings
+- [x] C8 sanitize template settings (2026-11-28)
 - [ ] C10 stop rewriting the CSS file on every request (keep the generated file without a closing style tag)
 - [ ] C11 cache the remote library list
 - [ ] C20 decide PHP minimum (7.2.5)
-- [ ] C12 to C19 small correctness and escaping fixes
+- [ ] C12, C13, C15 to C19 small correctness and escaping fixes (C14 done 2026-11-28)
 - [ ] C21 to C23 compatibility and modal fields
 - [ ] C24 to C27 remove dead code after a reference search
 - [ ] C29 to C31 release tooling clean-up

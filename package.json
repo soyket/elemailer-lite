@@ -31,6 +31,7 @@
         "env:stop": "wp-env stop",
         "env:destroy": "wp-env destroy",
         "test:smoke": "wp-env run cli wp plugin activate elemailer-lite elementor contact-form-7 && wp-env run cli wp eval-file wp-content/plugins/elemailer-lite/tests/smoke/smoke.php",
+        "test:integration": "wp-env run cli wp plugin activate elemailer-lite elementor contact-form-7 && wp-env run cli wp eval-file wp-content/plugins/elemailer-lite/tests/integration/run.php",
         "i18n": "grunt textdomain && wp i18n make-pot . --exclude=\".github,.wordpress-org,bin,lib,node_modules,tests,vendor,.vscode,package.json,package-lock.json,*.json\" languages/elemailer-lite.pot --domain=elemailer-lite"
     }
 }
