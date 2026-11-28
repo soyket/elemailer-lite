@@ -19,7 +19,7 @@ Out of scope: C1-C38 code fixes, GitHub workflow changes, version bumps, merges 
 Run `npm install`, `composer install`, `npm run env:start`, `composer test:unit`, `npm run test:smoke`, and `npm run env:stop`. The smoke test activates Elemailer Lite, Elementor, and Contact Form 7 in wp-env, renders a minimal Elemailer template, expands the Elemailer shortcode, captures `wp_mail()` instead of sending it, and fails on assertion failures.
 
 ## Status / handoff
-Done: implementation and local verification (config parsing, unit tests, syntax lint, PHPCS changed files).
-Remaining: Docker-backed smoke test run and owner review.
+Done: implementation and local verification (config parsing, unit tests, syntax lint, PHPCS changed files). The smoke test also passes on a local non-Docker WordPress test site (WordPress 7.1.5, SQLite, Elemailer Lite 2.8, Elementor 4.4.2, Contact Form 7 6.2.6), and its fixture now runs as an administrator and writes `_elementor_version` meta like an editor-built document.
+Remaining: Docker-backed wp-env smoke test run (WordPress 6.8.2) and owner review.
 Blockers: Docker may not be available in every agent environment; unit tests and config checks still run without Docker.
-Next step: after owner review, start C1 from docs/tasks/backlog.md and add regression tests for the security handlers.
+Next step: owner decision on C1 (harden the library delete handler, or remove it with the unused JS), then add its regression test first.

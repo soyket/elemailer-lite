@@ -21,6 +21,13 @@ function elemailer_smoke_check($label, $condition) {
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
+// Run as an administrator, like the editor flows this fixture mirrors,
+// so capability checks in rendering paths behave as they do in wp-admin.
+$admin_ids = get_users(['role' => 'administrator', 'number' => 1, 'fields' => 'ID']);
+if (!empty($admin_ids)) {
+	wp_set_current_user((int) $admin_ids[0]);
+}
+
 elemailer_smoke_check('Elemailer Lite active', is_plugin_active('elemailer-lite/elemailer-lite.php'));
 elemailer_smoke_check('Elementor active', is_plugin_active('elementor/elementor.php'));
 elemailer_smoke_check('Contact Form 7 active', is_plugin_active('contact-form-7/wp-contact-form-7.php'));
@@ -62,6 +69,10 @@ if (!is_wp_error($template_id) && $template_id > 0) {
 	update_post_meta($template_id, '_elementor_data', wp_slash(wp_json_encode($elementor_data)));
 	update_post_meta($template_id, '_elementor_edit_mode', 'builder');
 	update_post_meta($template_id, '_elementor_template_type', 'wp-page');
+	if (defined('ELEMENTOR_VERSION')) {
+		// Match the meta Elementor itself writes for editor-built documents.
+		update_post_meta($template_id, '_elementor_version', ELEMENTOR_VERSION);
+	}
 
 	$content = \Elemailer_Lite\Helpers\Util::get_template_content($template_id);
 	elemailer_smoke_check('Template content renders heading text', strpos($content, 'Hello [your-name]') !== false);
