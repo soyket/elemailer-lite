@@ -29,7 +29,6 @@ class Library{
         add_action( 'elementor/preview/enqueue_styles', [ $this, 'register_widget_styles' ] );
         add_action( 'wp_ajax_elemailer-lite-remote-request', [ $this, 'remote_request' ] );
         add_action( 'wp_ajax_elemailer-lite-my-template-remote-request', [ $this, 'my_template_remote_request' ] );
-        add_action( 'wp_ajax_elemailer-lite-my-template-delete-request', [ $this, 'my_template_delete_request' ] );
         add_action( 'wp_ajax_elemailer-lite-elementor-batch-process', [ $this, 'elementor_batch_process' ] );
         add_action( 'wp_ajax_elemailer-lite-elementor-batch-my-template-process', [ $this, 'my_template_elementor_batch_process' ] );
         add_action( 'wp_ajax_elemailer-sync-page-builder', [ $this, 'get_sync_page_builder' ] );
@@ -117,7 +116,6 @@ class Library{
                 'license_msg_save'     => $license_msg_save,
                 'getProText'           => __( 'Get Access!', 'elemailer-lite' ),
                 'syncCompleteMessage'  => __( 'Template library refreshed!', 'elemailer-lite' ),
-                'confirmDeleteMessage' => __( 'Are you sure you want to delete?', 'elemailer-lite' ),
                 'public_asset_dir'     => ELE_MAILER_LITE_PLUGIN_PUBLIC,
                 'getProURL'            => esc_url( 'https://elemailer.com/pricing/?utm_source=demo-import-panel&utm_campaign=elemailer-lite&utm_medium=wp-dashboard' ),
 
@@ -316,20 +314,6 @@ class Library{
     private function can_import_into_post( $post_id ) {
         return in_array( get_post_type( $post_id ), array( 'em-form-template', 'em-emails-template' ), true )
             && current_user_can( 'edit_post', $post_id );
-    }
-
-    public function my_template_delete_request() {
-        check_ajax_referer( 'elemailer-lite-check', '_ajax_nonce' );
-
-        $template_id = isset( $_POST['template_id'] ) ? absint( $_POST['template_id'] ) : 0;
-
-        if ( ! $template_id || ! $this->is_elemailer_library_template( $template_id ) || ! current_user_can( 'delete_post', $template_id ) ) {
-            wp_send_json_error( __( 'You are not allowed to perform this action', 'elemailer-lite' ) );
-        }
-
-        wp_delete_post( $template_id, TRUE );
-
-        wp_send_json_success( 1 );
     }
 
     /**

@@ -146,41 +146,6 @@
             $(document).trigger('elemailer-lite__elementor-close-after');
         },
 
-        _myTemplateDelete: function (e) {
-            console.groupEnd();
-
-            if ( ! confirm( elemailerElementorData.confirmDeleteMessage ) ) {
-                return;
-            }
-
-            $.ajax({
-                url: elemailerElementorData.ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'elemailer-lite-my-template-delete-request',
-                    template_id: $(this).data('saved-template-id'),
-                    _ajax_nonce: elemailerElementorData._ajax_nonce,
-                },
-                beforeSend: function () {
-                    console.groupCollapsed('Get Template Details.');
-                },
-            })
-                .fail(function (jqXHR) {
-                    console.log(jqXHR);
-                    console.groupEnd();
-                })
-                .done(function (response) {
-                    console.log( response );
-                    console.groupEnd();
-
-                    if( response.success ) {
-                        $('#elemailer-lite-modal .elemailer-lite__sync-wrap').trigger('click');
-                    } else {
-                        console.log( 'not get Data' );
-                    }
-                });
-        },
-
         _preview: function (e) {
             if (ElemailerElementorAdmin.processing) {
                 return;

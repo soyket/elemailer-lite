@@ -131,7 +131,9 @@ $library_id = wp_insert_post([
 update_post_meta($library_id, '_elementor_template_type', 'elemailer_library');
 update_post_meta($library_id, '_elementor_data', wp_slash(wp_json_encode(elemailer_it_data([['elemailer-heading', ['title' => 'Library Heading']]]))));
 
-// Security: C1 library delete handler.
+// Security: C1 library delete handler removed.
+elemailer_it_check('C1 library delete AJAX action is not registered', has_action('wp_ajax_elemailer-lite-my-template-delete-request') === false);
+
 wp_set_current_user($contributor_id);
 elemailer_it_ajax('elemailer-lite-my-template-delete-request', [
 	'_ajax_nonce' => wp_create_nonce('elemailer-lite-check'),
@@ -150,7 +152,7 @@ elemailer_it_ajax('elemailer-lite-my-template-delete-request', [
 	'_ajax_nonce' => wp_create_nonce('elemailer-lite-check'),
 	'template_id' => $library_id,
 ]);
-elemailer_it_check('C1 admin can delete an Elemailer library template', !get_post($library_id));
+elemailer_it_check('C1 removed delete action does not delete a library template', (bool) get_post($library_id));
 
 // Security: C3 source template read must not expose arbitrary post data.
 wp_set_current_user($contributor_id);

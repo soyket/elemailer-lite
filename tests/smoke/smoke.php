@@ -33,6 +33,7 @@ elemailer_smoke_check('Elementor active', is_plugin_active('elementor/elementor.
 elemailer_smoke_check('Contact Form 7 active', is_plugin_active('contact-form-7/wp-contact-form-7.php'));
 elemailer_smoke_check('Template post type registered', post_type_exists('em-form-template'));
 elemailer_smoke_check('CF7 mail hook registered', has_action('wpcf7_before_send_mail') !== false);
+elemailer_smoke_check('Library delete AJAX action not registered (C1)', has_action('wp_ajax_elemailer-lite-my-template-delete-request') === false);
 
 foreach (get_posts(['post_type' => 'em-form-template', 'post_status' => 'any', 'numberposts' => -1]) as $old) {
 	wp_delete_post($old->ID, true);

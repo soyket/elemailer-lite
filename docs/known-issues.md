@@ -22,7 +22,7 @@ Found by reading the source on 2026-11-11. Fixed items are removed from this lis
 
 ## Dead or duplicate code
 - `integrations/elementor/actions/container.php` (obsolete `Container` class), `helpers/src/` (unused copy of the CSS inliner, uses a call deprecated in PHP 8.2), `core/taxonomy.php` (no subclass), and two placeholder JS files. (C24 to C27)
-- The PHP actions `elemailer-lite-my-template-remote-request`, `elemailer-lite-elementor-batch-my-template-process` and `elemailer-lite-my-template-delete-request`, and the unbound JS function `_myTemplateDelete`: no caller in the Lite panel script. (C1, C3, C33)
+- The PHP actions `elemailer-lite-my-template-remote-request` and `elemailer-lite-elementor-batch-my-template-process`: no caller in the Lite panel script. (C3)
 
 ## Release tooling
 - `Gruntfile.js` rtlcss, cssmin and uglify read `assets/css` and `assets/js` at the repo root, which do not exist (assets live under `public/assets`). `version-bump` only rewrites a three-part version (x.y.z) in the plugin header and takes the number from `package.json` (1.1.0). The plugin version is 2.8, so it does not match. (C29)

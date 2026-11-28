@@ -3,7 +3,7 @@
 The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to C38). This backlog is the suggested order. Each item should be its own branch and pull request.
 
 ## Suggested order
-- [x] C1 library delete handler hardened (2026-11-28)
+- [x] C1 library delete handler removed (2026-11-28)
 - [x] C2, C3 library URL and post checks (2026-11-28)
 - [x] C5 notice dismiss handler (2026-11-28)
 - [x] C4 REST read check, together with the nonce fix in `form-template-functions.js` (2026-11-28)
