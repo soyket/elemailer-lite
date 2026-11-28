@@ -132,44 +132,100 @@ class Library{
      *
      * @return array $templates
      */
-    public function get_default_page_builder() {
-        $api_url       = 'https://lib.elemailer.com/wp-json/wp/v2/elemailerlib/';
-        $response      = wp_remote_get( $api_url );
-        $response_body = wp_remote_retrieve_body( $response );
-        $response_data = json_decode( $response_body, true );
-        $templates     = array();
+    public function get_default_page_builder( $force_refresh = false ) {
+        $cache_key        = 'elemailer_lite_library_templates';
+        $cached           = get_transient( $cache_key );
+        $cached_templates = array();
+        $is_fresh         = false;
 
-        if ( empty( $response_data ) ) {
+        if ( is_array( $cached ) && isset( $cached['templates'] ) && is_array( $cached['templates'] ) ) {
+            $cached_templates = $cached['templates'];
+            $fetched_at       = isset( $cached['fetched_at'] ) ? absint( $cached['fetched_at'] ) : 0;
+            $is_fresh         = $fetched_at && ( time() - $fetched_at ) < 12 * HOUR_IN_SECONDS;
+        }
+
+        if ( ! $force_refresh && $is_fresh ) {
+            return $cached_templates;
+        }
+
+        $templates = $this->fetch_default_page_builder_templates();
+
+        if ( ! empty( $templates ) ) {
+            set_transient(
+                $cache_key,
+                array(
+                    'fetched_at' => time(),
+                    'templates'  => $templates,
+                ),
+                7 * DAY_IN_SECONDS
+            );
+
             return $templates;
         }
 
-        foreach ( $response_data as $page_data ) {
-            $templates['id-' . $page_data['id']] = [
-                'title'                  => $page_data['title']['rendered'],
-                'featured-image-url'     => $page_data['featured_image_src']['featured_media_full'],
-                'thumbnail-image-url'    => $page_data['featured_image_src']['featured_media_thumbnail'],
-                'elemailer-page-api-url' => $api_url . $page_data['id'],
-                'dynamic-page'           => 'no',
-                'elemailer-page-tag'     => [
-                    '423' => 'home'
-                ],
-                'site-pages-type'         => $page_data['template_type'],
-                'site-pages-page-builder' => 'elementor',
-                'site-pages-category'     => [
-                    '60' => 'business',
-                    '61' => 'free',
-                ],
-                'required-plugins'        => [
-                    [
-                        'slug' => 'elementor',
-                        'init' => 'elementor/elementor.php',
-                        'name' => 'Elementor',
-                    ]
-                ],
-            ];
+        return $cached_templates;
+    }
+
+    private function fetch_default_page_builder_templates() {
+        $api_url = 'https://lib.elemailer.com/wp-json/wp/v2/elemailerlib/';
+
+        for ( $attempt = 0; $attempt < 2; $attempt++ ) {
+            $response = wp_safe_remote_get( $api_url, array( 'timeout' => 15 ) );
+
+            if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+                continue;
+            }
+
+            $response_data = json_decode( wp_remote_retrieve_body( $response ), true );
+
+            if ( empty( $response_data ) || ! is_array( $response_data ) ) {
+                continue;
+            }
+
+            $templates = array();
+
+            foreach ( $response_data as $page_data ) {
+                if ( ! is_array( $page_data ) || empty( $page_data['id'] ) || empty( $page_data['title']['rendered'] ) || empty( $page_data['featured_image_src']['featured_media_full'] ) || empty( $page_data['featured_image_src']['featured_media_thumbnail'] ) || ! isset( $page_data['template_type'] ) ) {
+                    continue;
+                }
+
+                $template_id = absint( $page_data['id'] );
+
+                if ( ! $template_id ) {
+                    continue;
+                }
+
+                $templates[ 'id-' . $template_id ] = array(
+                    'title'                  => $page_data['title']['rendered'],
+                    'featured-image-url'     => $page_data['featured_image_src']['featured_media_full'],
+                    'thumbnail-image-url'    => $page_data['featured_image_src']['featured_media_thumbnail'],
+                    'elemailer-page-api-url' => $api_url . $template_id,
+                    'dynamic-page'           => 'no',
+                    'elemailer-page-tag'     => array(
+                        '423' => 'home',
+                    ),
+                    'site-pages-type'         => $page_data['template_type'],
+                    'site-pages-page-builder' => 'elementor',
+                    'site-pages-category'     => array(
+                        '60' => 'business',
+                        '61' => 'free',
+                    ),
+                    'required-plugins'        => array(
+                        array(
+                            'slug' => 'elementor',
+                            'init' => 'elementor/elementor.php',
+                            'name' => 'Elementor',
+                        ),
+                    ),
+                );
+            }
+
+            if ( ! empty( $templates ) ) {
+                return $templates;
+            }
         }
 
-        return $templates;
+        return array();
     }
 
     /**
@@ -226,7 +282,7 @@ class Library{
             wp_send_json_error( __( 'You are not allowed to perform this action', 'elemailer-lite' ) );
         }
 
-        wp_send_json_success( $this->get_default_page_builder() );
+        wp_send_json_success( $this->get_default_page_builder( true ) );
     }
 
     /**

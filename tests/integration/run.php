@@ -197,6 +197,72 @@ elemailer_it_ajax('elemailer-lite-elementor-batch-process', [
 elemailer_it_check('C3 import into a normal post is refused', 'SECRET_NORMAL_DATA' === get_post_meta($normal_post_id, '_elementor_data', true));
 remove_all_filters('pre_http_request');
 
+// Robustness: C11 library list is cached, stale fallback is used, and sync force-refresh updates it.
+$library = new \Elemailer_Lite\Integrations\Elementor\Library();
+delete_transient('elemailer_lite_library_templates');
+$library_requests = 0;
+add_filter('pre_http_request', function ($pre, $args, $url) use (&$library_requests) {
+	$library_requests++;
+	return [
+		'headers' => [],
+		'body' => wp_json_encode([
+			[
+				'id' => 123,
+				'title' => ['rendered' => 'Cached Template'],
+				'featured_image_src' => [
+					'featured_media_full' => 'https://lib.elemailer.com/full.png',
+					'featured_media_thumbnail' => 'https://lib.elemailer.com/thumb.png',
+				],
+				'template_type' => 'free',
+			],
+			['id' => 124, 'title' => ['rendered' => 'Malformed Template']],
+		]),
+		'response' => ['code' => 200, 'message' => 'OK'],
+		'cookies' => [],
+		'filename' => null,
+	];
+}, 1, 3);
+$templates = $library->get_default_page_builder();
+$templates_again = $library->get_default_page_builder();
+elemailer_it_check('C11 library list skips malformed items', 1 === count($templates) && isset($templates['id-123']));
+elemailer_it_check('C11 library list uses transient cache', 1 === $library_requests && $templates === $templates_again);
+remove_all_filters('pre_http_request');
+
+set_transient('elemailer_lite_library_templates', [
+	'fetched_at' => time() - DAY_IN_SECONDS,
+	'templates' => ['id-123' => ['title' => 'Stale Template']],
+], 7 * DAY_IN_SECONDS);
+add_filter('pre_http_request', function () {
+	return new WP_Error('http_request_failed', 'Library unavailable');
+}, 1, 3);
+$templates = $library->get_default_page_builder();
+elemailer_it_check('C11 stale library list is used when refresh fails', 'Stale Template' === ($templates['id-123']['title'] ?? ''));
+remove_all_filters('pre_http_request');
+
+add_filter('pre_http_request', function () {
+	return [
+		'headers' => [],
+		'body' => wp_json_encode([
+			[
+				'id' => 123,
+				'title' => ['rendered' => 'Refreshed Template'],
+				'featured_image_src' => [
+					'featured_media_full' => 'https://lib.elemailer.com/full.png',
+					'featured_media_thumbnail' => 'https://lib.elemailer.com/thumb.png',
+				],
+				'template_type' => 'free',
+			],
+		]),
+		'response' => ['code' => 200, 'message' => 'OK'],
+		'cookies' => [],
+		'filename' => null,
+	];
+}, 1, 3);
+$templates = $library->get_default_page_builder(true);
+elemailer_it_check('C11 force refresh updates library list', 'Refreshed Template' === ($templates['id-123']['title'] ?? ''));
+remove_all_filters('pre_http_request');
+delete_transient('elemailer_lite_library_templates');
+
 // Security: C4 REST template settings require manage_options and a template post type.
 $template_id = elemailer_it_make_template('Integration Template', 'publish', elemailer_it_data([
 	['elemailer-heading', ['title' => 'Hello [your-name]']],

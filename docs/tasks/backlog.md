@@ -12,7 +12,7 @@ The detailed, file-by-file change list is docs/core-changes-needed.md (ids C1 to
 - [ ] C9 Vimeo thumbnail (https, no unserialize, cache)
 - [x] C8 sanitize template settings (2026-11-28)
 - [ ] C10 stop rewriting the CSS file on every request (keep the generated file without a closing style tag)
-- [ ] C11 cache the remote library list
+- [x] C11 cache the remote library list (2026-11-28)
 - [ ] C20 decide PHP minimum (7.2.5)
 - [ ] C12, C13, C15 to C19 small correctness and escaping fixes (C14 done 2026-11-28)
 - [ ] C21 to C23 compatibility and modal fields

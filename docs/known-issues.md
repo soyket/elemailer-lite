@@ -10,7 +10,6 @@ Found by reading the source on 2026-11-11. Fixed items are removed from this lis
 
 ## Robustness
 - `Plugin::init()` calls `Util::minify_css()` on every request, writing `app/form-template/view/default-elementor-style.php` each time. This breaks on read-only file systems, costs I/O on every page load, and dirties a Git-tracked file during local development. (C10)
-- `Library::get_default_page_builder()` makes a synchronous remote request with no caching every time the editor footer loads for an Elemailer post, and when the sync AJAX action runs. (C11)
 - Effective PHP minimum is 7.2.5: `helpers/vendor/composer/platform_check.php` stops PHP below 7.2.5 with a fatal error, while `readme.txt` says `Requires PHP: 7.2`. (C20)
 - `Elementor\Base` notices say Elementor 3.4 is needed but the check is `ELEMENTOR_VERSION >= 3.0.11`. The plugin header says 'Elementor tested up to: 3.4'. (C21)
 - Some strings use the text domain `elemailer` instead of `elemailer-lite` (`Actions\Hooks::register_document_config()` and the Terms description in the Latest Posts widget). `register_document_config()` also returns nothing for other post types. (C18)

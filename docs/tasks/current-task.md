@@ -22,4 +22,4 @@ Run `npm install`, `composer install`, `npm run env:start`, `composer test:unit`
 Done: implementation and local verification (config parsing, unit tests, syntax lint, PHPCS changed files). The smoke test also passes on a local non-Docker WordPress test site (WordPress 7.1.5, SQLite, Elemailer Lite 2.8, Elementor 4.4.2, Contact Form 7 6.2.6), and its fixture now runs as an administrator and writes `_elementor_version` meta like an editor-built document.
 Remaining: Docker-backed wp-env smoke test run (WordPress 6.8.2) and owner review.
 Blockers: Docker may not be available in every agent environment; unit tests and config checks still run without Docker.
-Next step: owner review of the C1-C8 security branch; the C1 removal branch removes the unused library delete handler and JS caller instead of keeping the hardened handler.
+Next step: owner review of the C1-C8 security branch; the C1 removal branch removes the unused library delete handler and JS caller instead of keeping the hardened handler. C11 library-list caching was added on the same fix branch on 2026-11-28.
